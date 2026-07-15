@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aika Yoshida — 営業出身のWebデザイナーのポートフォリオ。課題→分析→施策のプロセスで見せる事例と、UX/CXへの実践。">
+<title>Aika Yoshida — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================
+     Unified design tokens — 全3ページ共通（HIG: Consistency）
+     ========================================================== */
+  :root{
+    --ink:#141310;
+    --ink-soft:#3a3833;
+    --mute:#6f6a61;
+    --line:#e0ddd4;
+    --page:#f5f3ee;
+    --card:#ffffff;
+    --accent:#7c2cd6;
+    --accent-deep:#5c1ba3;
+    --accent-soft:#f1e6fb;
+    --accent-light:#d9bdfb;
+    --max:1120px;
+    --pad:32px;
+    --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    /* 8pt spacing scale（HIG: 一貫したレイアウトリズム） */
+    --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s7:64px;--s8:80px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+  body{font-family:var(--font);color:var(--ink);background:var(--page);line-height:1.85;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
+  a{color:inherit}
+  /* HIG: 明確なフォーカスリング（キーボード操作の可視フィードバック） */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .mono{font-family:var(--font);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  @media(max-width:640px){:root{--pad:20px}}
+  /* skip link（アクセシビリティ） */
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-size:13px;text-decoration:none}
+  .skip:focus{left:0}
+
+  /* ---------- topbar（3ページ共通デザイン） ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .row{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px;height:68px;padding:0 var(--pad)}
+  .brand{font-weight:800;letter-spacing:.14em;font-size:13px;text-decoration:none;white-space:nowrap}
+  .topbar nav{display:flex;align-items:center;gap:8px}
+  /* HIG: タッチターゲット44px以上 */
+  .topbar nav a{text-decoration:none;font-size:13px;font-weight:600;color:var(--ink-soft);transition:color .15s;padding:12px 10px;min-height:44px;display:inline-flex;align-items:center}
+  .topbar nav a:hover{color:var(--accent)}
+  .topbar .cta{text-decoration:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);padding:12px 20px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap;transition:background .15s}
+  .topbar .cta:hover{background:var(--accent)}
+  @media(max-width:640px){
+    .topbar .row{height:56px;gap:10px}
+    .topbar nav a{font-size:12px;padding:10px 7px}
+    .topbar .cta{display:none}
+  }
+
+  /* ---------- compact hero：タイポグラフィのみ ---------- */
+  .hero{padding:72px 0 64px;border-bottom:1px solid var(--line)}
+  .hero-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:20px}
+  .hero-label{color:var(--accent)}
+  .hero-meta{display:none}
+  @media(min-width:760px){.hero-meta{display:block}}
+  .hero h1{font-weight:800;font-size:clamp(28px,4.2vw,46px);line-height:1.16;letter-spacing:-.015em;max-width:720px}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero-sub{margin-top:16px;font-size:15px;color:var(--ink-soft);max-width:560px}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .btn{text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.02em;padding:13px 26px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--ink);color:var(--ink);transition:all .15s}
+  .btn:hover{background:var(--ink);color:#fff}
+  .btn.solid{background:var(--ink);color:#fff}
+  .btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+  @media(max-width:640px){.hero{padding:48px 0 44px}}
+
+  /* ---------- section frame ---------- */
+  section{border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:56px 0 0}
+  .sec-head .idx{font-size:11.5px;letter-spacing:.1em;color:var(--mute)}
+  .sec-head .idx b{color:var(--accent);font-weight:400}
+  h2.big{font-weight:800;font-size:clamp(23px,3.2vw,34px);line-height:1.1;letter-spacing:-.015em;margin-top:8px}
+  .sec-lead{max-width:620px;color:var(--ink-soft);font-size:15px;margin-top:14px}
+  @media(max-width:640px){.sec-head{padding-top:36px}}
+
+  /* ---------- works（事例メイン・ファースト） ---------- */
+  .works{padding-bottom:112px;border-top:none}
+  .feature{margin-top:48px;display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--card);text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease}
+  .feature:hover{transform:translateY(-3px);box-shadow:0 22px 46px -28px rgba(20,19,16,.3)}
+  .feature:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .feature .vis{background:var(--ink);color:#f2efe8;padding:36px 38px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;position:relative;overflow:hidden}
+  .feature .vis::after{content:"";position:absolute;right:-60px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(124,44,214,.55),transparent 68%)}
+  .feature .vis .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a29c90}
+  .feature .vis h3{font-size:clamp(26px,3.4vw,38px);font-weight:800;line-height:1.08;letter-spacing:-.02em;position:relative;z-index:1}
+  .feature .vis .mini{display:flex;gap:16px;font-size:11px;color:#8f8a80;letter-spacing:.1em;position:relative;z-index:1;text-transform:uppercase}
+  .feature .body{padding:38px 36px;display:flex;flex-direction:column;justify-content:center}
+  .feature .body .fk{font-size:11px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .feature .body h4{font-size:18.5px;margin:12px 0;font-weight:700;line-height:1.6}
+  .feature .body p{font-size:14px;color:var(--ink-soft)}
+  /* 採用視点：担当領域を事例カードに明記 */
+  .feature .body .role{margin-top:14px;font-size:12px;color:var(--mute)}
+  .feature .body .role b{color:var(--ink);font-weight:700}
+  .feature .body .tags{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+  .feature .body .tags span{border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:11px;color:var(--ink-soft)}
+  .feature .body .tags span.pdf{border-color:var(--accent);color:var(--accent)}
+  .feature .body .go{margin-top:20px;font-size:13px;color:var(--accent);font-weight:700}
+  @media(max-width:820px){.feature{grid-template-columns:1fr}.feature .vis{min-height:220px}}
+  .feature + .feature{margin-top:18px}
+  .feature.alt{grid-template-columns:.95fr 1.05fr}
+  @media(max-width:820px){.feature.alt{grid-template-columns:1fr}.feature.alt .vis{order:-1}}
+
+  /* サムネイル：CSS製UIモック（実スクショに差し替え可能） */
+  .feature .vis.ui{background:#e9ebf0;color:var(--ink)}
+  .feature .vis.ui::after{background:radial-gradient(circle at 30% 30%,rgba(124,44,214,.16),transparent 68%)}
+  .feature .vis.ui .lab{color:#878d99}
+  .feature .vis.ui .mini{color:#9299a6}
+  .mock{position:relative;z-index:1;background:#fff;border:1px solid #d9dce3;border-radius:12px;padding:10px;box-shadow:0 14px 32px -20px rgba(20,19,16,.3)}
+  .mock .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .mock .bar b{width:70px;height:6px;border-radius:3px;background:#ccd0d9;display:block}
+  .mock .pill{font-size:8px;letter-spacing:.08em;background:#e5484d;color:#fff;padding:2px 9px;border-radius:999px;font-weight:700}
+  .mock .cols{display:grid;grid-template-columns:.8fr 1.4fr .9fr;gap:8px}
+  .mock .col{display:flex;flex-direction:column;gap:6px}
+  .mock .col i{display:block;height:20px;border-radius:6px;background:#f1f3f7;border:1px solid #e4e7ee}
+  .mock .col i.hero{height:44px}
+  .mock .col i.alert{background:#fdecec;border-color:#f4c7ca}
+  .mock .col i.ok{background:#e9f5ef;border-color:#d0e8db}
+  /* ウェディング側：建築アーチのミニビジュアル */
+  .arches{position:relative;z-index:1;display:flex;gap:10px;align-items:flex-end;height:104px}
+  .arches span{flex:1;border:1.5px solid rgba(244,241,236,.35);border-bottom:none;border-radius:120px 120px 0 0;height:70%}
+  .arches span:nth-child(2){height:100%;border-color:var(--accent-light)}
+  .arches span:nth-child(3){height:85%}
+
+  /* more works — ビジュアルグリッド */
+  .more-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:88px;padding-top:36px;border-top:1px solid var(--line)}
+  .more-head h3{font-weight:800;font-size:clamp(18px,2.4vw,24px);letter-spacing:-.01em}
+  .mgrid{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:920px){.mgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.mgrid{grid-template-columns:1fr}}
+  .mcard{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+  .mcard .thumb{aspect-ratio:4/3;border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .2s ease}
+  .mcard .thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(124,44,214,.6),transparent 70%);opacity:0;transition:opacity .25s ease;z-index:2;pointer-events:none}
+  .mcard:hover .thumb{transform:translateY(-4px)}
+  .mcard:hover .thumb::after{opacity:1}
+  .mcard .thumb .shot{position:relative;z-index:1;width:84%;aspect-ratio:16/10;border-radius:9px;overflow:hidden;box-shadow:0 18px 36px -18px rgba(0,0,0,.55)}
+  .mcard .thumb .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .mcard .thumb .badge{position:absolute;left:12px;top:12px;z-index:3;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.85);text-transform:uppercase}
+  .mcard .thumb .scr{width:62%;aspect-ratio:16/10;background:#fff;border-radius:8px;box-shadow:0 16px 34px -18px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:5px;padding:9px;position:relative;z-index:1}
+  .mcard .thumb .scr i{display:block;border-radius:3px;background:#e8e8ec;height:7px}
+  .mcard .thumb .scr i.h{height:16px;width:55%;background:#d5d6dd}
+  .mcard .thumb .scr i.w70{width:70%}
+  .mcard .thumb .scr i.w40{width:40%}
+  .mcard .thumb .mark{width:56px;height:56px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--ink);box-shadow:0 14px 28px -14px rgba(0,0,0,.5)}
+  .mcard h4{font-size:15px;font-weight:700;line-height:1.5}
+  .mcard .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .mcard .tags span{font-size:10.5px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+  .mcard:hover h4{color:var(--accent)}
+
+  /* ---------- statement band（作品ではなく解決事例） ---------- */
+  .fullbleed{width:100%;background:var(--ink);color:#f4f1ec;padding:72px 0;position:relative;overflow:hidden}
+  .fullbleed::before{content:"";position:absolute;top:-120px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(124,44,214,.45),transparent 70%)}
+  .fullbleed .inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);position:relative;z-index:1}
+  .fullbleed .k{font-size:11px;letter-spacing:.16em;color:var(--accent-light);text-transform:uppercase}
+  .fullbleed p{font-size:clamp(21px,3.4vw,32px);font-weight:800;line-height:1.5;letter-spacing:-.005em;max-width:900px;margin-top:18px}
+  .fullbleed p b{color:var(--accent-light);font-weight:800}
+
+  /* ---------- about（名前ヘッダー → 本文 → データ行の縦積み） ---------- */
+  .about-sec{padding-bottom:112px}
+  .about-grid{max-width:640px;margin-top:44px}
+  .about-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+  .avatar{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:linear-gradient(150deg,#141310,#37206b);display:flex;align-items:center;justify-content:center;color:#a99fc0;font-weight:800;font-size:18px;letter-spacing:.06em}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .about-head .nm2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .about-head .rd{font-size:12.5px;color:var(--mute);margin-top:2px}
+  .about-body p{font-size:14.5px;color:var(--ink-soft);margin-bottom:14px}
+  .about-body em{font-style:normal;color:var(--accent)}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 24px;border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
+  @media(max-width:560px){.facts{grid-template-columns:1fr}}
+  .facts .k2{font-size:10.5px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
+  .facts .v{font-size:13.5px;font-weight:600}
+
+  /* capabilities — 実務経験と学習中を正直に区別 */
+  .caps-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:96px;padding-top:40px;border-top:1px solid var(--line)}
+  .caps-head h3{font-weight:800;font-size:clamp(19px,2.6vw,26px);letter-spacing:-.01em}
+  .caps-head .mono b{color:var(--accent);font-weight:400}
+  .caps-lead{max-width:620px;color:var(--ink-soft);font-size:14.5px;margin-top:14px}
+  .crow{display:grid;grid-template-columns:130px 1.1fr 1.3fr;gap:26px;padding:32px 4px;border-bottom:1px solid var(--line);align-items:start}
+  .crow:first-of-type{border-top:1px solid var(--line);margin-top:30px}
+  .crow .num{font-size:12px;color:var(--mute);letter-spacing:.1em;padding-top:6px}
+  .crow h4{font-weight:800;font-size:clamp(19px,2.6vw,26px);letter-spacing:-.015em;line-height:1.25}
+  .crow .desc p{font-size:14px;color:var(--ink-soft)}
+  .crow .chips{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .crow .chips span{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:11px;color:var(--ink-soft);background:var(--card)}
+  .crow:hover .num{color:var(--accent)}
+  @media(max-width:760px){.crow{grid-template-columns:1fr;gap:10px;padding:26px 2px}}
+
+  /* ---------- contact ---------- */
+  .contact-sec{border-top:none;padding:20px 0 40px}
+  .contact-panel{background:var(--ink);color:#f2efe8;border-radius:26px;padding:72px 60px 44px;position:relative;overflow:hidden}
+  .contact-panel::before{content:"";position:absolute;top:-120px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(124,44,214,.5),transparent 70%)}
+  .contact-panel .mono{color:#a29c90}
+  .contact-panel h3{font-weight:800;font-size:clamp(26px,4vw,40px);letter-spacing:-.015em;line-height:1.1;margin-top:12px;position:relative;z-index:1}
+  .contact-panel .sub{color:#b7b1a6;font-size:14px;max-width:440px;margin-top:18px;position:relative;z-index:1}
+  .contact-panel .mail{display:inline-flex;align-items:center;min-height:44px;margin-top:28px;color:#fff;border:1px solid #47443d;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:13.5px;position:relative;z-index:1;transition:all .15s}
+  .contact-panel .mail:hover{background:var(--accent);border-color:var(--accent)}
+  .contact-panel .fmeta{margin-top:64px;padding-top:22px;border-top:1px solid #33312b;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:#8b867c;position:relative;z-index:1}
+  .contact-panel .fmeta nav{display:flex;gap:20px}
+  .contact-panel .fmeta a{color:#cfcac0;text-decoration:none;padding:8px 0}
+  .contact-panel .fmeta a:hover{color:#fff}
+  @media(max-width:640px){.contact-panel{padding:52px 26px 34px}}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#work">本文へスキップ</a>
+
+<header class="topbar">
+  <div class="row">
+    <a href="#top" class="brand">AIKA YOSHIDA</a>
+    <nav aria-label="メイン">
+      <a href="#work">Works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="mailto:aika.yos@icloud.com" class="cta">Get in touch</a>
+  </div>
+</header>
+
+<!-- ================= HERO（コンパクト：数秒で誰が・何を、が伝わる） ================= -->
+<section class="hero" aria-label="自己紹介">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="mono hero-label">AIKA YOSHIDA — PORTFOLIO</span>
+      <span class="mono hero-meta">©2026</span>
+    </div>
+    <h1>課題を解くことから、<br><em>体験の設計へ。</em></h1>
+    <p class="hero-sub">現職はWebデザイナー。法人営業で身についた課題解決の考え方を軸に、UX/CXの設計を実践しながら学んでいます。</p>
+    <div class="actions">
+      <a href="#work" class="btn solid">Selected Works ↓</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKS（事例ファースト） ================= -->
+<section class="works" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="idx"><b>01</b> — Selected Works</div>
+        <h2 class="big">Works</h2>
+      </div>
+      <span class="mono">(08)</span>
+    </div>
+    <p class="sec-lead">課題 → 分析 → 施策のプロセスを、担当領域・期間とあわせて掲載しています。</p>
+
+    <a class="feature" href="wedding-case-study.html">
+      <div class="vis">
+        <div class="arches" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h3>Wedding Venue<br>Website Redesign</h3>
+      </div>
+      <div class="body">
+        <span class="fk">結婚式場 / CVR最大化</span>
+        <h4>3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ。</h4>
+        <p>原因を「着地後3秒の直帰」と特定し、心理障壁を解除する情報設計へ再構築した提案。</p>
+        <p class="role"><b>担当：</b>UXリサーチ〜ワイヤーフレーム ／ 個人ワーク</p>
+        <div class="tags"><span>UXリサーチ</span><span>CX設計</span><span class="pdf">提案書PDF付き</span></div>
+        <span class="go">Read case study →</span>
+      </div>
+    </a>
+
+    <a class="feature alt" href="clinic-case-study.html">
+      <div class="body">
+        <span class="fk">医療 / 患者安全 UX</span>
+        <h4>診療の集中を壊さずに、<br>緊急報告を確実に届けるシステムへ。</h4>
+        <p>伝達ミスと見落としを「静かな同期」で構造的に防ぐ、医師×看護師のためのUX設計。</p>
+        <p class="role"><b>担当：</b>リサーチ〜Hi-Fiプロトタイプ ／ Google UX認定コース課題</p>
+        <div class="tags"><span>ユーザビリティテスト</span><span>ペルソナ / ジャーニー</span><span class="pdf">PDF付き</span></div>
+        <span class="go">Read case study →</span>
+      </div>
+      <div class="vis ui">
+        <div class="mock" aria-hidden="true">
+          <div class="bar"><b></b><span class="pill">URGENT</span></div>
+          <div class="cols">
+            <div class="col"><i></i><i></i><i></i></div>
+            <div class="col"><i class="hero"></i><i></i><i class="ok"></i></div>
+            <div class="col"><i class="alert"></i><i></i><i></i></div>
+          </div>
+        </div>
+        <h3>Patient Record<br>Management System</h3>
+      </div>
+    </a>
+
+    <div class="more-head">
+      <h3>More works</h3>
+      <span class="mono">Web / UI / Content</span>
+    </div>
+
+    <div class="mgrid">
+      <!-- 実スクショがある場合：.thumb 内を <img src="..."> に差し替え -->
+      <a class="mcard" href="autooasis.html">
+        <div class="thumb" style="background:#2b2925">
+          <span class="badge">Web Site</span>
+          <div class="shot"><img src="assets/autooasis.png" alt="AUTOOASIS 月極ガレージ駐車場 Webサイト" loading="lazy"></div>
+        </div>
+        <h4>AUTOOASIS 月極プレミアムガレージ</h4>
+        <div class="tags"><span>ディレクション</span><span>撮影企画</span><span>デザイン</span></div>
+      </a>
+      <a class="mcard" href="yoshizuka-butsugu.html">
+        <div class="thumb" style="background:#141310">
+          <span class="badge">Web Design</span>
+          <div class="scr" aria-hidden="true"><i class="h"></i><i class="w70"></i><i></i><i class="w40"></i></div>
+        </div>
+        <h4>吉塚仏具店 Webサイトリニューアル提案</h4>
+        <div class="tags"><span>ブランドイメージ</span><span>デザイン</span></div>
+      </a>
+      <a class="mcard" href="digsy.html">
+        <div class="thumb" style="background:#4e4b44">
+          <span class="badge">LP / Media</span>
+          <div class="shot"><img src="assets/digsy-lp.png" alt="株式会社Digsy バックオフィス・BPOアウトソーシングLP" loading="lazy"></div>
+        </div>
+        <h4>株式会社Digsy LP / メディアコンテンツ</h4>
+        <div class="tags"><span>デザイン</span></div>
+      </a>
+      <a class="mcard" href="thr-tiktok.html">
+        <div class="thumb" style="background:#605c53">
+          <span class="badge">Social / Video</span>
+          <div class="shot"><img src="assets/tiktok-hollywoodreporter.png" alt="ハリウッドリポーター・ジャパン TikTokコンテンツ" loading="lazy"></div>
+        </div>
+        <h4>ハリウッドリポーター・ジャパン TikTok</h4>
+        <div class="tags"><span>フォロワー1年で+1,000</span><span>最高21万再生</span></div>
+      </a>
+      <a class="mcard" href="slia-banner.html">
+        <div class="thumb" style="background:#3c3a35">
+          <span class="badge">Banner</span>
+          <div class="scr" aria-hidden="true"><i class="h"></i><i class="w40"></i><i class="w70"></i><i></i></div>
+        </div>
+        <h4>従業員向け 屋内行動収集アプリ</h4>
+        <div class="tags"><span>バナーデザイン</span><span>告知</span></div>
+      </a>
+      <a class="mcard" href="amp-logo.html">
+        <div class="thumb" style="background:#716c63">
+          <span class="badge">Branding</span>
+          <div class="mark" aria-hidden="true">✳</div>
+        </div>
+        <h4>ジュエリーブランド ロゴ</h4>
+        <div class="tags"><span>ロゴデザイン</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about-sec" id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="idx"><b>02</b> — Profile</div>
+        <h2 class="big">About</h2>
+      </div>
+      <span class="mono">Sales → Web Design → UX / CX</span>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-head">
+        <div class="avatar" aria-hidden="true">
+          <img src="assets/portrait.jpg" alt="" onerror="this.remove();this.parentNode.textContent='AY'">
+        </div>
+        <div>
+          <div class="nm2">吉田 愛佳 — Aika Yoshida</div>
+          <div class="rd">Web Designer ／ 1999年 埼玉生まれ</div>
+        </div>
+      </div>
+      <div class="about-body">
+        <p>営業／法人営業を経験したのち、オンラインの顧客体験設計に興味を持ち、Webデザインに転身しました。数字の背景にある課題を見つけて解く、という営業時代からの習慣をデザインの起点にしています。</p>
+        <p>大切にしているのは、課題を1つに絞り込み、動きながら不明点を明らかにしていくこと。</p>
+      </div>
+      <div class="facts">
+        <div><div class="k2">Focus</div><div class="v">CX / UX・サービスデザイン</div></div>
+        <div><div class="k2">Background</div><div class="v">法人営業 → Webデザイン</div></div>
+        <div><div class="k2">Approach</div><div class="v">営業視点 × 体験設計</div></div>
+      </div>
+    </div>
+
+    <!-- capabilities: 実務経験と学習中を正直に区別（信頼につながる情報開示） -->
+    <div class="caps-head">
+      <h3>私にできること</h3>
+      <span class="mono">Now <b>&amp; Next</b></span>
+    </div>
+    <p class="caps-lead">実務で経験してきた領域と、いま学習・実践中の領域を分けて記載しています。</p>
+
+    <div class="crow">
+      <span class="num">実務経験</span>
+      <h4>顧客理解・課題整理</h4>
+      <div class="desc">
+        <p>法人営業で数字と向き合う中で、「なぜ人は動くか」を考える習慣がついた。今はそれをビジネス課題の整理に活かしている。</p>
+        <div class="chips"><span>顧客理解</span><span>課題整理</span><span>KPI感覚</span></div>
+      </div>
+    </div>
+    <div class="crow">
+      <span class="num">実務経験</span>
+      <h4>ビジュアル・UI表現</h4>
+      <div class="desc">
+        <p>Webデザイナーとして培った、伝わる画面をつくる力。情報の見せ方やレイアウト設計を実務で担当してきた。</p>
+        <div class="chips"><span>UIデザイン</span><span>ワイヤーフレーム</span></div>
+      </div>
+    </div>
+    <div class="crow">
+      <span class="num">学習・実践中</span>
+      <h4>UX / CX ── 今、深めている領域</h4>
+      <div class="desc">
+        <p>営業とデザイン、両方の経験をつなぐ形でUX/CXを学習中。本サイトの事例のように、実際の案件を想定した提案設計で実践を重ねています。</p>
+        <div class="chips"><span>UXリサーチ（学習中）</span><span>CX設計（実践中）</span><span>カスタマージャーニー</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact-sec" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <span class="mono">Get in touch</span>
+      <h3>Contact</h3>
+      <p class="sub">ご覧いただきありがとうございます。採用に関するご連絡や、カジュアル面談のお誘いなど、メールにてお気軽にご連絡ください。</p>
+      <a class="mail" href="mailto:aika.yos@icloud.com">aika.yos@icloud.com →</a>
+      <div class="fmeta">
+        <nav aria-label="フッター">
+          <a href="#work">Works</a>
+          <a href="#about">About</a>
+        </nav>
+        <span>© 2026 Aika Yoshida</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

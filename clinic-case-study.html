@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="診療所向け患者情報管理システムのUXケーススタディ — リサーチからユーザビリティテスト、Hi-Fiプロトタイプまでの全工程。">
+<title>Patient Record Management System — Aika Yoshida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== Unified design tokens — 全3ページ共通（HIG: Consistency） ===== */
+  :root{
+    --ink:#141310;
+    --ink-soft:#3a3833;
+    --mute:#6f6a61;
+    --line:#e0ddd4;
+    --page:#f5f3ee;
+    --card:#ffffff;
+    --accent:#7c2cd6;
+    --accent-deep:#5c1ba3;
+    --accent-soft:#f1e6fb;
+    --accent-light:#d9bdfb;
+    --radius:26px;
+    --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s7:64px;--s8:80px;
+    --dot: radial-gradient(currentColor 1.4px, transparent 1.4px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+  body{font-family:var(--font);color:var(--ink);background:var(--page);line-height:1.8;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .mono{font-family:var(--font);letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--mute)}
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-size:13px;text-decoration:none}
+  .skip:focus{left:0}
+
+  .shell{display:block;min-height:100vh}
+
+  /* ---------- topbar（3ページ共通） ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .row{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px;height:68px;padding:0 32px}
+  .topbar .brandwrap{display:flex;align-items:center;gap:14px;min-width:0}
+  .topbar .brand{font-weight:800;letter-spacing:.14em;font-size:13px;text-decoration:none;white-space:nowrap}
+  .topbar .back{font-size:12.5px;color:var(--ink-soft);text-decoration:none;white-space:nowrap;padding:10px 0 10px 14px;border-left:1px solid var(--line);display:none}
+  @media(min-width:760px){.topbar .back{display:block}}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar nav{display:flex;align-items:center;gap:8px}
+  .topbar nav a{text-decoration:none;font-size:13px;font-weight:600;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:10px;transition:color .15s}
+  .topbar nav a .dot{width:5px;height:5px;border-radius:2px;background:var(--line);transition:background .15s}
+  .topbar nav a:hover{color:var(--accent)}
+  .topbar nav a:hover .dot{background:var(--accent)}
+  .topbar .cta{text-decoration:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);padding:12px 20px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+  .topbar .cta:hover{background:var(--accent)}
+  @media(max-width:640px){
+    .topbar .row{padding:0 18px;height:58px;gap:12px}
+    .topbar nav{gap:4px}
+    .topbar nav a .dot{display:none}
+    .topbar nav a{font-size:11.5px;padding:10px 6px}
+    .topbar .cta{display:none}
+  }
+
+  .stack{max-width:1120px;margin:0 auto;padding:28px 32px 40px;display:flex;flex-direction:column;gap:20px}
+  @media(max-width:640px){.stack{padding:18px 18px 32px}}
+  .card{background:var(--card);border-radius:var(--radius);padding:52px 58px;position:relative;overflow:hidden}
+  .card.dark{background:var(--ink);color:#f4f1ec}
+  @media(max-width:760px){.card{padding:34px 22px}}
+
+  /* signature dot-grid texture */
+  .dotgrid{position:relative}
+  .dotgrid::before{
+    content:"";position:absolute;top:0;right:0;width:280px;height:280px;
+    background-image:var(--dot);background-size:16px 16px;color:var(--accent-light);
+    opacity:.5;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+    mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+  }
+  @media(max-width:760px){.dotgrid::before{width:160px;height:160px}}
+
+  .stepline{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .stepno{font-size:12px;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);padding:5px 11px;border-radius:8px}
+  .stepname{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+  .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:800;line-height:1.3;margin-bottom:var(--s1);letter-spacing:-.005em}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
+
+  .eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s4)}
+  .tag{border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:11px;letter-spacing:.1em;color:var(--ink-soft);background:var(--page)}
+  h1.title{font-size:clamp(26px,4vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.01em}
+  .subtitle{font-size:clamp(14px,2vw,17px);color:var(--ink-soft);margin-top:var(--s3);max-width:640px}
+  .metarow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--line)}
+  .metarow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+  .metarow .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.5}
+  @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr;gap:var(--s3)}}
+
+  /* takeaways strip — 冒頭で「この案件でわかること」を提示 */
+  .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
+  .takeaways .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent-light);text-transform:uppercase}
+  .takeaways ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin:var(--s2) 0}
+  @media(max-width:720px){.takeaways ul{grid-template-columns:1fr;gap:8px}}
+  .takeaways li{font-size:14px;font-weight:700;position:relative;padding-left:16px;line-height:1.5}
+  .takeaways li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--accent-light);border-radius:2px}
+  .takeaways .one{font-size:13px;color:#b9b3aa;border-top:1px solid #34302e;padding-top:var(--s2);margin-top:var(--s1)}
+  .takeaways .one b{color:#fff;font-weight:600}
+
+  .tldr{background:var(--page);border:1px solid var(--line);border-radius:18px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
+  .tldr ul{list-style:none;display:grid;gap:var(--s1)}
+  .tldr li{position:relative;padding-left:var(--s3);color:var(--ink-soft);font-size:15px}
+  .tldr li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);border-radius:2px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s4)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  .item{background:var(--page);border:1px solid var(--line);border-radius:16px;padding:var(--s3)}
+  .item .num{font-size:12px;color:var(--accent-deep);letter-spacing:.1em;font-weight:700}
+  .item h4{font-size:17px;margin:var(--s1) 0;font-weight:700}
+  .item p{font-size:14px;color:var(--ink-soft)}
+  .item .en{font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-bottom:2px}
+
+  .callout{background:var(--accent-soft);border:1px solid #ddc4f5;border-radius:18px;padding:var(--s4);margin-top:var(--s3)}
+  .callout .stat{font-size:clamp(18px,2.6vw,24px);font-weight:800;color:var(--accent-deep);line-height:1.25}
+  .callout .stat small{display:block;margin-top:8px;font-size:15px;color:var(--ink-soft);font-weight:600}
+
+  .insight-card .k{font-size:11px;letter-spacing:.16em;color:var(--accent-soft);text-transform:uppercase;opacity:.85}
+  .insight-card blockquote{font-size:clamp(19px,2.8vw,28px);font-weight:800;line-height:1.4;letter-spacing:-.01em;max-width:820px;margin-top:var(--s3)}
+  .insight-card blockquote em{font-style:normal;color:var(--accent-light)}
+
+  .flow{margin-top:var(--s4);display:grid;gap:0}
+  .step{display:grid;grid-template-columns:56px 1fr 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step .ph{font-size:13px;color:var(--accent);font-weight:700}
+  .step .heart{font-size:14px;color:var(--ink);font-weight:600}
+  .step .heart small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;margin-top:3px}
+  .step .move{font-size:13.5px;color:var(--ink-soft)}
+  .step .move b{color:var(--accent-deep)}
+  @media(max-width:720px){.step{grid-template-columns:44px 1fr}.step .move{grid-column:1 / -1;padding-left:60px}}
+
+  .contrib{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
+  @media(max-width:820px){.contrib{grid-template-columns:1fr}}
+  .contrib .item h4{color:var(--accent-deep)}
+
+  .pdfbox{margin-top:var(--s3);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--page)}
+  .pdfbox .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px var(--s3);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .pdfbox .bar .t{font-size:13px;font-weight:700}
+  .pdfbox .bar .t small{display:block;font-weight:400;color:var(--mute);font-size:11px;letter-spacing:.04em;margin-top:2px}
+  .pdfbox .acts{display:flex;gap:8px}
+  .pdfbox .acts a{font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:40px;display:inline-flex;align-items:center;color:var(--ink);white-space:nowrap;background:var(--card)}
+  .pdfbox .acts a.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .pdfbox .acts a.solid:hover{background:var(--accent);border-color:var(--accent)}
+  .pdfbox .acts a:hover{border-color:var(--accent);color:var(--accent)}
+  .pdfbox object,.pdfbox iframe{width:100%;height:640px;border:0;display:block;background:#efece5}
+  @media(max-width:720px){.pdfbox object,.pdfbox iframe{height:420px}}
+
+  .disc{font-size:11.5px;color:var(--mute);margin-top:var(--s2);font-style:italic}
+
+  .contact-card{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  .contact-card h3{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.01em;line-height:1.1}
+  .contact-card p{color:#b9b3aa;font-size:14px;margin-top:10px;max-width:440px}
+  .contact-card a.cta{display:inline-flex;align-items:center;min-height:44px;margin-top:22px;color:#fff;border:1px solid #4a4741;padding:12px 22px;border-radius:999px;text-decoration:none;font-size:13px}
+  .contact-card a.cta:hover{background:var(--accent);border-color:var(--accent)}
+  .contact-card .fmeta{font-size:12px;color:#8b867e;text-align:right}
+  .contact-card .fmeta a{color:#cfcac2;text-decoration:none;display:block;margin-bottom:4px;padding:4px 0}
+
+  /* ---------- next case / slim footer / back to top ---------- */
+  .nextcase{display:block;text-decoration:none;border-top:1px solid var(--line);background:var(--card);transition:background .15s}
+  .nextcase .ncin{display:flex;flex-direction:column;gap:6px;padding:44px 32px 48px;max-width:1120px;margin:0 auto}
+  .nextcase .nc-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .nextcase .nc-title{font-size:clamp(19px,2.8vw,26px);font-weight:800;letter-spacing:-.01em;color:var(--ink);transition:color .15s}
+  .nextcase:hover .nc-title{color:var(--accent)}
+  footer.slimfoot{padding:6px 0;background:transparent;color:var(--mute);border-top:1px solid var(--line)}
+  .slimfoot .fslim{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--mute);max-width:1120px;margin:0 auto;padding:0 32px}
+  .slimfoot nav{display:flex;gap:2px}
+  .slimfoot nav a{color:var(--ink-soft);text-decoration:none;padding:12px 10px;min-height:44px;display:inline-flex;align-items:center;font-size:12.5px}
+  .slimfoot nav a:hover{color:var(--accent)}
+  .totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+  .totop.on{opacity:1;pointer-events:auto}
+  .totop:hover{background:var(--accent)}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="topbar">
+  <div class="row">
+    <div class="brandwrap">
+      <a href="index.html" class="brand">AIKA YOSHIDA</a>
+      <a href="index.html#work" class="back">← Selected Works</a>
+    </div>
+    <nav aria-label="メイン">
+      <a href="index.html#work"><span class="dot"></span>Works</a>
+      <a href="index.html#about"><span class="dot"></span>About</a>
+      <a href="index.html#contact"><span class="dot"></span>Contact</a>
+    </nav>
+    <a href="mailto:aika.yos@icloud.com" class="cta">Get in touch</a>
+  </div>
+</header>
+
+<div class="shell">
+  <main class="stack" id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="card">
+      <div class="eyebrow">
+        <span class="tag">UX Design</span>
+        <span class="tag">UX Research</span>
+        <span class="tag">App / Responsive Web</span>
+        <span class="tag">Google UX Design Certificate</span>
+      </div>
+      <h1 class="title">Patient Record<br>Management System</h1>
+      <p class="subtitle">プライマリケア診療所向けの患者情報管理システム — 医師のPCダッシュボードと看護師のモバイルをリアルタイム同期し、「伝達ミスゼロ・重要アラートの見落としゼロ」で患者安全を守るUX設計。</p>
+      <div class="metarow">
+        <div><div class="k">Role / 担当領域</div><div class="v">Lead UX Designer<br>リサーチ・ワイヤー・プロトタイピング</div></div>
+        <div><div class="k">Timeline / 期間</div><div class="v">2026.06<br>Google UX認定コース課題</div></div>
+        <div><div class="k">Type / 形態</div><div class="v">個人ワーク<br>（架空クライアント）</div></div>
+        <div><div class="k">Deliverable</div><div class="v">リサーチ〜Hi-Fiモックアップ<br>PC / Mobile プロトタイプ</div></div>
+      </div>
+    </section>
+
+    <!-- ============ 01 OVERVIEW ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">01</span><span class="stepname">Overview</span></div>
+      <div class="takeaways">
+        <span class="lbl">この事例で取り組んだこと</span>
+        <ul>
+          <li>ユーザビリティテストでの検証と反復</li>
+          <li>医師と看護師、2ユーザーの要求の両立</li>
+          <li>アクセシビリティ配慮の要件化</li>
+        </ul>
+        <p class="one"><b>担当：</b>リサーチ〜ワイヤー〜ユーザビリティテスト〜Hi-Fiモック ／ <b>提案内容：</b>伝達ミス・見落としを構造的に防ぐ「静かな同期」の設計と検証。</p>
+      </div>
+      <h2 class="sec-head">看護師の報告と医師の集中を、<br>音を立てずにつなぐ。</h2>
+      <div class="tldr">
+        <span class="lbl">In short</span>
+        <p class="big">診療所の現場に潜む「データの分断・伝達ラグ・入力疲弊」を、医師向け3ペイン固定ダッシュボード×看護師向けモバイル即時同期で構造的に解消するデザイン提案。</p>
+        <ul>
+          <li>解くべき課題を「患者安全」に直結する2点 —— <b>伝達ミス</b>と<b>重要アラートの見落とし</b> —— に絞り込み、ゴールを「両方ゼロ」に定義。</li>
+          <li>医師・看護師それぞれのペルソナと感情曲線から、鍵となる体験コンセプト「<b>Silent Synchronization（静かな同期）</b>」を導出。</li>
+          <li>ペーパーワイヤー5案 → Lo-Fi → ユーザビリティテスト2ラウンド → Hi-Fiモックまで、検証を挟みながら反復設計。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 02 CHALLENGE ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">02</span><span class="stepname">Challenge / Research</span></div>
+      <h2 class="sec-head">課題：善意の「報告」が、<br>診療の集中を壊している。</h2>
+      <p class="sec-lead">ピーク時の診療所では、看護師は緊急バイタルを伝えるために医師の診察へ割り込まざるを得ず、医師は散在する情報を探すために患者から目を離す。リサーチでは、この構造から生まれる4つのペインポイントを特定した。</p>
+      <div class="grid2">
+        <div class="item"><span class="num">P1</span><h4>情報過多・データノイズ</h4><p>情報が複数画面に散在し、「探す・待つ」が診療時間を圧迫。1画面に固定表示し、看護師の更新をリアルタイム同期する必要がある。</p></div>
+        <div class="item"><span class="num">P2</span><h4>コミュニケーションギャップ</h4><p>口頭・メモ・電話が混在し情報が断片化。看護師モバイル→医師PCへの直接同期による Single Source of Truth が求められる。</p></div>
+        <div class="item"><span class="num">P3</span><h4>重要情報の見落とし</h4><p>アレルギー等のクリティカルな情報が流れて消える。常時表示（Persistent Visibility）と確認必須のハードストップが必要。</p></div>
+        <div class="item"><span class="num">P4</span><h4>ワークフロー摩擦と受容性</h4><p>安全のための制約が医師のリズムを壊しては使われない。「支援するが妨げない」バランスの見極めが鍵になる。</p></div>
+      </div>
+    </section>
+
+    <!-- ============ 03 PERSONAS ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">03</span><span class="stepname">Personas</span></div>
+      <h2 class="sec-head">2人のユーザー、2つの「守りたいもの」。</h2>
+      <p class="sec-lead">同じ11時のピークタイムでも、医師と看護師では守りたいものが異なる。この非対称性こそが、設計の出発点になった。</p>
+      <div class="grid2">
+        <div class="item">
+          <span class="en">Persona 01 — Physician</span>
+          <h4>佐藤 健一（45）／ 開業医</h4>
+          <p>時間に追われるハイプレッシャーなマルチタスカー。30人超の患者を捌きながら、<b>集中を妨げないシームレスな安全ネット</b>を必要とする。「患者安全は譲れない。だが診療のフロー（clinic's pulse）も譲れない」。</p>
+        </div>
+        <div class="item">
+          <span class="en">Persona 02 — Nurse</span>
+          <h4>田中 美咲（28）／ 看護師（6年目）</h4>
+          <p>責任感が強く効率重視。緊急報告の必要と「先生の集中を割り込みで壊してしまう」<b>interruption guilt（割り込みの罪悪感）</b>の板挟み。到達が保証される「送って忘れられる」橋を必要とする。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CORE INSIGHT ============ -->
+    <section class="card dark insight-card dotgrid">
+      <span class="k">リサーチからの仮説</span>
+      <blockquote>報告の確実性と、診療の集中。<br>この両立の手がかりを<em>「静かな同期」</em>に求めた。</blockquote>
+    </section>
+
+    <!-- ============ 04 UX DESIGN ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">04</span><span class="stepname">UX Design</span></div>
+      <h2 class="sec-head">緊急の瞬間を、4つのステージで設計する。</h2>
+      <p class="sec-lead">ジャーニーマップで「異常値の発見 → 医師の承認」までを分解し、各ステージの感情に対応するシステムの役割を1対1でマッピングした。</p>
+      <div class="flow">
+        <div class="step">
+          <span class="ph">01</span>
+          <div class="heart">Triage &amp; Prep<small>看護師「高負荷で余裕がない」／医師「30人目の患者に集中」</small></div>
+          <div class="move">モバイルの入力を安全必須項目のみに絞り、<b>ベッドサイドで数タップ</b>のバイタル入力に。</div>
+        </div>
+        <div class="step">
+          <span class="ph">02</span>
+          <div class="heart">Critical Alert<small>看護師「報告したい。でも先生の集中を壊せない」</small></div>
+          <div class="move">緊急アラートは医師画面の<b>固定ゾーンにピン留め</b>。スクロールで流れず、視線移動だけで気づける。</div>
+        </div>
+        <div class="step">
+          <span class="ph">03</span>
+          <div class="heart">Silent Sync<small>看護師「届いたか不安」／医師「今は手を止められない」</small></div>
+          <div class="move"><b>Send-and-Forget</b>：送信・既読・承認のステータスが自動で返り、口頭確認もフォローアップも不要に。</div>
+        </div>
+        <div class="step">
+          <span class="ph">04</span>
+          <div class="heart">Action &amp; Relief<small>医師「リズムを保ったまま対応できた」／看護師「安心して次へ」</small></div>
+          <div class="move">アラートから治療指示まで<b>ワンクリックの最短ループ</b>。確認漏れはハードストップで構造的に防止。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 ITERATION ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">05</span><span class="stepname">Iteration / Usability</span></div>
+      <h2 class="sec-head">紙のワイヤー5案から、テスト2ラウンドで磨く。</h2>
+      <p class="sec-lead">看護師向けバイタル入力画面はペーパーワイヤーフレームで5レイアウトを比較検討。Lo-Fiプロトタイプを2ラウンドのユーザビリティテストにかけ、発見を1つずつデザインに反映した。</p>
+      <div class="grid2">
+        <div class="item">
+          <span class="en">Round 1 findings → 対応</span>
+          <h4>「気づけない・見分けられない」</h4>
+          <p>緊急バナーの見落とし、異常値が視覚的に区別できない、画面ごとに変わる送信ラベルへの迷い —— の3点を検出。アラートの<b>色分け重大度表示</b>と、入力時点からの<b>異常値ハイライト</b>で解消。</p>
+        </div>
+        <div class="item">
+          <span class="en">Round 2 findings → 対応</span>
+          <h4>「輪郭だけでは足りない」</h4>
+          <p>枠線のみの強調では不十分（色の併用が必要）、'Send'ラベル統一で迷いが解消、ヘッダー表記の微細な不整合 —— を確認。<b>1アクション=1ラベル</b>の原則をデザインシステムに昇格。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="stat">ラベルの一貫性が、操作への信頼に直結していた。<small>送信ラベルが画面間で揺れるだけで、「操作が実行されたのか」と迷う参加者がいた。テストで得た学びのひとつ。</small></div>
+      </div>
+    </section>
+
+    <!-- ============ 06 ACCESSIBILITY ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">06</span><span class="stepname">Accessibility</span></div>
+      <h2 class="sec-head">医療現場の「使える」を支える、3つの配慮。</h2>
+      <div class="grid3">
+        <div class="item"><span class="num">01</span><div class="en">Beyond Color</div><h4>色だけに依存しない警告</h4><p>すべてのアラートに色＋アイコン＋テキストラベルを併用。色覚特性のあるユーザーにも危険情報が確実に伝わる。</p></div>
+        <div class="item"><span class="num">02</span><div class="en">Contrast &amp; Visibility</div><h4>コントラストと視認性</h4><p>危険値は太枠と色変化の両方で強調。明るい診察室でも低輝度画面でも読み取れるコントラスト比を確保。</p></div>
+        <div class="item"><span class="num">03</span><div class="en">Touch Target</div><h4>44px のタッチターゲット</h4><p>ボタン・リスト行は44px以上。手袋を着用したまま、時間に追われながら操作する看護師の現実に合わせた。</p></div>
+      </div>
+    </section>
+
+    <!-- ============ 07 TAKEAWAYS ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">07</span><span class="stepname">Takeaways / Next</span></div>
+      <h2 class="sec-head">この案件で、私が学んだこと・次にやること。</h2>
+      <div class="contrib">
+        <div class="item"><h4>インパクト</h4><p>リサーチで特定した2大リスク「重要情報の見落とし」「割り込み起因のエラー」に対し、入力の簡素化と常時表示アラートで直接応答。テストでは色分けとラベル統一が迷いと誤読を減らすことを確認した。</p></div>
+        <div class="item"><h4>学び</h4><p>臨床ツールでは、画面間の一貫性が操作への信頼につながること。そして緊急度の伝達には色だけでは足りず、テキストとアイコンの併用が必要であること。</p></div>
+        <div class="item"><h4>Next: 時間圧下での再検証</h4><p>色分けバイタルとアラートバナーが「静的レビュー」でなく時間的プレッシャー下でも誤読を減らすか、第3ラウンドのテストで検証する。</p></div>
+        <div class="item"><h4>Next: 現場条件でのテスト</h4><p>カラーロール・タイポ・ボタンコピーをスタイルガイド化して一貫性を仕組みに。さらに検査手袋を着用した状態でのモバイル入力の精度と速度を検証する。</p></div>
+      </div>
+      <p class="disc">※ 本案件はGoogle UX Design Certificateの課題として制作した架空クライアント向けの個人ワークです。</p>
+    </section>
+
+    <!-- ============ 08 FULL DECK ============ -->
+    <section class="card">
+      <div class="stepline"><span class="stepno">08</span><span class="stepname">Full Case Study Deck</span></div>
+      <h2 class="sec-head">ケーススタディ全文（PDF）。</h2>
+      <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。リサーチからHi-Fiモックアップまでの全工程は、下記のスライドデッキからそのままご覧いただけます。</p>
+      <div class="pdfbox">
+        <div class="bar">
+          <div class="t">Patient Record Management System — Case Study Deck<small>PDF · Google UX Design Certificate · 2026.06</small></div>
+          <div class="acts">
+            <a href="clinic-case-study.pdf" target="_blank" rel="noopener">別タブで開く ↗</a>
+            <a class="solid" href="clinic-case-study.pdf" download>ダウンロード ↓</a>
+          </div>
+        </div>
+        <object data="clinic-case-study.pdf#view=FitH" type="application/pdf">
+          <iframe src="clinic-case-study.pdf#view=FitH" title="ケーススタディPDF"></iframe>
+        </object>
+      </div>
+      <p class="disc">PDFが表示されない場合は「別タブで開く」からご覧ください。</p>
+    </section>
+
+    </main>
+</div>
+
+<a class="nextcase" href="autooasis.html">
+  <span class="ncin">
+    <span class="nc-lbl">Next Case</span>
+    <span class="nc-title">AUTOOASIS 月極プレミアムガレージ →</span>
+  </span>
+</a>
+
+<footer class="slimfoot">
+  <div class="fslim">
+    <span>© 2026 Aika Yoshida</span>
+    <nav aria-label="フッター">
+      <a href="index.html#work">Works</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:aika.yos@icloud.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="totop" id="totop" href="#top" aria-label="ページ上部へ戻る">↑</a>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
+})();
+</script>
+
+</body>
+</html>

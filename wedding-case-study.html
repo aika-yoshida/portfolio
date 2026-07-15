@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="結婚式場Webサイトリニューアルのケーススタディ — 課題→分析→施策のプロセスと担当領域を明記したCX設計の提案。">
+<title>Wedding Venue Website Redesign — Aika Yoshida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== Unified design tokens — 全3ページ共通（HIG: Consistency） ===== */
+  :root{
+    --ink:#141310;
+    --ink-soft:#3a3833;
+    --mute:#6f6a61;
+    --line:#e0ddd4;
+    --page:#f5f3ee;
+    --card:#ffffff;
+    --accent:#7c2cd6;
+    --accent-deep:#5c1ba3;
+    --accent-soft:#f1e6fb;
+    --accent-light:#d9bdfb;
+    --max:1120px;
+    --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s7:64px;--s8:80px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+  body{font-family:var(--font);color:var(--ink);background:var(--page);line-height:1.8;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--s4)}
+  .mono{font-family:var(--font);letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--mute)}
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-size:13px;text-decoration:none}
+  .skip:focus{left:0}
+  .dotgrid{position:relative}
+  .dotgrid::before{
+    content:"";position:absolute;top:0;right:0;width:260px;height:260px;
+    background-image:radial-gradient(currentColor 1.4px, transparent 1.4px);background-size:16px 16px;color:var(--accent-light);
+    opacity:.5;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+    mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+  }
+  @media(max-width:760px){.dotgrid::before{width:150px;height:150px}}
+
+  /* ---------- topbar（3ページ共通） ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .row{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px;height:68px;padding:0 32px}
+  .topbar .brandwrap{display:flex;align-items:center;gap:14px;min-width:0}
+  .topbar .brand{font-weight:800;letter-spacing:.14em;font-size:13px;text-decoration:none;white-space:nowrap}
+  .topbar .back{font-size:12.5px;color:var(--ink-soft);text-decoration:none;white-space:nowrap;padding:10px 0 10px 14px;border-left:1px solid var(--line);display:none}
+  @media(min-width:760px){.topbar .back{display:block}}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar nav{display:flex;align-items:center;gap:8px}
+  .topbar nav a{text-decoration:none;font-size:13px;font-weight:600;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:10px;transition:color .15s}
+  .topbar nav a .dot{width:5px;height:5px;border-radius:2px;background:var(--line);transition:background .15s}
+  .topbar nav a:hover{color:var(--accent)}
+  .topbar nav a:hover .dot{background:var(--accent)}
+  .topbar .cta{text-decoration:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);padding:12px 20px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+  .topbar .cta:hover{background:var(--accent)}
+  @media(max-width:640px){
+    .topbar .row{padding:0 18px;height:58px;gap:12px}
+    .topbar nav{gap:4px}
+    .topbar nav a .dot{display:none}
+    .topbar nav a{font-size:11.5px;padding:10px 6px}
+    .topbar .cta{display:none}
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{padding:var(--s8) 0 var(--s7);border-bottom:1px solid var(--line)}
+  .eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s4)}
+  .tag{border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:11px;letter-spacing:.1em;color:var(--ink-soft);background:var(--card)}
+  h1.title{font-size:clamp(26px,4vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.01em}
+  .subtitle{font-size:clamp(14px,2vw,17px);color:var(--ink-soft);margin-top:var(--s3);max-width:640px}
+  .metarow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--line)}
+  .metarow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+  .metarow .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.5}
+  @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr;gap:var(--s3)}}
+
+  /* ---------- section scaffolding: label-gutter + content ---------- */
+  section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:1fr;gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+
+  .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:800;line-height:1.25;margin-bottom:var(--s1);letter-spacing:-.005em}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
+
+  /* takeaways strip — 冒頭で「この案件でわかること」を提示（採用視点の先出し） */
+  .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
+  .takeaways .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent-light);text-transform:uppercase}
+  .takeaways ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin:var(--s2) 0}
+  @media(max-width:720px){.takeaways ul{grid-template-columns:1fr;gap:8px}}
+  .takeaways li{font-size:14px;font-weight:700;position:relative;padding-left:16px;line-height:1.5}
+  .takeaways li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--accent-light);border-radius:2px}
+  .takeaways .one{font-size:13px;color:#b9b3aa;border-top:1px solid #34302e;padding-top:var(--s2);margin-top:var(--s1)}
+  .takeaways .one b{color:#fff;font-weight:600}
+
+  /* summary bullets */
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
+  .tldr ul{list-style:none;display:grid;gap:var(--s1)}
+  .tldr li{position:relative;padding-left:var(--s3);color:var(--ink-soft);font-size:15px}
+  .tldr li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);border-radius:2px}
+
+  /* generic cards grid */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s4)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s3)}
+  .card .num{font-size:12px;color:var(--accent);letter-spacing:.1em;font-weight:700}
+  .card h4{font-size:17px;margin:var(--s1) 0;font-weight:700}
+  .card p{font-size:14px;color:var(--ink-soft)}
+  .card .en{font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-bottom:2px}
+
+  /* stat callouts（課題を数字で見せる） */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s3)}
+  @media(max-width:640px){.stats{grid-template-columns:1fr}}
+  .stat-card{background:var(--accent-soft);border:1px solid #ddc4f5;border-radius:14px;padding:var(--s3)}
+  .stat-card .big{font-size:clamp(26px,4vw,36px);font-weight:800;color:var(--accent-deep);line-height:1.02;letter-spacing:-.01em}
+  .stat-card .lab{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.55}
+
+  /* positioning table */
+  .tablewrap{margin-top:var(--s3);overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+  th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-size:12px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;background:var(--page)}
+  td.axis{font-weight:700;color:var(--ink);white-space:nowrap}
+  td.us{background:var(--accent-soft)}
+  .col-us{color:var(--accent-deep)}
+
+  /* ---------- FULL-BLEED band ---------- */
+  .fullbleed{width:100%;background:var(--ink);color:#f4f1ec;border-bottom:1px solid #000;padding:var(--s8) 0;position:relative;overflow:hidden}
+  .fullbleed .inner{max-width:var(--max);margin:0 auto;padding:0 var(--s4);position:relative;z-index:2}
+  .fullbleed .k{font-size:11px;letter-spacing:.16em;color:var(--accent-soft);text-transform:uppercase}
+  .fullbleed blockquote{font-size:clamp(19px,2.8vw,28px);font-weight:800;line-height:1.35;letter-spacing:-.01em;max-width:900px;margin-top:var(--s3)}
+  .fullbleed blockquote em{font-style:normal;color:var(--accent-light)}
+
+  /* CX flow steps */
+  .flow{margin-top:var(--s4);display:grid;gap:0}
+  .step{display:grid;grid-template-columns:56px 1fr 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step .ph{font-size:13px;color:var(--accent);font-weight:700}
+  .step .heart{font-size:14px;color:var(--ink);font-weight:600}
+  .step .heart small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;margin-top:3px}
+  .step .move{font-size:13.5px;color:var(--ink-soft)}
+  .step .move b{color:var(--accent-deep)}
+  @media(max-width:720px){.step{grid-template-columns:44px 1fr}.step .move{grid-column:1 / -1;padding-left:60px}}
+
+  /* ---------- wireframe section（戦略→画面構造の翻訳） ---------- */
+  .wfrow{display:grid;grid-template-columns:minmax(0,1fr) 1fr;gap:var(--s5);align-items:start;padding:var(--s5) 0;border-top:1px solid var(--line)}
+  .wfrow:first-of-type{border-top:0;padding-top:var(--s3)}
+  @media(max-width:820px){.wfrow{grid-template-columns:1fr;gap:var(--s3)}}
+  .wffig{margin:0}
+  .wffig .frame{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#efece5;min-height:200px;display:flex;align-items:center;justify-content:center}
+  .wffig img{width:100%;display:block}
+  .wffig .ph{padding:var(--s5) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
+  .wffig .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
+  .wffig figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+  .wfhead{display:flex;align-items:baseline;gap:10px;margin-bottom:var(--s1)}
+  .wfhead .ph-no{font-size:12px;color:var(--accent);font-weight:700}
+  .wfhead h4{font-size:17px;font-weight:800}
+  .wfbody{font-size:14px;color:var(--ink-soft)}
+  .wfbody b{color:var(--ink);font-weight:700}
+  .wfmap{display:inline-block;font-size:10.5px;color:var(--accent-deep);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;margin-top:10px;letter-spacing:.04em}
+
+  /* process timeline */
+  .timeline{margin-top:var(--s4);display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .tl{padding:var(--s3) var(--s2);border-left:2px solid var(--line);position:relative}
+  .tl:first-child{border-left:2px solid var(--accent)}
+  .tl .w{font-size:11px;color:var(--mute);letter-spacing:.08em}
+  .tl h5{font-size:15px;margin:6px 0 var(--s1)}
+  .tl p{font-size:12.5px;color:var(--ink-soft)}
+  @media(max-width:820px){.timeline{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.timeline{grid-template-columns:1fr}}
+
+  /* contribution */
+  .contrib{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
+  @media(max-width:820px){.contrib{grid-template-columns:1fr}}
+  .contrib .card h4{color:var(--accent-deep)}
+
+  /* ---------- PDF viewer ---------- */
+  .pdfbox{margin-top:var(--s3);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  .pdfbox .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px var(--s3);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .pdfbox .bar .t{font-size:13px;font-weight:700}
+  .pdfbox .bar .t small{display:block;font-weight:400;color:var(--mute);font-size:11px;letter-spacing:.04em;margin-top:2px}
+  .pdfbox .acts{display:flex;gap:8px}
+  .pdfbox .acts a{font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:40px;display:inline-flex;align-items:center;color:var(--ink);white-space:nowrap}
+  .pdfbox .acts a.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .pdfbox .acts a.solid:hover{background:var(--accent);border-color:var(--accent)}
+  .pdfbox .acts a:hover{border-color:var(--accent);color:var(--accent)}
+  .pdfbox object,.pdfbox iframe{width:100%;height:640px;border:0;display:block;background:#efece5}
+  @media(max-width:720px){.pdfbox object,.pdfbox iframe{height:420px}}
+
+  /* footer */
+  footer{padding:var(--s8) 0 var(--s7);background:var(--ink);color:#f4f1ec;position:relative;overflow:hidden}
+  footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s4);flex-wrap:wrap;position:relative;z-index:2}
+  footer h3{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  footer p{color:#b9b3aa;font-size:14px;margin-top:var(--s1);max-width:420px}
+  footer a.cta{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s3);color:#fff;border:1px solid #4a4741;padding:12px 22px;border-radius:999px;text-decoration:none;font-size:13px}
+  footer a.cta:hover{background:var(--accent);border-color:var(--accent)}
+  footer .fmeta{font-size:12px;color:#8b867e;text-align:right}
+  footer .fmeta a{color:#cfcac2;text-decoration:none;display:block;padding:6px 0}
+
+  .disc{font-size:11.5px;color:var(--mute);margin-top:var(--s2);font-style:italic}
+
+  /* ---------- next case / slim footer / back to top ---------- */
+  .nextcase{display:block;text-decoration:none;border-top:1px solid var(--line);background:var(--card);transition:background .15s}
+  .nextcase .ncin{display:flex;flex-direction:column;gap:6px;padding:44px 32px 48px;max-width:1120px;margin:0 auto}
+  .nextcase .nc-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .nextcase .nc-title{font-size:clamp(19px,2.8vw,26px);font-weight:800;letter-spacing:-.01em;color:var(--ink);transition:color .15s}
+  .nextcase:hover .nc-title{color:var(--accent)}
+  footer.slimfoot{padding:6px 0;background:transparent;color:var(--mute);border-top:1px solid var(--line)}
+  .slimfoot .fslim{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--mute);max-width:1120px;margin:0 auto;padding:0 32px}
+  .slimfoot nav{display:flex;gap:2px}
+  .slimfoot nav a{color:var(--ink-soft);text-decoration:none;padding:12px 10px;min-height:44px;display:inline-flex;align-items:center;font-size:12.5px}
+  .slimfoot nav a:hover{color:var(--accent)}
+  .totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+  .totop.on{opacity:1;pointer-events:auto}
+  .totop:hover{background:var(--accent)}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="topbar">
+  <div class="row">
+    <div class="brandwrap">
+      <a href="index.html" class="brand">AIKA YOSHIDA</a>
+      <a href="index.html#work" class="back">← Selected Works</a>
+    </div>
+    <nav aria-label="メイン">
+      <a href="index.html#work"><span class="dot"></span>Works</a>
+      <a href="index.html#about"><span class="dot"></span>About</a>
+      <a href="index.html#contact"><span class="dot"></span>Contact</a>
+    </nav>
+    <a href="mailto:aika.yos@icloud.com" class="cta">Get in touch</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tag">UX / CX Design</span>
+      <span class="tag">Strategy</span>
+      <span class="tag">Wireframe</span>
+      <span class="tag">Web Direction</span>
+    </div>
+    <h1 class="title">Wedding Venue<br>Website Redesign</h1>
+    <p class="subtitle">結婚式場Webサイトのリニューアル企画 — 「都内へ流出するパワーカップル層」を地元でつなぎ止め、フェア予約（CVR）を最大化するCX設計。</p>
+
+    <div class="metarow">
+      <div><div class="k">Role / 担当領域</div><div class="v">UXリサーチ・CX設計<br>情報設計・ワイヤーフレーム</div></div>
+      <div><div class="k">Timeline / 期間</div><div class="v">2026.04<br>約8週間（企画〜公開）</div></div>
+      <div><div class="k">Type / 形態</div><div class="v">インハウス提案<br>個人ワーク</div></div>
+      <div><div class="k">Deliverable</div><div class="v">戦略・要件定義<br>UI設計方針 / 提案書</div></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 01 OVERVIEW ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <div class="takeaways">
+        <span class="lbl">この事例で取り組んだこと</span>
+        <ul>
+          <li>ビジネス課題を1つに絞り込む</li>
+          <li>顧客心理を画面施策に対応づける</li>
+          <li>成果から逆算して情報を配置する</li>
+        </ul>
+        <p class="one"><b>担当：</b>UXリサーチ〜CX設計〜情報設計・ワイヤーフレーム ／ <b>提案内容：</b>フェア予約への「3秒直帰」障壁を段階的に解除する体験の設計。</p>
+      </div>
+      <h2 class="sec-head">3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ。</h2>
+      <div class="tldr">
+        <span class="lbl">In short</span>
+        <p class="big">アクセスは伸びているのにフェア予約が伸びない——原因を「着地後3秒の直帰」と特定し、感情・理性・信頼の心理障壁を1つずつ解除する情報設計へ再構築した提案。</p>
+        <ul>
+          <li>ビジネス課題を「アクセス数」ではなく「CVR（フェア予約転換率）」に絞り込み、改修目的を1点に定義。</li>
+          <li>競合ポジショニングとペルソナ分析から、訴求軸を「都内への背伸び／地元での妥協」を超えた第三の価値＝<b>知的な最適解</b>に設定。</li>
+          <li>ファーストビューから予約導線まで、顧客心理を5つの仮説段階に整理し、Web施策を一貫設計。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 CHALLENGE ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Challenge</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題：集客はできている。<br>「受け皿」が機能していない。</h2>
+      <p class="sec-lead">SNSをはじめとする独自メディアで接点は拡大し、アクセス数は着実に確保できている。しかし成果指標である「フェア予約」への転換率が伸び悩む。SNSで期待を高めた都内志向のパワーカップル層のシビアな選択眼に対し、現在のWebサイトが受け皿として機能しきれていないことが本質的な原因だった。</p>
+      <div class="stats">
+        <div class="stat-card"><div class="big">3秒</div><div class="lab">着地後、離脱までの時間。ここで「格」が伝わらず即離脱。</div></div>
+        <div class="stat-card"><div class="big">直帰率 ↑</div><div class="lab">従来の記号的な見せ方では、独自の格が初見で伝わらない。</div></div>
+        <div class="stat-card"><div class="big">CVR 停滞</div><div class="lab">アクセスは増えても、フェア予約への転換が伸び悩む。</div></div>
+      </div>
+      <p class="disc">担当者ヒアリング＋アクセス解析から特定。改修では「感情」と「理性」の2軸で、フェア予約への心理ハードルを能動的に解除する方針を立てた。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 RESEARCH ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Research /<br>Positioning</span></div>
+    <div class="col">
+      <h2 class="sec-head">市場を整理し、自館のポジションを言語化する。</h2>
+      <p class="sec-lead">「都内・ミニマル系」と「地元・ネオトレンド系」の狭間で、当会場が持つ独自価値を軸ごとに対比。スペックと感性の両方で“中間の最適解”に立てることを明確化した。</p>
+      <div class="tablewrap">
+        <table>
+          <caption class="mono" style="text-align:left;padding:12px 16px 0;caption-side:top">ポジショニング比較</caption>
+          <thead>
+            <tr><th scope="col">軸</th><th scope="col">都内・ミニマル系</th><th scope="col" class="col-us">当会場</th><th scope="col">地元・ネオトレンド系</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="axis">立地の性質</td><td>ブランドエリアの「記号消費」</td><td class="us">全天候型のスマートインフラ</td><td>アクセスより「隠れ家感」優先</td></tr>
+            <tr><td class="axis">建築の思想</td><td>洗練された「引き算のテンプレ」</td><td class="us">本物の石と天井高の「永続性」</td><td>「映え」重視のデザインリノベ</td></tr>
+            <tr><td class="axis">安心の根拠</td><td>尖ったコンセプトへの陶酔</td><td class="us">ハード×ソフト融合の絶対的スペック</td><td>スペックより「感性」の合致</td></tr>
+            <tr><td class="axis">ゲスト観</td><td>自己完結の世界観</td><td class="us">ゲストファースト×ふたりのこだわり両立</td><td>ふたりの世界観優先</td></tr>
+            <tr><td class="axis">決定打</td><td>「これが私たちのスタイル」</td><td class="us">賢い最適解</td><td>「オシャレだから、ここでいい」</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sec-head" style="font-size:20px;margin-top:var(--s6)">最優先で価値を届ける「中心顧客」</h3>
+      <div class="grid2">
+        <div class="card">
+          <span class="en">Persona 01</span>
+          <h4>健太（31）／ ITエンジニア</h4>
+          <p>効率とスペックを重視。「都内は狭い・高い、郊外は不便で妥協では？」というジレンマを抱える。費用対効果とゲストの利便性で納得したい。</p>
+        </div>
+        <div class="card">
+          <span class="en">Persona 02</span>
+          <h4>恵（29）／ 大手広報</h4>
+          <p>トレンドと“映え”に敏感。空間の格と承認欲求を満たしたい。写真マジックを疑う審美眼を持ち、本物かどうかを見極める。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FULL-BLEED insight ============ -->
+<div class="fullbleed dotgrid">
+  <div class="inner">
+    <span class="k">リサーチからの仮説</span>
+    <blockquote>承認欲求と合理性を<em>同時に</em>満たすこと。<br>それが、都内流出をつなぎ止める鍵になると考えた。</blockquote>
+  </div>
+</div>
+
+<!-- ============ 04 CX DESIGN ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">CX Design</span></div>
+    <div class="col">
+      <h2 class="sec-head">顧客心理の動きを、5つの仮説で施策に翻訳する。</h2>
+      <p class="sec-lead">フォームにたどり着くまでの体験を分解。各フェーズで想定される“本音”に対して、心理転換のポイントと具体的なWeb施策を1対1で対応させた。</p>
+      <div class="flow">
+        <div class="step">
+          <span class="ph">01</span>
+          <div class="heart">感性の衝突<small>「従来型は嫌。でも都内は高くて狭いし…」</small></div>
+          <div class="move">SNS一撃必須の空間美ビジュアル。<b>欧州クラシック×モダンアート</b>をファーストビューで提示。</div>
+        </div>
+        <div class="step">
+          <span class="ph">02</span>
+          <div class="heart">選択肢の浮上<small>「ここの雰囲気好き。でも写真マジックかな？」</small></div>
+          <div class="move">本物の素材（質感）と余白を<b>館内の質感ツアー動画</b>で証明する。</div>
+        </div>
+        <div class="step">
+          <span class="ph">03</span>
+          <div class="heart">理性の教育<small>「地元でケチったと思われない品があるか？」</small></div>
+          <div class="move">思想発信型コラム・Q&Aで<b>「選ぶ正当性」</b>を付与する。</div>
+        </div>
+        <div class="step">
+          <span class="ph">04</span>
+          <div class="heart">納得の深化<small>「都内より合理的で、同エリア内で上質か？」</small></div>
+          <div class="move">当日のタイムライン・移動動線ページで<b>上位互換</b>を可視化する。</div>
+        </div>
+        <div class="step">
+          <span class="ph">05</span>
+          <div class="heart">賢い選択<small>「ここを選ぶのが一番の正解かも」</small></div>
+          <div class="move"><b>NO即決営業宣言</b>とスマート予約UIで、警戒心を先制解除して予約へ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 PRINCIPLES ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Principles</span></div>
+    <div class="col">
+      <h2 class="sec-head">サイト刷新を貫く、3つの方針。</h2>
+      <div class="grid3">
+        <div class="card"><span class="num">01</span><div class="en">Smart Choice</div><h4>知的な最適解</h4><p>天井高と石材の建築美を提示し、都心の狭さを圧倒する空間の「格」を初見で印象付ける。</p></div>
+        <div class="card"><span class="num">02</span><div class="en">Hospitality for Guests</div><h4>ゲストへの誠実さ</h4><p>移動負荷と時間的ゆとりを可視化。演出より「ゲストの快適性」を最優先するホスピタリティを証明。</p></div>
+        <div class="card"><span class="num">03</span><div class="en">Sincere Options</div><h4>二人の意思の尊重</h4><p>不透明な特典を排し、NO即決営業をサイト上に明文化。二人の知的な意思決定を尊重する体験を構築。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 SOLUTIONS ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Key<br>Solutions</span></div>
+    <div class="col">
+      <h2 class="sec-head">CVR最大化：3つの中核施策。</h2>
+      <p class="sec-lead">フォームにたどり着くまでの障壁（感情・理性・信頼）をピンポイントで解除する、三位一体のアプローチ。</p>
+      <div class="grid3">
+        <div class="card"><span class="num">A</span><h4>ファーストビューの<br>マルチビジュアル化</h4><p>着地後3秒の即時離脱を防ぐ。建築美・チャペル・開放的なバンケットをテンポよく動画で伝え、式場全体の空気感を一瞬で提示する。</p></div>
+        <div class="card"><span class="num">B</span><h4>インタラクティブ<br>館内マップ</h4><p>気になるエリアをタップすると、その場所の魅力とホスピタリティの根拠が浮かび上がる。詳細へシームレスにドリルダウンできる設計。</p></div>
+        <div class="card"><span class="num">C</span><h4>知的意思決定を支える<br>予約導線</h4><p>「いま予約しないと損」という業界特有のプレッシャーから解放。信頼感を持って迷いなくフェア予約へ進める環境を構築。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 WIREFRAME ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">07</span><span class="nm">Wireframe</span></div>
+    <div class="col">
+      <h2 class="sec-head">戦略を、画面構造に翻訳する。</h2>
+      <p class="sec-lead">3つの中核施策と顧客心理フェーズを、そのままワイヤーフレームに落とし込みました。見た目ではなく「なぜこの配置か」を基準に情報を設計しています。主要画面を1本の縦導線として設計。</p>
+      <div class="wfrow">
+        <figure class="wffig">
+          <div class="frame">
+            <img src="wedding-wf-1.png" alt="ファーストビューのワイヤーフレーム" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+            <div class="ph" style="display:none"><code>wedding-wf-1.png</code> を<br>同じフォルダに置くと表示されます</div>
+          </div>
+          <figcaption>Screen 01 — First View</figcaption>
+        </figure>
+        <div>
+          <div class="wfhead"><span class="ph-no">A</span><h4>ファーストビュー：余白と動画で「格」を提示</h4></div>
+          <p class="wfbody">「10メートルの余白。」というステートメントと大判ビジュアル／動画を最上部に配置。静止画ではなく空気感の伝わる動画を先頭に置き、<b>着地後3秒の直帰を防ぐ</b>。同時にヘッダー右へ予約CTA（来館予約）を常駐させ、どの位置からでも迷わず予約へ進める導線を確保した。</p>
+          <span class="wfmap">施策A・C / フェーズ1・5</span>
+        </div>
+      </div>
+
+      <div class="wfrow">
+        <figure class="wffig">
+          <div class="frame">
+            <img src="wedding-wf-2.png" alt="インタラクティブ館内マップのワイヤーフレーム" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+            <div class="ph" style="display:none"><code>wedding-wf-2.png</code> を<br>同じフォルダに置くと表示されます</div>
+          </div>
+          <figcaption>Screen 02 — Interactive Map</figcaption>
+        </figure>
+        <div>
+          <div class="wfhead"><span class="ph-no">B</span><h4>Standalone Sanctuary：インタラクティブ館内マップ</h4></div>
+          <p class="wfbody">3F〜B1Fの断面図をタップすると、各エリア（CHAPEL等）の詳細パネルが開く<b>ドリルダウン設計</b>。ゲストが本当に快適に過ごせるかという安心感を直感的に証明する、この案件の中核画面。Authentic Materialの大判ビジュアルで素材の質感も見せ、「写真マジックでは？」という疑念を払拭する。</p>
+          <span class="wfmap">施策B / フェーズ2・4</span>
+        </div>
+      </div>
+
+      <div class="wfrow">
+        <figure class="wffig">
+          <div class="frame">
+            <img src="wedding-wf-3.png" alt="予約導線のワイヤーフレーム" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+            <div class="ph" style="display:none"><code>wedding-wf-3.png</code> を<br>同じフォルダに置くと表示されます</div>
+          </div>
+          <figcaption>Screen 03 — Reservation Flow</figcaption>
+        </figure>
+        <div>
+          <div class="wfhead"><span class="ph-no">C</span><h4>Sincere Planning：NO即決営業を明文化した予約導線</h4></div>
+          <p class="wfbody">特典の透明化と意思尊重をコピーで宣言し、<b>「いま予約しないと損」というプレッシャーから解放</b>。警戒心を先制解除したうえでスマート予約UIへ繋ぐ。最後にProof of Choice（実績・第三者評価）を置き、意思決定の締めに信頼・安心を担保する。</p>
+          <span class="wfmap">施策C / フェーズ5・信頼安心</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 PROCESS ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">08</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">インハウスで成果を生む、8週間の工程。</h2>
+      <div class="timeline">
+        <div class="tl"><span class="w">WEEK 1–2</span><h5>戦略・要件定義</h5><p>NSM（予約数）／Input Metricsの確定。「意思尊重・NO即決営業・特典透明化」ステートメントの明文化。</p></div>
+        <div class="tl"><span class="w">WEEK 3–4</span><h5>デザイン</h5><p>3秒維持率向上のマルチビジュアル設計。おもてなし館内図（インタラクティブマップ）UI検討。</p></div>
+        <div class="tl"><span class="w">WEEK 5–7</span><h5>実装</h5><p>マップ＆常駐予約ボタン実装。WebP／Lazy Load採用で表示1秒台への高速化チューニング。</p></div>
+        <div class="tl"><span class="w">WEEK 8–</span><h5>テスト・公開</h5><p>実機検証・リリース判定。公開後、全Metrics計測を開始しデータに基づく継続改善へ。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 MY ROLE ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">09</span><span class="nm">My Role</span></div>
+    <div class="col">
+      <h2 class="sec-head">この案件で、私が担当したこと。</h2>
+      <p class="sec-lead">見た目のリニューアルではなく、「なぜ予約されないのか」を起点にビジネス課題→顧客心理→画面施策まで一本の線でつなぐことを意識しました。</p>
+      <div class="contrib">
+        <div class="card"><h4>課題の絞り込み</h4><p>「アクセスは足りている／CVRが問題」と課題を再定義し、指標をNSM＝フェア予約数に一点集中。施策のブレをなくした。</p></div>
+        <div class="card"><h4>心理から設計への対応づけ</h4><p>ペルソナの“本音”を5フェーズに分解し、各フェーズに対応する画面・機能を1対1でマッピング。CX設計をそのまま要件へ落とした。</p></div>
+        <div class="card"><h4>ポジショニングの言語化</h4><p>競合を軸ごとに対比し、「知的な最適解」という訴求の中心を設定。デザイントーンとコピーの拠り所を定めた。</p></div>
+        <div class="card"><h4>成果から逆算した情報設計</h4><p>「結果→実証→信頼→安心」の順で情報を配置し、直帰の壁を段階的に解除。計測前提の設計で改善サイクルまで見据えた。</p></div>
+      </div>
+      <p class="disc">※ 本案件は課題設定にもとづく企画・設計提案です。掲載数値は解析ヒアリングに基づく現状課題であり、施策効果は公開後の計測により検証予定。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 PROPOSAL PDF ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">10</span><span class="nm">Full<br>Proposal</span></div>
+    <div class="col">
+      <h2 class="sec-head">提案書の全文（PDF）。</h2>
+      <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。実際にクライアントへ提出した提案書は、下記からそのままご覧いただけます（全10ページ）。</p>
+      <div class="pdfbox">
+        <div class="bar">
+          <div class="t">Wedding Venue Website Redesign — 提案書<small>PDF · 10 pages · 2026.04</small></div>
+          <div class="acts">
+            <a href="wedding-proposal.pdf" target="_blank" rel="noopener">別タブで開く ↗</a>
+            <a class="solid" href="wedding-proposal.pdf" download>ダウンロード ↓</a>
+          </div>
+        </div>
+        <object data="wedding-proposal.pdf#view=FitH" type="application/pdf">
+          <iframe src="wedding-proposal.pdf#view=FitH" title="提案書PDF"></iframe>
+        </object>
+      </div>
+      <p class="disc">PDFが表示されない場合は「別タブで開く」からご覧ください。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<a class="nextcase" href="clinic-case-study.html">
+  <span class="ncin">
+    <span class="nc-lbl">Next Case</span>
+    <span class="nc-title">Patient Record Management System →</span>
+  </span>
+</a>
+
+<footer class="slimfoot">
+  <div class="fslim">
+    <span>© 2026 Aika Yoshida</span>
+    <nav aria-label="フッター">
+      <a href="index.html#work">Works</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:aika.yos@icloud.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="totop" id="totop" href="#top" aria-label="ページ上部へ戻る">↑</a>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
+})();
+</script>
+
+</body>
+</html>
