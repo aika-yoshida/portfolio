@@ -145,8 +145,9 @@
   .mcard .thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(124,44,214,.6),transparent 70%);opacity:0;transition:opacity .25s ease;z-index:2;pointer-events:none}
   .mcard:hover .thumb{transform:translateY(-4px)}
   .mcard:hover .thumb::after{opacity:1}
-  .mcard .thumb .shot{position:relative;z-index:1;width:84%;aspect-ratio:16/10;border-radius:9px;overflow:hidden;box-shadow:0 18px 36px -18px rgba(0,0,0,.55)}
+  .mcard .thumb .shot{position:relative;z-index:1;width:84%;aspect-ratio:16/10;border-radius:9px;overflow:hidden;box-shadow:0 18px 36px -18px rgba(0,0,0,.55);background:#e9e7e2}
   .mcard .thumb .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  /* assets未配置でも崩れないよう、画像読み込み失敗時はグレーのプレースホルダー（.shotの背景）を残す */
   .mcard .thumb .badge{position:absolute;left:12px;top:12px;z-index:3;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.85);text-transform:uppercase}
   .mcard .thumb .scr{width:62%;aspect-ratio:16/10;background:#fff;border-radius:8px;box-shadow:0 16px 34px -18px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:5px;padding:9px;position:relative;z-index:1}
   .mcard .thumb .scr i{display:block;border-radius:3px;background:#e8e8ec;height:7px}
@@ -171,7 +172,7 @@
   .about-sec{padding-bottom:112px}
   .about-grid{max-width:640px;margin-top:44px}
   .about-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-  .avatar{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:linear-gradient(150deg,#141310,#37206b);display:flex;align-items:center;justify-content:center;color:#a99fc0;font-weight:800;font-size:18px;letter-spacing:.06em}
+  .avatar{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:#d8d5cc;display:flex;align-items:center;justify-content:center;color:var(--mute);font-weight:800;font-size:18px;letter-spacing:.06em}
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .about-head .nm2{font-size:17px;font-weight:800;letter-spacing:-.01em}
   .about-head .rd{font-size:12.5px;color:var(--mute);margin-top:2px}
@@ -211,11 +212,31 @@
   .contact-panel .fmeta a{color:#cfcac0;text-decoration:none;padding:8px 0}
   .contact-panel .fmeta a:hover{color:#fff}
   @media(max-width:640px){.contact-panel{padding:52px 26px 34px}}
+
+  /* ---------- password gate（簡易パスワード保護：本格的なセキュリティ対策ではありません） ---------- */
+  .gate{position:fixed;inset:0;z-index:200;background:var(--page);display:flex;align-items:center;justify-content:center;padding:20px}
+  .gate-form{width:100%;max-width:320px;display:flex;flex-direction:column;gap:14px}
+  .gate-form label{font-weight:700;font-size:13px}
+  .gate-form input{border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15px;background:#fff;color:var(--ink);min-height:44px}
+  .gate-form input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .gate-form button{border:none;border-radius:999px;padding:13px 26px;min-height:44px;background:var(--ink);color:#fff;font-weight:700;font-size:13px;cursor:pointer;transition:background .15s}
+  .gate-form button:hover{background:var(--accent)}
+  .gate-error{color:#c0392b;font-size:13px}
 </style>
 </head>
 <body id="top">
 
 <a class="skip" href="#work">本文へスキップ</a>
+
+<!-- ============ パスワード保護（簡易的なクライアントサイド認証。表示を隠すだけで、閲覧制限としての強度はありません） ============ -->
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-label="パスワード入力">
+  <form id="gate-form" class="gate-form">
+    <label for="gate-pass">Password</label>
+    <input id="gate-pass" type="password" autocomplete="off" placeholder="パスワードを入力" required>
+    <button type="submit">View portfolio →</button>
+    <p id="gate-error" class="gate-error" hidden>パスワードが違います。もう一度お試しください。</p>
+  </form>
+</div>
 
 <header class="topbar">
   <div class="row">
@@ -302,9 +323,9 @@
     <div class="mgrid">
       <!-- 実スクショがある場合：.thumb 内を <img src="..."> に差し替え -->
       <a class="mcard" href="autooasis.html">
-        <div class="thumb" style="background:#2b2925">
+        <div class="thumb" style="background:#6e6b62">
           <span class="badge">Web Site</span>
-          <div class="shot"><img src="assets/autooasis.png" alt="AUTOOASIS 月極ガレージ駐車場 Webサイト" loading="lazy"></div>
+          <div class="shot"><img src="assets/autooasis.png" alt="AUTOOASIS 月極ガレージ駐車場 Webサイト" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
         <h4>AUTOOASIS 月極プレミアムガレージ</h4>
         <div class="tags"><span>ディレクション</span><span>撮影企画</span><span>デザイン</span></div>
@@ -318,17 +339,17 @@
         <div class="tags"><span>ブランドイメージ</span><span>デザイン</span></div>
       </a>
       <a class="mcard" href="digsy.html">
-        <div class="thumb" style="background:#4e4b44">
+        <div class="thumb" style="background:#6e6b62">
           <span class="badge">LP / Media</span>
-          <div class="shot"><img src="assets/digsy-lp.png" alt="株式会社Digsy バックオフィス・BPOアウトソーシングLP" loading="lazy"></div>
+          <div class="shot"><img src="assets/digsy-lp.png" alt="株式会社Digsy バックオフィス・BPOアウトソーシングLP" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
         <h4>株式会社Digsy LP / メディアコンテンツ</h4>
         <div class="tags"><span>デザイン</span></div>
       </a>
       <a class="mcard" href="thr-tiktok.html">
-        <div class="thumb" style="background:#605c53">
+        <div class="thumb" style="background:#6e6b62">
           <span class="badge">Social / Video</span>
-          <div class="shot"><img src="assets/tiktok-hollywoodreporter.png" alt="ハリウッドリポーター・ジャパン TikTokコンテンツ" loading="lazy"></div>
+          <div class="shot"><img src="assets/tiktok-hollywoodreporter.png" alt="ハリウッドリポーター・ジャパン TikTokコンテンツ" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
         <h4>ハリウッドリポーター・ジャパン TikTok</h4>
         <div class="tags"><span>フォロワー1年で+1,000</span><span>最高21万再生</span></div>
@@ -437,6 +458,40 @@
     </div>
   </div>
 </section>
+
+<script>
+  // ==== 簡易パスワード保護 ====
+  // 正解パスワードはここを書き換えるだけで変更できます。
+  const SITE_PASSWORD = "aika2026";
+
+  (function(){
+    var gate = document.getElementById('gate');
+    var form = document.getElementById('gate-form');
+    var input = document.getElementById('gate-pass');
+    var error = document.getElementById('gate-error');
+    var STORAGE_KEY = 'aika-portfolio-unlocked';
+
+    if(sessionStorage.getItem(STORAGE_KEY) === '1'){
+      gate.remove();
+    }else{
+      document.documentElement.style.overflow = 'hidden';
+      input.focus();
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(input.value === SITE_PASSWORD){
+        sessionStorage.setItem(STORAGE_KEY, '1');
+        document.documentElement.style.overflow = '';
+        gate.remove();
+      }else{
+        error.hidden = false;
+        input.value = '';
+        input.focus();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
