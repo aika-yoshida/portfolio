@@ -134,6 +134,19 @@
   .arches span:nth-child(2){height:100%;border-color:var(--accent-light)}
   .arches span:nth-child(3){height:85%}
 
+  /* 東都典範側：緊急度別導線のミニビジュアル */
+  .branchmini{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
+  .branchmini .phonepill{align-self:flex-start;background:#fff;color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.04em;padding:7px 16px;border-radius:999px}
+  .branchmini .paths{display:flex;gap:8px;flex-wrap:wrap}
+  .branchmini .paths .p{font-size:10.5px;letter-spacing:.04em;color:#d9d5cb;border:1px solid rgba(244,241,236,.35);border-radius:999px;padding:6px 12px}
+  .branchmini .paths .p.urgent{color:#fff;border-color:var(--accent-light);background:rgba(124,44,214,.25)}
+
+  /* Penelope側：パーティー×アットホームの二面性ミニビジュアル */
+  .duomini{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px}
+  .duomini .glass{width:32px;height:32px;color:var(--accent-light)}
+  .duomini .duopills{display:flex;gap:8px}
+  .duomini .duopills span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#f2efe8;border:1px solid rgba(244,241,236,.35);border-radius:999px;padding:6px 14px}
+
   /* more works — ビジュアルグリッド */
   .more-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:88px;padding-top:36px;border-top:1px solid var(--line)}
   .more-head h3{font-weight:800;font-size:clamp(18px,2.4vw,24px);letter-spacing:-.01em}
@@ -278,30 +291,48 @@
     </div>
     <p class="sec-lead">課題 → 分析 → 施策のプロセスを、担当領域・期間とあわせて掲載しています。</p>
 
-    <a class="feature" href="wedding-case-study.html">
+    <div class="more-head" style="margin-top:40px;padding-top:0;border-top:none">
+      <h3>Featured Works</h3>
+      <span class="mono">詳細ケーススタディ</span>
+    </div>
+
+    <a class="feature" href="tohto-tenpan-case-study.html">
       <div class="vis">
-        <div class="arches" aria-hidden="true"><span></span><span></span><span></span></div>
-        <h3>Wedding Venue<br>Website Redesign</h3>
+        <div class="branchmini" aria-hidden="true">
+          <div class="phonepill">24H 電話受付</div>
+          <div class="paths"><span class="p urgent">ご危篤の場合</span><span class="p">お亡くなりの場合</span></div>
+        </div>
+        <h3>東都典範<br>Webサイトリニューアル</h3>
       </div>
       <div class="body">
-        <span class="fk">結婚式場 / CVR最大化</span>
-        <h4>3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ。</h4>
-        <p>原因を「着地後3秒の直帰」と特定し、心理障壁を解除する情報設計へ再構築した提案。</p>
-        <p class="role"><b>担当：</b>UXリサーチ〜ワイヤーフレーム ／ 個人ワーク</p>
-        <div class="tags"><span>UXリサーチ</span><span>CX設計</span><span class="pdf">提案書PDF付き</span></div>
+        <span class="fk">葬儀サービス / 遠方エリア開拓</span>
+        <h4>情報の複雑さで離脱される葬儀サイトを、<br>迷わず動ける導線へ。</h4>
+        <p>緊急度別に導線を分岐し、依頼までの不安を1つずつ解消する情報設計へ再構築。</p>
+        <p class="role"><b>担当：</b>デザイン・テキスト制作 ／ Figma</p>
+        <div class="tags"><span>情報設計</span><span>テキスト制作</span></div>
         <span class="go">Read case study →</span>
       </div>
     </a>
 
-    <a class="feature alt" href="clinic-case-study.html">
+    <a class="feature alt" href="penelope-case-study.html">
       <div class="body">
-        <span class="fk">医療 / 患者安全 UX</span>
-        <h4>診療の集中を壊さずに、<br>緊急報告を確実に届けるシステムへ。</h4>
-        <p>伝達ミスと見落としを「静かな同期」で構造的に防ぐ、医師×看護師のためのUX設計。</p>
-        <p class="role"><b>担当：</b>リサーチ〜Hi-Fiプロトタイプ ／ Google UX認定コース課題</p>
-        <div class="tags"><span>ユーザビリティテスト</span><span>ペルソナ / ジャーニー</span><span class="pdf">PDF付き</span></div>
+        <span class="fk">飲食店 / ブランド体験</span>
+        <h4>長文で説明するのではなく、<br>世界観そのもので惹き込む。</h4>
+        <p>F1レーサーと実業家の奥様が営むイタリア人気店の日本店。パーティー空間とアットホームさの二面性をビジュアルで表現。</p>
+        <p class="role"><b>担当：</b>デザイン・テキスト制作 ／ Figma</p>
+        <div class="tags"><span>ブランド体験設計</span><span>ビジュアル設計</span></div>
         <span class="go">Read case study →</span>
       </div>
+      <div class="vis">
+        <div class="duomini" aria-hidden="true">
+          <svg class="glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0L7 3Z"/><path d="M12 14v6"/><path d="M9 20h6"/></svg>
+          <div class="duopills"><span>Party</span><span>a casa</span></div>
+        </div>
+        <h3>Penelope<br>a casa</h3>
+      </div>
+    </a>
+
+    <a class="feature" href="clinic-case-study.html">
       <div class="vis ui">
         <div class="mock" aria-hidden="true">
           <div class="bar"><b></b><span class="pill">URGENT</span></div>
@@ -313,10 +344,33 @@
         </div>
         <h3>Patient Record<br>Management System</h3>
       </div>
+      <div class="body">
+        <span class="fk">医療 / 患者安全 UX</span>
+        <h4>診療の集中を壊さずに、<br>緊急報告を確実に届けるシステムへ。</h4>
+        <p>伝達ミスと見落としを「静かな同期」で構造的に防ぐ、医師×看護師のためのUX設計。</p>
+        <p class="role"><b>担当：</b>リサーチ〜Hi-Fiプロトタイプ ／ Google UX認定コース課題</p>
+        <div class="tags"><span>ユーザビリティテスト</span><span>ペルソナ / ジャーニー</span><span class="pdf">PDF付き</span></div>
+        <span class="go">Read case study →</span>
+      </div>
+    </a>
+
+    <a class="feature alt" href="wedding-case-study.html">
+      <div class="body">
+        <span class="fk">結婚式場 / CVR最大化</span>
+        <h4>3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ。</h4>
+        <p>原因を「着地後3秒の直帰」と特定し、心理障壁を解除する情報設計へ再構築した提案。</p>
+        <p class="role"><b>担当：</b>UXリサーチ〜ワイヤーフレーム ／ 個人ワーク</p>
+        <div class="tags"><span>UXリサーチ</span><span>CX設計</span><span class="pdf">提案書PDF付き</span></div>
+        <span class="go">Read case study →</span>
+      </div>
+      <div class="vis">
+        <div class="arches" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h3>Wedding Venue<br>Website Redesign</h3>
+      </div>
     </a>
 
     <div class="more-head">
-      <h3>More works</h3>
+      <h3>Other Works</h3>
       <span class="mono">Web / UI / Content</span>
     </div>
 
@@ -330,22 +384,6 @@
         <h4>AUTOOASIS 月極プレミアムガレージ</h4>
         <div class="tags"><span>ディレクション</span><span>撮影企画</span><span>デザイン</span></div>
       </a>
-      <a class="mcard" href="yoshizuka-butsugu.html">
-        <div class="thumb" style="background:#141310">
-          <span class="badge">Web Design</span>
-          <div class="scr" aria-hidden="true"><i class="h"></i><i class="w70"></i><i></i><i class="w40"></i></div>
-        </div>
-        <h4>吉塚仏具店 Webサイトリニューアル提案</h4>
-        <div class="tags"><span>ブランドイメージ</span><span>デザイン</span></div>
-      </a>
-      <a class="mcard" href="digsy.html">
-        <div class="thumb" style="background:#6e6b62">
-          <span class="badge">LP / Media</span>
-          <div class="shot"><img src="assets/digsy-lp.png" alt="株式会社Digsy バックオフィス・BPOアウトソーシングLP" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
-        <h4>株式会社Digsy LP / メディアコンテンツ</h4>
-        <div class="tags"><span>デザイン</span></div>
-      </a>
       <a class="mcard" href="thr-tiktok.html">
         <div class="thumb" style="background:#6e6b62">
           <span class="badge">Social / Video</span>
@@ -354,14 +392,6 @@
         <h4>ハリウッドリポーター・ジャパン TikTok</h4>
         <div class="tags"><span>フォロワー1年で+1,000</span><span>最高10.4万再生</span></div>
       </a>
-      <a class="mcard" href="slia-banner.html">
-        <div class="thumb" style="background:#3c3a35">
-          <span class="badge">Banner</span>
-          <div class="scr" aria-hidden="true"><i class="h"></i><i class="w40"></i><i class="w70"></i><i></i></div>
-        </div>
-        <h4>従業員向け 屋内行動収集アプリ</h4>
-        <div class="tags"><span>バナーデザイン</span><span>告知</span></div>
-      </a>
       <a class="mcard" href="amp-logo.html">
         <div class="thumb" style="background:#716c63">
           <span class="badge">Branding</span>
@@ -369,6 +399,14 @@
         </div>
         <h4>ジュエリーブランド ロゴ</h4>
         <div class="tags"><span>ロゴデザイン</span></div>
+      </a>
+      <a class="mcard" href="digsy.html">
+        <div class="thumb" style="background:#6e6b62">
+          <span class="badge">LP / Media</span>
+          <div class="shot"><img src="assets/digsy-lp.png" alt="株式会社Digsy バックオフィス・BPOアウトソーシングLP" loading="lazy" onerror="this.style.display='none'"></div>
+        </div>
+        <h4>株式会社Digsy LP / メディアコンテンツ</h4>
+        <div class="tags"><span>デザイン</span></div>
       </a>
     </div>
   </div>

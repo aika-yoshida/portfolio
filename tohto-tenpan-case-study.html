@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="東都典範 Webサイトリニューアルのケーススタディ — 緊急度別の導線設計と問い合わせCXへの配慮で、遠方からも選ばれるサイトへ。">
+<title>東都典範 Webサイトリニューアル — Aika Yoshida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== Unified design tokens（index.htmlと共通）＋ 東都典範専用アクセント（深紺・儀礼的なトーン） ===== */
+  :root{
+    --ink:#141310;
+    --ink-soft:#3a3833;
+    --mute:#6f6a61;
+    --line:#e0ddd4;
+    --page:#f5f3ee;
+    --card:#ffffff;
+    --accent:#2c3a63;
+    --accent-deep:#1c2745;
+    --accent-soft:#e9edf5;
+    --accent-light:#aab7d1;
+    --max:1120px;
+    --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s7:64px;--s8:80px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+  }
+  body{font-family:var(--font);color:var(--ink);background:var(--page);line-height:1.8;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--s4)}
+  .mono{font-family:var(--font);letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--mute)}
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-size:13px;text-decoration:none}
+  .skip:focus{left:0}
+  .dotgrid{position:relative}
+  .dotgrid::before{
+    content:"";position:absolute;top:0;right:0;width:260px;height:260px;
+    background-image:radial-gradient(currentColor 1.4px, transparent 1.4px);background-size:16px 16px;color:var(--accent-light);
+    opacity:.5;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+    mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
+  }
+  @media(max-width:760px){.dotgrid::before{width:150px;height:150px}}
+
+  /* ---------- topbar ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .row{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px;height:68px;padding:0 32px}
+  .topbar .brandwrap{display:flex;align-items:center;gap:14px;min-width:0}
+  .topbar .brand{font-weight:800;letter-spacing:.14em;font-size:13px;text-decoration:none;white-space:nowrap}
+  .topbar nav{display:flex;align-items:center;gap:8px}
+  .topbar nav a{text-decoration:none;font-size:13px;font-weight:600;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:10px;transition:color .15s}
+  .topbar nav a .dot{width:5px;height:5px;border-radius:2px;background:var(--line);transition:background .15s}
+  .topbar nav a:hover{color:var(--accent)}
+  .topbar nav a:hover .dot{background:var(--accent)}
+  .topbar .cta{text-decoration:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);padding:12px 20px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+  .topbar .cta:hover{background:var(--accent)}
+  @media(max-width:640px){
+    .topbar .row{padding:0 18px;height:58px;gap:12px}
+    .topbar nav{gap:4px}
+    .topbar nav a .dot{display:none}
+    .topbar nav a{font-size:11.5px;padding:10px 6px}
+    .topbar .cta{display:none}
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{padding:var(--s8) 0 var(--s7);border-bottom:1px solid var(--line)}
+  .eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s4)}
+  .tag{border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:11px;letter-spacing:.1em;color:var(--ink-soft);background:var(--card)}
+  h1.title{font-size:clamp(26px,4vw,40px);line-height:1.15;font-weight:700;letter-spacing:-.01em}
+  .subtitle{font-size:clamp(14px,2vw,17px);color:var(--ink-soft);margin-top:var(--s3);max-width:640px}
+  .metarow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--line)}
+  .metarow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+  .metarow .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.5}
+  @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr;gap:var(--s3)}}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:1fr;gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+
+  .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.3;margin-bottom:var(--s1);letter-spacing:-.005em}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
+
+  .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
+  .takeaways .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent-light);text-transform:uppercase}
+  .takeaways ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin:var(--s2) 0}
+  @media(max-width:720px){.takeaways ul{grid-template-columns:1fr;gap:8px}}
+  .takeaways li{font-size:14px;font-weight:700;position:relative;padding-left:16px;line-height:1.5}
+  .takeaways li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--accent-light);border-radius:2px}
+  .takeaways .one{font-size:13px;color:#b9b3aa;border-top:1px solid #34302e;padding-top:var(--s2);margin-top:var(--s1)}
+  .takeaways .one b{color:#fff;font-weight:600}
+
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
+  .tldr ul{list-style:none;display:grid;gap:var(--s1)}
+  .tldr li{position:relative;padding-left:var(--s3);color:var(--ink-soft);font-size:15px}
+  .tldr li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);border-radius:2px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s4)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s3)}
+  .card .num{font-size:12px;color:var(--accent);letter-spacing:.1em;font-weight:700}
+  .card h4{font-size:17px;margin:var(--s1) 0;font-weight:700}
+  .card p{font-size:14px;color:var(--ink-soft)}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s3)}
+  @media(max-width:640px){.stats{grid-template-columns:1fr}}
+  .stat-card{background:var(--accent-soft);border:1px solid #ccd4e6;border-radius:14px;padding:var(--s3)}
+  .stat-card .big{font-size:clamp(18px,2.6vw,24px);font-weight:700;color:var(--accent-deep);line-height:1.3;letter-spacing:-.005em}
+  .stat-card .lab{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.55}
+
+  /* ---------- FULL-BLEED band ---------- */
+  .fullbleed{width:100%;background:var(--ink);color:#f4f1ec;border-bottom:1px solid #000;padding:var(--s8) 0;position:relative;overflow:hidden}
+  .fullbleed .inner{max-width:var(--max);margin:0 auto;padding:0 var(--s4);position:relative;z-index:2}
+  .fullbleed .k{font-size:11px;letter-spacing:.16em;color:var(--accent-light);text-transform:uppercase}
+  .fullbleed blockquote{font-size:clamp(19px,2.8vw,28px);font-weight:700;line-height:1.5;letter-spacing:-.01em;max-width:900px;margin-top:var(--s3)}
+  .fullbleed blockquote em{font-style:normal;color:var(--accent-light)}
+
+  /* ---------- emergency branch（このページの署名要素：緊急度別の導線分岐） ---------- */
+  .branch{margin-top:var(--s4);display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s3);align-items:stretch}
+  @media(max-width:760px){.branch{grid-template-columns:1fr}}
+  .branch .path{border:1px solid var(--line);border-radius:14px;padding:var(--s4);background:var(--card);display:flex;flex-direction:column;gap:10px}
+  .branch .path.urgent{border-color:var(--accent);background:var(--accent-soft)}
+  .branch .path .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+  .branch .path.urgent .lbl{color:var(--accent-deep)}
+  .branch .path h4{font-size:17px;font-weight:700}
+  .branch .path p{font-size:13.5px;color:var(--ink-soft)}
+  .branch .path .cta{margin-top:auto;font-size:13px;font-weight:700;color:var(--accent-deep)}
+  .branch .fork{display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  @media(max-width:760px){.branch .fork{padding:2px 0}}
+  .phone-pin{display:flex;align-items:center;gap:10px;background:var(--ink);color:#f4f1ec;border-radius:999px;padding:12px 20px;margin-top:var(--s3);font-size:13px;font-weight:700;width:fit-content}
+  .phone-pin .dot{width:8px;height:8px;border-radius:50%;background:#5cd39e}
+
+  /* ---------- key solutions numbered rows ---------- */
+  .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .solrow:last-child{border-bottom:1px solid var(--line)}
+  .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
+  .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
+  .solrow p{font-size:14px;color:var(--ink-soft)}
+
+  .contrib{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
+  @media(max-width:820px){.contrib{grid-template-columns:1fr}}
+  .contrib .card h4{color:var(--accent-deep)}
+
+  .disc{font-size:11.5px;color:var(--mute);margin-top:var(--s2);font-style:italic}
+
+  /* footer / next case / slim footer / back to top */
+  .nextcase{display:block;text-decoration:none;border-top:1px solid var(--line);background:var(--card);transition:background .15s}
+  .nextcase .ncin{display:flex;flex-direction:column;gap:6px;padding:44px 32px 48px;max-width:1120px;margin:0 auto}
+  .nextcase .nc-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .nextcase .nc-title{font-size:clamp(19px,2.8vw,26px);font-weight:700;letter-spacing:-.01em;color:var(--ink);transition:color .15s}
+  .nextcase:hover .nc-title{color:var(--accent)}
+  footer.slimfoot{padding:6px 0;background:transparent;color:var(--mute);border-top:1px solid var(--line)}
+  .slimfoot .fslim{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--mute);max-width:1120px;margin:0 auto;padding:0 32px}
+  .slimfoot nav{display:flex;gap:2px}
+  .slimfoot nav a{color:var(--ink-soft);text-decoration:none;padding:12px 10px;min-height:44px;display:inline-flex;align-items:center;font-size:12.5px}
+  .slimfoot nav a:hover{color:var(--accent)}
+  .totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+  .totop.on{opacity:1;pointer-events:auto}
+  .totop:hover{background:var(--accent)}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="topbar">
+  <div class="row">
+    <div class="brandwrap">
+      <a href="index.html" class="brand">AIKA YOSHIDA</a>
+    </div>
+    <nav aria-label="メイン">
+      <a href="index.html#work"><span class="dot"></span>Works</a>
+      <a href="index.html#about"><span class="dot"></span>About</a>
+      <a href="index.html#contact"><span class="dot"></span>Contact</a>
+    </nav>
+    <a href="mailto:aika.yos@icloud.com" class="cta">Get in touch</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tag">葬儀サービス</span>
+      <span class="tag">Web Design</span>
+      <span class="tag">テキスト制作</span>
+      <span class="tag">Figma</span>
+    </div>
+    <h1 class="title">東都典範<br>Webサイトリニューアル</h1>
+    <p class="subtitle">情報設計が複雑で、目的にたどり着けなかった葬儀依頼サイトを、緊急度に応じて迷わず動ける導線へ。近隣中心だった問い合わせを、遠方からも選ばれる設計へ再構築。</p>
+
+    <div class="metarow">
+      <div><div class="k">Role / 担当領域</div><div class="v">デザイン・テキスト制作</div></div>
+      <div><div class="k">Tool</div><div class="v">Figma</div></div>
+      <div><div class="k">Type / 形態</div><div class="v">提案 ／ 個人ワーク</div></div>
+      <div><div class="k">Goal</div><div class="v">問い合わせエリアの拡大<br>遠方からも選ばれるサイトへ</div></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 01 OVERVIEW ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <div class="takeaways">
+        <span class="lbl">この事例で取り組んだこと</span>
+        <ul>
+          <li>緊急度に応じた情報設計</li>
+          <li>依頼者の不安に寄り添う言葉選び</li>
+          <li>信頼を裏づける細部のCX配慮</li>
+        </ul>
+        <p class="one"><b>担当：</b>デザイン・テキスト制作（Figma）／ <b>提案内容：</b>「今すぐ動ける」導線と、遠方の依頼者にも安心して選んでもらえる情報設計。</p>
+      </div>
+      <h2 class="sec-head">複雑な情報設計を、<br>迷わず動ける導線へ。</h2>
+      <div class="tldr">
+        <span class="lbl">In short</span>
+        <p class="big">既存サイトは情報設計が複雑で、訪れた人が目的の情報にたどり着けない状態だった。結果として問い合わせは近隣の人に限られていた。緊急度別に導線を分け、依頼までの不安を1つずつ解消する設計に再構築した。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 CHALLENGE ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Challenge</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題：情報はある。<br>でも、たどり着けない。</h2>
+      <p class="sec-lead">既存サイトには必要な情報がすでに載っていた。しかし構造が複雑で、訪問者は「今の自分に必要な情報」がどこにあるのか分からず離脱していた。特に、突然の事態で気持ちに余裕がない依頼者にとって、この分かりにくさは致命的だった。</p>
+      <div class="stats">
+        <div class="stat-card"><div class="big">情報設計が複雑</div><div class="lab">必要な情報はあっても、たどり着く道筋が分かりにくい構造だった。</div></div>
+        <div class="stat-card"><div class="big">目的にたどり着けない</div><div class="lab">「今何をすればいいか」がページのどこにも明確に示されていない。</div></div>
+        <div class="stat-card"><div class="big">問い合わせは近隣中心</div><div class="lab">信頼の裏づけが弱く、遠方からの問い合わせにつながっていない。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 EMERGENCY FLOW（署名要素） ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Emergency<br>Flow</span></div>
+    <div class="col">
+      <h2 class="sec-head">最初の分岐で、迷わせない。</h2>
+      <p class="sec-lead">葬儀のご依頼は、状況によって「今すぐ必要な情報」がまったく異なる。トップページの入口で状況別に導線を分け、それぞれに最短で必要な行動へたどり着けるようにした。</p>
+      <div class="branch">
+        <div class="path urgent">
+          <span class="lbl">状況 01</span>
+          <h4>ご危篤の場合</h4>
+          <p>心構えや事前の相談事項など、まだ時間に余裕がある方向けの情報へ。焦らせず、必要な準備を整理できる導線。</p>
+          <span class="cta">ご相談はこちら →</span>
+        </div>
+        <div class="fork" aria-hidden="true">分岐</div>
+        <div class="path">
+          <span class="lbl">状況 02</span>
+          <h4>お亡くなりの場合</h4>
+          <p>今すぐ動く必要がある方向けに、依頼の流れと緊急連絡先を最優先で提示。迷う時間そのものを減らす設計。</p>
+          <span class="cta">今すぐ依頼する →</span>
+        </div>
+      </div>
+      <div class="phone-pin"><span class="dot"></span>24時間対応の電話番号を、常にページ最上部に固定表示</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FULL-BLEED insight ============ -->
+<div class="fullbleed dotgrid">
+  <div class="inner">
+    <span class="k">設計方針</span>
+    <blockquote>気持ちに余裕がないときほど、<br>迷う時間は<em>1秒でも短く</em>。</blockquote>
+  </div>
+</div>
+
+<!-- ============ 04 KEY SOLUTIONS ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Key<br>Solutions</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題解決の5つのポイント。</h2>
+      <p class="sec-lead">「早く動けること」と「安心して選べること」を両立させるため、導線設計・文言・細部のCX配慮まで一貫して見直した。</p>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div><h4>緊急度別の導線分岐</h4><p>「お亡くなりの場合」「ご危篤の場合」で入口を分け、状況に応じて必要な情報だけを最短で提示する。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div><h4>24時間対応の電話番号を最上部に固定</h4><p>スクロール位置によらず常に電話番号が見える状態にし、「今すぐ相談できる」安心感を常に提示する。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">C</span>
+        <div><h4>依頼の流れをステップで可視化</h4><p>連絡から施行までの流れを番号付きステップで明示。何がどんな順番で起きるのかが事前に分かる状態をつくる。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">D</span>
+        <div><h4>問い合わせCXへの配慮</h4><p>資料は葬儀関連と分からない封筒で送付。到着までの日数をあらかじめ明記し、公営斎場も選びやすく整理して掲載。依頼後の「分からない不安」を先回りして解消する。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">E</span>
+        <div><h4>急ぎの方への緊急フォロー導線</h4><p>今すぐ対応が必要な方だけが迷わず進める、専用のフォロー導線を用意。通常の問い合わせ動線と混在させない。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 MY ROLE ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">My Role</span></div>
+    <div class="col">
+      <h2 class="sec-head">この案件で、私が担当したこと。</h2>
+      <p class="sec-lead">見た目の刷新ではなく、依頼者がどんな状況でサイトに来るのかを起点に、導線と言葉の両方を設計しました。</p>
+      <div class="contrib">
+        <div class="card"><h4>情報設計の再構築</h4><p>複雑だった情報構造を、緊急度という軸で整理し直し、迷わずたどり着ける導線に組み替えた。</p></div>
+        <div class="card"><h4>テキスト制作</h4><p>気持ちに余裕がない依頼者を想定し、不安を煽らず必要な情報だけを簡潔に伝える文言を作成した。</p></div>
+        <div class="card"><h4>CX配慮の設計</h4><p>資料送付の見た目や到着日数の明記など、依頼後の「分からない」を1つずつ潰す細部設計を行った。</p></div>
+        <div class="card"><h4>画面デザイン（Figma）</h4><p>電話番号の固定表示や分岐導線など、方針をそのままFigma上の画面設計に落とし込んだ。</p></div>
+      </div>
+      <p class="disc">※ 本ケーススタディは、東都典範様のサイト分析にもとづく設計提案です。掲載内容は要点を再構成して紹介しています。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<a class="nextcase" href="penelope-case-study.html">
+  <span class="ncin">
+    <span class="nc-lbl">Next Case</span>
+    <span class="nc-title">Penelope a casa →</span>
+  </span>
+</a>
+
+<footer class="slimfoot">
+  <div class="fslim">
+    <span>© 2026 Aika Yoshida</span>
+    <nav aria-label="フッター">
+      <a href="index.html#work">Works</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:aika.yos@icloud.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="totop" id="totop" href="#top" aria-label="ページ上部へ戻る">↑</a>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
+})();
+</script>
+
+</body>
+</html>
