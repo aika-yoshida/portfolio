@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="診療所向け患者情報管理システムのUXケーススタディ — リサーチからユーザビリティテスト、Hi-Fiプロトタイプまでの全工程。">
-<title>Patient Record Management System — Aika Yoshida</title>
+<title>医療UX設計 / 患者情報管理システム — Aika Yoshida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -100,10 +100,9 @@
   .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
   .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
   .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
-  /* hover-scrub: ページ全体の縦長スクリーンショットを、ホバーで上→下へゆっくりスクロール表示 */
-  .shot.scrub .frame{aspect-ratio:16/10;min-height:0}
-  .shot.scrub img{height:100%;object-fit:cover;object-position:top;transition:object-position 7s linear}
-  .shot.scrub:hover img{object-position:bottom}
+  /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
+  .shot.crop .frame{aspect-ratio:16/10;min-height:0}
+  .shot.crop img{height:100%;object-fit:cover;object-position:top}
 
   /* takeaways strip — 冒頭で「この案件でわかること」を提示 */
   .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
@@ -220,7 +219,7 @@
         <span class="tag">App / Responsive Web</span>
         <span class="tag">Google UX Design Certificate</span>
       </div>
-      <h1 class="title">Patient Record<br>Management System</h1>
+      <h1 class="title">医療UX設計<br>患者情報管理システム</h1>
       <p class="subtitle">プライマリケア診療所向けの患者情報管理システム — 医師のPCダッシュボードと看護師のモバイルをリアルタイム同期し、「伝達ミスゼロ・重要アラートの見落としゼロ」で患者安全を守るUX設計。</p>
       <div class="metarow">
         <div><div class="k">Role / 担当領域</div><div class="v">Lead UX Designer<br>リサーチ・ワイヤー・プロトタイピング</div></div>
@@ -229,12 +228,12 @@
         <div><div class="k">Deliverable</div><div class="v">リサーチ〜Hi-Fiモックアップ<br>PC / Mobile プロトタイプ</div></div>
       </div>
 
-      <figure class="shot scrub">
+      <figure class="shot crop">
         <div class="frame">
-          <img src="assets/clinic-full.jpg" alt="Patient Record Management System 全体" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+          <img src="assets/clinic-full.jpg" alt="医療UX設計 / 患者情報管理システム 全体" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
           <div class="ph" style="display:none"><code>assets/clinic-full.jpg</code> を置くと表示されます</div>
         </div>
-        <figcaption>Prototype — Hover to Scroll</figcaption>
+        <figcaption>Prototype</figcaption>
       </figure>
     </section>
 
@@ -382,7 +381,7 @@
       <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。リサーチからHi-Fiモックアップまでの全工程は、下記のスライドデッキからそのままご覧いただけます。</p>
       <div class="pdfbox">
         <div class="bar">
-          <div class="t">Patient Record Management System — Case Study Deck<small>PDF · Google UX Design Certificate · 2026.06</small></div>
+          <div class="t">医療UX設計 / 患者情報管理システム — Case Study Deck<small>PDF · Google UX Design Certificate · 2026.06</small></div>
           <div class="acts">
             <a href="clinic-case-study.pdf" target="_blank" rel="noopener">別タブで開く ↗</a>
             <a class="solid" href="clinic-case-study.pdf" download>ダウンロード ↓</a>
@@ -401,7 +400,7 @@
 <a class="nextcase" href="wedding-case-study.html">
   <span class="ncin">
     <span class="nc-lbl">Next Case</span>
-    <span class="nc-title">Wedding Venue Website Redesign →</span>
+    <span class="nc-title">結婚式場 / Webサイトリニューアル →</span>
   </span>
 </a>
 

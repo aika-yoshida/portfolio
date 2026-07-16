@@ -86,10 +86,9 @@
   .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
   .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
   .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
-  /* hover-scrub: ページ全体の縦長スクリーンショットを、ホバーで上→下へゆっくりスクロール表示 */
-  .shot.scrub .frame{aspect-ratio:16/10;min-height:0}
-  .shot.scrub img{height:100%;object-fit:cover;object-position:top;transition:object-position 7s linear}
-  .shot.scrub:hover img{object-position:bottom}
+  /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
+  .shot.crop .frame{aspect-ratio:16/10;min-height:0}
+  .shot.crop img{height:100%;object-fit:cover;object-position:top}
 
   /* ---------- section scaffolding ---------- */
   section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
@@ -221,12 +220,12 @@
       <div><div class="k">Status</div><div class="v">未公開<br>（効果測定前）</div></div>
     </div>
 
-    <figure class="shot scrub">
+    <figure class="shot crop">
       <div class="frame">
         <img src="assets/penelope-full.webp" alt="Penelope a casa Webサイト全体" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
         <div class="ph" style="display:none"><code>assets/penelope-full.webp</code> を置くと表示されます</div>
       </div>
-      <figcaption>Design Proposal — Hover to Scroll</figcaption>
+      <figcaption>Design Proposal</figcaption>
     </figure>
   </div>
 </header>
@@ -375,7 +374,7 @@
 <a class="nextcase" href="clinic-case-study.html">
   <span class="ncin">
     <span class="nc-lbl">Next Case</span>
-    <span class="nc-title">Patient Record Management System →</span>
+    <span class="nc-title">医療UX設計 / 患者情報管理システム →</span>
   </span>
 </a>
 
