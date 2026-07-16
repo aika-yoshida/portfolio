@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-16T00:00:00Z",
+  "title": "Design System: Aika Yoshida Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(19% 0.005 75)", "tonalRamp": ["#0c0b09", "#2a2925", "#494844", "#6a6965", "#8d8c88", "#b2b1ad", "#d2d1cc", "#efeeec"] },
+      "page": { "role": "neutral", "displayName": "Cream Page", "canonical": "oklch(96% 0.006 85)", "tonalRamp": ["#0c0b09", "#2a2925", "#494843", "#6a6964", "#8e8c87", "#b3b1ac", "#d3d1cc", "#efeeeb"] },
+      "accent-index": { "role": "primary", "displayName": "Editorial Purple", "canonical": "oklch(48% 0.23 305)", "tonalRamp": ["#18003c", "#400089", "#5e00b1", "#7f31da", "#a35dff", "#c885ff", "#e8a7ff", "#fbd9ff"] },
+      "accent-clinic": { "role": "secondary", "displayName": "Clinical Blue", "canonical": "oklch(52% 0.13 250)", "tonalRamp": ["#000928", "#002661", "#004886", "#2b6bac", "#5090d3", "#75b6fc", "#94d6ff", "#cbf3ff"] },
+      "accent-wedding": { "role": "secondary", "displayName": "Rose Quartz", "canonical": "oklch(56% 0.15 0)", "tonalRamp": ["#21000a", "#550027", "#7b1f46", "#a24367", "#ca678a", "#f38caf", "#ffaccf", "#ffd9ed"] },
+      "accent-tohto": { "role": "secondary", "displayName": "Ceremonial Navy", "canonical": "oklch(33% 0.07 270)", "tonalRamp": ["#05091e", "#1a264d", "#374670", "#576794", "#798bba", "#9db0e1", "#bcd0ff", "#e2eeff"] },
+      "accent-penelope": { "role": "secondary", "displayName": "Terracotta", "canonical": "oklch(47% 0.14 30)", "tonalRamp": ["#250000", "#5c0000", "#831b11", "#ab4235", "#d46757", "#fd8c7b", "#ffac9a", "#ffdacd"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline (index) and case-study h1.title only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (Works / About / Contact) and case-study step headings." },
+      "title": { "displayName": "Title", "purpose": "Feature-card headings and callout stat lines." },
+      "body": { "displayName": "Body", "purpose": "All paragraph copy, capped near 620-640px measure." },
+      "label": { "displayName": "Label", "purpose": "Section indices, meta rows, tag chips — small, tracked, uppercase-adjacent." }
+    },
+    "shadows": [
+      { "name": "hover-lift", "value": "0 22px 46px -28px rgba(20,19,16,.3)", "purpose": "Feature-card hover state on the works grid — the only elevation cue in the system." },
+      { "name": "thumb-lift", "value": "0 18px 36px -18px rgba(0,0,0,.55)", "purpose": "Works-grid screenshot mockups, simulating a physical printed screenshot." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "ease", "purpose": "Default transition for color/background/transform state changes (.15s-.2s)." },
+      { "name": "duration-fast", "value": "0.15s", "purpose": "Link, button, and nav color transitions." },
+      { "name": "duration-lift", "value": "0.2s", "purpose": "Feature-card hover transform + shadow transition." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "560px" },
+      { "name": "md", "value": "640px" },
+      { "name": "lg", "value": "760px" },
+      { "name": "xl", "value": "820px" },
+      { "name": "xxl", "value": "920px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid ink pill CTA; hover swaps to the page's accent color.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Selected Works ↓</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 26px; border-radius: 999px; background: #141310; color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; transition: background 0.15s; } .ds-btn-primary:hover { background: #7c2cd6; } .ds-btn-primary:focus-visible { outline: 2px solid #7c2cd6; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outline pill CTA; hover inverts to solid ink.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Contact</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 26px; border-radius: 999px; border: 1px solid #141310; color: #141310; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; transition: all 0.15s; } .ds-btn-ghost:hover { background: #141310; color: #fff; } .ds-btn-ghost:focus-visible { outline: 2px solid #7c2cd6; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "tag-chip",
+      "description": "Pill-shaped metadata tag used on works cards; the .pdf variant borrows the page accent to flag a downloadable proposal.",
+      "html": "<span class=\"ds-tag\">UXリサーチ</span><span class=\"ds-tag ds-tag--pdf\">PDF付き</span>",
+      "css": ".ds-tag { display: inline-block; border: 1px solid #e0ddd4; border-radius: 999px; padding: 5px 13px; font-size: 11px; color: #3a3833; background: #f5f3ee; } .ds-tag--pdf { border-color: #7c2cd6; color: #7c2cd6; background: transparent; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": "feature-card",
+      "description": "Signature two-column works-grid card: dark visual panel with a radial accent glow on one side, body copy with role/tags/link on the other.",
+      "html": "<a class=\"ds-feature\" href=\"#\"><div class=\"ds-feature__vis\"><span class=\"ds-feature__lab\">MEDICAL / PATIENT SAFETY</span><h3>Patient Record<br>Management System</h3></div><div class=\"ds-feature__body\"><span class=\"ds-feature__fk\">医療 / 患者安全 UX</span><h4>診療の集中を壊さずに、緊急報告を確実に届けるシステムへ。</h4><span class=\"ds-feature__go\">Read case study →</span></div></a>",
+      "css": ".ds-feature { display: grid; grid-template-columns: 1.05fr .95fr; border: 1px solid #e0ddd4; border-radius: 22px; overflow: hidden; background: #fff; text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; } .ds-feature:hover { transform: translateY(-3px); box-shadow: 0 22px 46px -28px rgba(20,19,16,.3); } .ds-feature__vis { background: #141310; color: #f2efe8; padding: 36px 38px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; position: relative; overflow: hidden; } .ds-feature__vis::after { content: ''; position: absolute; right: -60px; bottom: -80px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(124,44,214,.55), transparent 68%); } .ds-feature__lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #a29c90; position: relative; z-index: 1; } .ds-feature__vis h3 { font-size: clamp(22px,3vw,32px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; position: relative; z-index: 1; } .ds-feature__body { padding: 32px 30px; display: flex; flex-direction: column; justify-content: center; } .ds-feature__fk { font-size: 11px; color: #7c2cd6; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; } .ds-feature__body h4 { font-size: 17px; margin: 12px 0; font-weight: 700; line-height: 1.6; } .ds-feature__go { font-size: 13px; color: #7c2cd6; font-weight: 700; }"
+    },
+    {
+      "name": "Sticky Nav",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Translucent blurred topbar with pill CTA; shared across every page.",
+      "html": "<header class=\"ds-topbar\"><a class=\"ds-brand\" href=\"#\">AIKA YOSHIDA</a><nav><a href=\"#\">Works</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav><a class=\"ds-cta\" href=\"#\">Get in touch</a></header>",
+      "css": ".ds-topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 22px; height: 68px; padding: 0 32px; background: rgba(245,243,238,.9); backdrop-filter: blur(10px); border-bottom: 1px solid #e0ddd4; } .ds-brand { font-weight: 800; letter-spacing: 0.14em; font-size: 13px; text-decoration: none; color: #141310; } .ds-topbar nav { display: flex; gap: 8px; } .ds-topbar nav a { text-decoration: none; font-size: 13px; font-weight: 600; color: #3a3833; padding: 12px 10px; min-height: 44px; display: inline-flex; align-items: center; transition: color 0.15s; } .ds-topbar nav a:hover { color: #7c2cd6; } .ds-cta { text-decoration: none; font-size: 12.5px; font-weight: 700; color: #fff; background: #141310; padding: 12px 20px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 999px; transition: background 0.15s; } .ds-cta:hover { background: #7c2cd6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Case File",
+    "overview": "Every page reads like a folder pulled from a records office: ink-black type on warm cream paper, a single stamped accent color per case, borders instead of shadows, and numbered rows instead of decorative cards. Nothing performs; the layout gets out of the way of the argument each page is making — that a sales background is a design asset, proven case by case rather than claimed once on a hero.\n\nThe system explicitly rejects the generic AI-portfolio grammar: no gradient text, no tiny tracked eyebrows stacked above every section, no glassmorphism, no identical icon-plus-heading card grids, no hero-metric templates. Where the site needs emphasis it uses one accent color and plain, specific language — numbers, roles, timeframes — never adjectives doing the work numbers should do.",
+    "keyCharacteristics": [
+      "Ink (#141310) on cream (#f5f3ee), one accent color per page, everything else neutral.",
+      "Flat at rest; shadow appears only as a hover response on clickable cards.",
+      "Pill buttons and pill tags are the only rounded-to-circle shapes; content containers use a shared 26/18/12px radius scale, never fully square, never a stripe border.",
+      "Bilingual type: Inter carries Latin/UI text, Noto Sans JP carries Japanese prose, in the same weight scale."
+    ],
+    "rules": [
+      { "name": "The Borrowed Palette Rule", "body": "A case study's accent color comes from its client's world, not the site's default purple. Ink, cream, line, and card neutrals never change; only the accent — and its -deep, -soft, -light steps — swaps per page. Consistency lives in the shared structure, not a shared color.", "section": "colors" },
+      { "name": "The One Voice Rule", "body": "Exactly one accent color is active on any given page. It never mixes with another page's accent, and it never appears at more than a small fraction of the surface.", "section": "colors" },
+      { "name": "The No-Eyebrow Rule", "body": "Section labels sit as small tracked metadata beside a heading, never as a centered standalone kicker above it. They're a page index, not a decorative device.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest — border and fill only. A shadow appears exclusively as a hover response on something clickable; it is never used to fake depth on static content.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep ink/cream/line/card neutrals identical across every page; only the accent token changes per case study (The Borrowed Palette Rule).",
+      "Do use full-pill radius (999px) for every button and tag, and the 26/18/12px descending scale for content containers — never square corners on a card.",
+      "Do keep shadows exclusive to hover states on clickable elements (The Flat-By-Default Rule); everything else is border + fill.",
+      "Do state real numbers, roles, and timeframes in case-study copy instead of adjectives.",
+      "Do keep the radial accent-color glow confined to dark full-bleed panels as the one allowed gradient-adjacent effect."
+    ],
+    "donts": [
+      "Don't use border-left/border-right as a colored accent stripe on any card, callout, or list item.",
+      "Don't apply background-clip: text gradient text for emphasis.",
+      "Don't use glassmorphism decoratively; the topbar's backdrop-blur is the one sanctioned, functional use.",
+      "Don't stack a tiny tracked all-caps eyebrow above every section.",
+      "Don't build identical icon+heading+text card grids.",
+      "Don't mix two accent colors on one page, and never reuse another case study's accent instead of the current page's own."
+    ]
+  }
+}
