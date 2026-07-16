@@ -79,6 +79,14 @@
   .metarow .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.5}
   @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr;gap:var(--s3)}}
 
+  /* visual frame */
+  .shot{margin-top:var(--s5)}
+  .shot .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#efece5;min-height:220px;display:flex;align-items:center;justify-content:center}
+  .shot img{width:100%;display:block}
+  .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
+  .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
+  .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+
   /* ---------- section scaffolding ---------- */
   section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
   .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
@@ -208,6 +216,14 @@
       <div><div class="k">Type / 形態</div><div class="v">提案 ／ 個人ワーク</div></div>
       <div><div class="k">Goal</div><div class="v">問い合わせエリアの拡大<br>遠方からも選ばれるサイトへ</div></div>
     </div>
+
+    <figure class="shot">
+      <div class="frame">
+        <img src="assets/tohto-tenpan-hero.jpg" alt="東都典範 Webサイト全体" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+        <div class="ph" style="display:none"><code>assets/tohto-tenpan-hero.jpg</code> を置くと表示されます</div>
+      </div>
+      <figcaption>Full Page — Design Proposal</figcaption>
+    </figure>
   </div>
 </header>
 
@@ -247,6 +263,22 @@
         <div class="stat-card"><div class="big">情報設計が複雑</div><div class="lab">必要な情報はあっても、たどり着く道筋が分かりにくい構造だった。</div></div>
         <div class="stat-card"><div class="big">目的にたどり着けない</div><div class="lab">「今何をすればいいか」がページのどこにも明確に示されていない。</div></div>
         <div class="stat-card"><div class="big">問い合わせは近隣中心</div><div class="lab">信頼の裏づけが弱く、遠方からの問い合わせにつながっていない。</div></div>
+      </div>
+      <div class="grid2">
+        <figure class="shot" style="margin-top:0">
+          <div class="frame">
+            <img src="assets/tohto-tenpan-before.jpg" alt="東都典範 リニューアル前のサイト" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+            <div class="ph" style="display:none"><code>assets/tohto-tenpan-before.jpg</code> を置くと表示されます</div>
+          </div>
+          <figcaption>Before — リニューアル前</figcaption>
+        </figure>
+        <figure class="shot" style="margin-top:0">
+          <div class="frame">
+            <img src="assets/tohto-tenpan-after.jpg" alt="東都典範 リニューアル後のサイト" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+            <div class="ph" style="display:none"><code>assets/tohto-tenpan-after.jpg</code> を置くと表示されます</div>
+          </div>
+          <figcaption>After — リニューアル後</figcaption>
+        </figure>
       </div>
     </div>
   </div>

@@ -79,6 +79,14 @@
   .metarow .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.5}
   @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr;gap:var(--s3)}}
 
+  /* visual frame */
+  .shot{margin-top:var(--s5)}
+  .shot .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#efece5;min-height:220px;display:flex;align-items:center;justify-content:center}
+  .shot img{width:100%;display:block}
+  .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
+  .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
+  .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+
   /* ---------- section scaffolding ---------- */
   section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
   .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
@@ -208,6 +216,14 @@
       <div><div class="k">Type / 形態</div><div class="v">提案 ／ 個人ワーク</div></div>
       <div><div class="k">Status</div><div class="v">未公開<br>（効果測定前）</div></div>
     </div>
+
+    <figure class="shot">
+      <div class="frame">
+        <img src="assets/penelope-hero.jpg" alt="Penelope a casa Webサイト全体" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+        <div class="ph" style="display:none"><code>assets/penelope-hero.jpg</code> を置くと表示されます</div>
+      </div>
+      <figcaption>Full Page — Design Proposal</figcaption>
+    </figure>
   </div>
 </header>
 
@@ -295,6 +311,13 @@
           <p>木の質感とやわらかな余白で、気取らず何度でも通いたくなる、アットホームな近さを表現する。</p>
         </div>
       </div>
+      <figure class="shot">
+        <div class="frame">
+          <img src="assets/penelope-detail.jpg" alt="Penelope a casa サイトデザイン詳細" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+          <div class="ph" style="display:none"><code>assets/penelope-detail.jpg</code> を置くと表示されます</div>
+        </div>
+        <figcaption>Detail — Visual Design</figcaption>
+      </figure>
     </div>
   </div>
 </section>
