@@ -58,6 +58,10 @@
   .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
   .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
   .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+  /* hover-scrub: ページ全体の縦長スクリーンショットを、ホバーで上→下へゆっくりスクロール表示 */
+  .shot.scrub .frame{aspect-ratio:16/10;min-height:0}
+  .shot.scrub img{height:100%;object-fit:cover;object-position:top;transition:object-position 7s linear}
+  .shot.scrub:hover img{object-position:bottom}
 
   main section{padding:var(--s6) 0;border-bottom:1px solid var(--line)}
   .drow{display:grid;grid-template-columns:180px minmax(0,1fr);gap:var(--s4);padding:var(--s3) 0;border-top:1px solid var(--line)}
@@ -130,12 +134,12 @@
       <div><div class="k">Tool</div><div class="v">Illustrator</div></div>
     </div>
 
-    <figure class="shot">
+    <figure class="shot scrub">
       <div class="frame">
-        <img src="assets/amp-logo.png" alt="ジュエリーブランドのロゴデザイン案（紙への刻印イメージ）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-        <div class="ph" style="display:none"><code>assets/amp-logo.png</code> を置くと表示されます</div>
+        <img src="assets/amp-logo-full.webp" alt="ジュエリーブランドのロゴデザイン案（紙への刻印イメージ）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+        <div class="ph" style="display:none"><code>assets/amp-logo-full.webp</code> を置くと表示されます</div>
       </div>
-      <figcaption>Logo Design Proposal</figcaption>
+      <figcaption>Logo Design Proposal — Hover to Scroll</figcaption>
     </figure>
   </div>
 </header>
