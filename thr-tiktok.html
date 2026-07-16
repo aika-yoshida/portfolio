@@ -59,15 +59,7 @@
   .stat-card .big{font-size:clamp(26px,4vw,36px);font-weight:700;color:var(--accent-deep);line-height:1.05;letter-spacing:-.01em}
   .stat-card .lab{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.55}
 
-  .shot{margin-top:var(--s5)}
-  .shot2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-top:var(--s5)}
-  @media(max-width:720px){.shot2{grid-template-columns:1fr}}
-  .shot .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#efece5;min-height:220px;display:flex;align-items:center;justify-content:center}
-  .shot img{width:100%;display:block}
-  .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
-  .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
-  .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
-  .shot2 .shot{margin-top:0}
+  .tiktok-wrap{margin-top:var(--s5);display:flex;justify-content:center}
 
   main section{padding:var(--s6) 0;border-bottom:1px solid var(--line)}
   .drow{display:grid;grid-template-columns:180px minmax(0,1fr);gap:var(--s4);padding:var(--s3) 0;border-top:1px solid var(--line)}
@@ -146,21 +138,12 @@
       <div class="stat-card"><div class="big">10.4万回</div><div class="lab">最高再生数。ニュース性の高い話題を、掴みのテロップ設計で伸ばした動画。</div></div>
     </div>
 
-    <div class="shot2">
-      <figure class="shot">
-        <div class="frame">
-          <img src="assets/thr-interview.png" alt="レッドカーペットインタビュー動画のフォーマット" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-          <div class="ph" style="display:none"><code>assets/thr-interview.png</code> を置くと表示されます</div>
-        </div>
-        <figcaption>Format 01 — Interview</figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="frame">
-          <img src="assets/thr-news.png" alt="映画ニュース動画のフォーマット" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-          <div class="ph" style="display:none"><code>assets/thr-news.png</code> を置くと表示されます</div>
-        </div>
-        <figcaption>Format 02 — News</figcaption>
-      </figure>
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@hollywoodreporter.jp/video/7572078570726591752" data-video-id="7572078570726591752" style="max-width: 605px;min-width: 325px;">
+        <section>
+          <a target="_blank" title="@hollywoodreporter.jp" href="https://www.tiktok.com/@hollywoodreporter.jp?refer=embed">@hollywoodreporter.jp</a>
+        </section>
+      </blockquote>
     </div>
   </div>
 </header>
@@ -221,6 +204,7 @@
 addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
 })();
 </script>
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 </body>
 </html>
