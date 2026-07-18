@@ -84,7 +84,6 @@
   .sec-head .idx{font-size:11.5px;letter-spacing:.1em;color:var(--mute)}
   .sec-head .idx b{color:var(--accent);font-weight:400}
   h2.big{font-weight:800;font-size:clamp(23px,3.2vw,34px);line-height:1.1;letter-spacing:-.015em;margin-top:8px}
-  .sec-lead{max-width:620px;color:var(--ink-soft);font-size:15px;margin-top:14px}
   @media(max-width:640px){.sec-head{padding-top:36px}}
 
   /* ---------- works（事例メイン・ファースト） ---------- */
@@ -152,9 +151,7 @@
   .duomini .duopills span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#f2efe8;border:1px solid rgba(244,241,236,.35);border-radius:999px;padding:6px 14px}
 
   /* more works — ビジュアルグリッド */
-  .more-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:88px;padding-top:36px;border-top:1px solid var(--line)}
-  .more-head h3{font-weight:800;font-size:clamp(18px,2.4vw,24px);letter-spacing:-.01em}
-  .mgrid{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .mgrid{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:920px){.mgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.mgrid{grid-template-columns:1fr}}
   .mcard{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
@@ -294,17 +291,7 @@
 <section class="works" id="work">
   <div class="wrap">
     <div class="sec-head">
-      <div>
-        <div class="idx"><b>01</b> — Selected Works</div>
-        <h2 class="big">Works</h2>
-      </div>
-      <span class="mono">(08)</span>
-    </div>
-    <p class="sec-lead">課題 → 分析 → 施策のプロセスを、担当領域・期間とあわせて掲載しています。</p>
-
-    <div class="more-head" style="margin-top:40px;padding-top:0;border-top:none">
-      <h3>Featured Works</h3>
-      <span class="mono">詳細ケーススタディ</span>
+      <h2 class="big">Works</h2>
     </div>
 
     <a class="feature" href="clinic-case-study.html">
@@ -374,11 +361,6 @@
         <h3>Penelope<br>a casa</h3>
       </div>
     </a>
-
-    <div class="more-head">
-      <h3>Other Works</h3>
-      <span class="mono">Web / UI / Content</span>
-    </div>
 
     <div class="mgrid">
       <!-- 実スクショがある場合：.thumb 内を <img src="..."> に差し替え -->
