@@ -38,15 +38,6 @@
   .mono{font-family:var(--font);letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--mute)}
   .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;font-size:13px;text-decoration:none}
   .skip:focus{left:0}
-  .dotgrid{position:relative}
-  .dotgrid::before{
-    content:"";position:absolute;top:0;right:0;width:260px;height:260px;
-    background-image:radial-gradient(currentColor 1.4px, transparent 1.4px);background-size:16px 16px;color:var(--accent-light);
-    opacity:.5;pointer-events:none;
-    -webkit-mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
-    mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
-  }
-  @media(max-width:760px){.dotgrid::before{width:150px;height:150px}}
 
   /* ---------- topbar（3ページ共通） ---------- */
   .topbar{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -114,77 +105,26 @@
   .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.25;margin-bottom:var(--s1);letter-spacing:-.005em}
   .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
 
-  /* takeaways strip — 冒頭で「この案件でわかること」を提示（採用視点の先出し） */
-  .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
-  .takeaways .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent-light);text-transform:uppercase}
-  .takeaways ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin:var(--s2) 0}
-  @media(max-width:720px){.takeaways ul{grid-template-columns:1fr;gap:8px}}
-  .takeaways li{font-size:14px;font-weight:700;position:relative;padding-left:16px;line-height:1.5}
-  .takeaways li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--accent-light);border-radius:2px}
-  .takeaways .one{font-size:13px;color:#b9b3aa;border-top:1px solid #34302e;padding-top:var(--s2);margin-top:var(--s1)}
-  .takeaways .one b{color:#fff;font-weight:600}
 
   /* summary bullets */
   .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
   .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
   .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
-  .tldr ul{list-style:none;display:grid;gap:var(--s1)}
-  .tldr li{position:relative;padding-left:var(--s3);color:var(--ink-soft);font-size:15px}
-  .tldr li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);border-radius:2px}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2)}
+  .tldr .role b{color:var(--ink);font-weight:700}
 
   /* generic cards grid */
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s4)}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
-  @media(max-width:820px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s3)}
   .card .num{font-size:12px;color:var(--accent);letter-spacing:.1em;font-weight:700}
   .card h4{font-size:17px;margin:var(--s1) 0;font-weight:700}
   .card p{font-size:14px;color:var(--ink-soft)}
-  .card .en{font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-bottom:2px}
-
-  /* stat callouts（課題を数字で見せる） */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s3)}
-  @media(max-width:640px){.stats{grid-template-columns:1fr}}
-  .stat-card{background:var(--accent-soft);border:1px solid #f0c9d7;border-radius:14px;padding:var(--s3)}
-  .stat-card .big{font-size:clamp(26px,4vw,36px);font-weight:700;color:var(--accent-deep);line-height:1.02;letter-spacing:-.01em}
-  .stat-card .lab{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.55}
-
-  /* positioning table */
-  .tablewrap{margin-top:var(--s3);overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
-  table{border-collapse:collapse;width:100%;min-width:600px;font-size:13.5px}
-  th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-  thead th{font-size:12px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;background:var(--page)}
-  td.axis{font-weight:700;color:var(--ink);white-space:nowrap}
-  td.us{background:var(--accent-soft)}
-  .col-us{color:var(--accent-deep)}
-  /* 中心顧客見出し（モバイルで一段階縮小） */
-  .core-head{font-size:20px;margin-top:var(--s6)}
   @media(max-width:640px){
-    table{font-size:12.5px}
-    th,td{padding:10px 12px}
-    .core-head{font-size:17px}
     .card{padding:var(--s2)}
     .card h4{font-size:15.5px}
     .card p{font-size:13px}
   }
-
-  /* ---------- FULL-BLEED band ---------- */
-  .fullbleed{width:100%;background:var(--ink);color:#f4f1ec;border-bottom:1px solid #000;padding:var(--s8) 0;position:relative;overflow:hidden}
-  .fullbleed .inner{max-width:var(--max);margin:0 auto;padding:0 var(--s4);position:relative;z-index:2}
-  .fullbleed .k{font-size:11px;letter-spacing:.16em;color:var(--accent-soft);text-transform:uppercase}
-  .fullbleed blockquote{font-size:clamp(19px,2.8vw,28px);font-weight:700;line-height:1.35;letter-spacing:-.01em;max-width:900px;margin-top:var(--s3)}
-  .fullbleed blockquote em{font-style:normal;color:var(--accent-light)}
-
-  /* CX flow steps */
-  .flow{margin-top:var(--s4);display:grid;gap:0}
-  .step{display:grid;grid-template-columns:56px 1fr 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
-  .step:last-child{border-bottom:1px solid var(--line)}
-  .step .ph{font-size:13px;color:var(--accent);font-weight:700}
-  .step .heart{font-size:14px;color:var(--ink);font-weight:600}
-  .step .heart small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;margin-top:3px}
-  .step .move{font-size:13.5px;color:var(--ink-soft)}
-  .step .move b{color:var(--accent-deep)}
-  @media(max-width:720px){.step{grid-template-columns:44px 1fr}.step .move{grid-column:1 / -1;padding-left:60px}}
 
   /* ---------- wireframe section（戦略→画面構造の翻訳） ---------- */
   .wfrow{display:grid;grid-template-columns:minmax(0,1fr) 1fr;gap:var(--s5);align-items:start;padding:var(--s5) 0;border-top:1px solid var(--line)}
@@ -204,21 +144,6 @@
   .wfbody{font-size:14px;color:var(--ink-soft)}
   .wfbody b{color:var(--ink);font-weight:700}
   .wfmap{display:inline-block;font-size:10.5px;color:var(--accent-deep);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;margin-top:10px;letter-spacing:.04em}
-
-  /* process timeline */
-  .timeline{margin-top:var(--s4);display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-  .tl{padding:var(--s3) var(--s2);border-left:2px solid var(--line);position:relative}
-  .tl:first-child{border-left:2px solid var(--accent)}
-  .tl .w{font-size:11px;color:var(--mute);letter-spacing:.08em}
-  .tl h5{font-size:15px;margin:6px 0 var(--s1)}
-  .tl p{font-size:12.5px;color:var(--ink-soft)}
-  @media(max-width:820px){.timeline{grid-template-columns:1fr 1fr}}
-  @media(max-width:480px){.timeline{grid-template-columns:1fr}}
-
-  /* contribution */
-  .contrib{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
-  @media(max-width:820px){.contrib{grid-template-columns:1fr}}
-  .contrib .card h4{color:var(--accent-deep)}
 
   /* ---------- PDF viewer ---------- */
   .pdfbox{margin-top:var(--s3);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
@@ -319,151 +244,20 @@
   <div class="sec">
     <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
     <div class="col">
-      <div class="takeaways">
-        <span class="lbl">この事例で取り組んだこと</span>
-        <ul>
-          <li>ビジネス課題を1つに絞り込む</li>
-          <li>顧客心理を画面施策に対応づける</li>
-          <li>成果から逆算して情報を配置する</li>
-        </ul>
-        <p class="one"><b>担当：</b>UXリサーチ〜CX設計〜情報設計・ワイヤーフレーム ／ <b>提案内容：</b>フェア予約への「3秒直帰」障壁を段階的に解除する体験の設計。</p>
-      </div>
       <h2 class="sec-head">3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ。</h2>
       <div class="tldr">
         <span class="lbl">In short</span>
-        <p class="big">アクセスは伸びているのにフェア予約が伸びない——原因を「着地後3秒の直帰」と特定し、感情・理性・信頼の心理障壁を1つずつ解除する情報設計へ再構築した提案。</p>
-        <ul>
-          <li>ビジネス課題を「アクセス数」ではなく「CVR（フェア予約転換率）」に絞り込み、改修目的を1点に定義。</li>
-          <li>競合ポジショニングとペルソナ分析から、訴求軸を「都内への背伸び／地元での妥協」を超えた第三の価値＝<b>知的な最適解</b>に設定。</li>
-          <li>ファーストビューから予約導線まで、顧客心理を5つの仮説段階に整理し、Web施策を一貫設計。</li>
-        </ul>
+        <p class="big">アクセスは伸びているのに、フェア予約が伸びない。原因を「着地後3秒の直帰」と特定し、感情・理性・信頼の心理障壁を1つずつ解除する情報設計へ再構築した。訴求の軸は、都内への背伸びでも地元での妥協でもない「知的な最適解」。</p>
+        <p class="role"><b>担当：</b>UXリサーチ〜CX設計〜情報設計・ワイヤーフレーム</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 CHALLENGE ============ -->
+<!-- ============ 02 SOLUTIONS ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">02</span><span class="nm">Challenge</span></div>
-    <div class="col">
-      <h2 class="sec-head">課題：集客はできている。<br>「受け皿」が機能していない。</h2>
-      <p class="sec-lead">SNSをはじめとする独自メディアで接点は拡大し、アクセス数は着実に確保できている。しかし成果指標である「フェア予約」への転換率が伸び悩む。SNSで期待を高めた都内志向のパワーカップル層のシビアな選択眼に対し、現在のWebサイトが受け皿として機能しきれていないことが本質的な原因だった。</p>
-      <div class="stats">
-        <div class="stat-card"><div class="big">3秒</div><div class="lab">着地後、離脱までの時間。ここで「格」が伝わらず即離脱。</div></div>
-        <div class="stat-card"><div class="big">直帰率 ↑</div><div class="lab">従来の記号的な見せ方では、独自の格が初見で伝わらない。</div></div>
-        <div class="stat-card"><div class="big">CVR 停滞</div><div class="lab">アクセスは増えても、フェア予約への転換が伸び悩む。</div></div>
-      </div>
-      <p class="disc">担当者ヒアリング＋アクセス解析から特定。改修では「感情」と「理性」の2軸で、フェア予約への心理ハードルを能動的に解除する方針を立てた。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 03 RESEARCH ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">03</span><span class="nm">Research /<br>Positioning</span></div>
-    <div class="col">
-      <h2 class="sec-head">市場を整理し、自館のポジションを言語化する。</h2>
-      <p class="sec-lead">「都内・ミニマル系」と「地元・ネオトレンド系」の狭間で、当会場が持つ独自価値を軸ごとに対比。スペックと感性の両方で“中間の最適解”に立てることを明確化した。</p>
-      <div class="tablewrap">
-        <table>
-          <caption class="mono" style="text-align:left;padding:12px 16px 0;caption-side:top">ポジショニング比較</caption>
-          <thead>
-            <tr><th scope="col">軸</th><th scope="col">都内・ミニマル系</th><th scope="col" class="col-us">当会場</th><th scope="col">地元・ネオトレンド系</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="axis">立地の性質</td><td>ブランドエリアの「記号消費」</td><td class="us">全天候型のスマートインフラ</td><td>アクセスより「隠れ家のような立地」優先</td></tr>
-            <tr><td class="axis">建築の思想</td><td>洗練された「引き算のテンプレ」</td><td class="us">本物の石と天井高の「永続性」</td><td>「映え」重視のデザインリノベ</td></tr>
-            <tr><td class="axis">安心の根拠</td><td>尖ったコンセプトへの陶酔</td><td class="us">ハード×ソフト融合の絶対的スペック</td><td>スペックより「感性」の合致</td></tr>
-            <tr><td class="axis">ゲスト観</td><td>自己完結の世界観</td><td class="us">ゲストファースト×ふたりのこだわり両立</td><td>ふたりの世界観優先</td></tr>
-            <tr><td class="axis">決定打</td><td>「これが私たちのスタイル」</td><td class="us">賢い最適解</td><td>「オシャレだから、ここでいい」</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="sec-head core-head">最優先で価値を届ける「中心顧客」</h3>
-      <div class="grid2">
-        <div class="card">
-          <span class="en">Persona 01</span>
-          <h4>健太（31）／ ITエンジニア</h4>
-          <p>効率とスペックを重視。「都内は狭い・高い、郊外は不便で妥協では？」というジレンマを抱える。費用対効果とゲストの利便性で納得したい。</p>
-        </div>
-        <div class="card">
-          <span class="en">Persona 02</span>
-          <h4>恵（29）／ 大手広報</h4>
-          <p>トレンドと“映え”に敏感。空間の格と承認欲求を満たしたい。写真マジックを疑う審美眼を持ち、本物かどうかを見極める。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FULL-BLEED insight ============ -->
-<div class="fullbleed dotgrid">
-  <div class="inner">
-    <span class="k">リサーチからの仮説</span>
-    <blockquote>承認欲求と合理性を<em>同時に</em>満たすこと。<br>それが、都内流出をつなぎ止める鍵になると考えた。</blockquote>
-  </div>
-</div>
-
-<!-- ============ 04 CX DESIGN ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">04</span><span class="nm">CX Design</span></div>
-    <div class="col">
-      <h2 class="sec-head">顧客心理の動きを、5つの仮説で施策に翻訳する。</h2>
-      <p class="sec-lead">フォームにたどり着くまでの体験を分解。各フェーズで想定される“本音”に対して、心理転換のポイントと具体的なWeb施策を1対1で対応させた。</p>
-      <div class="flow">
-        <div class="step">
-          <span class="ph">01</span>
-          <div class="heart">感性の衝突<small>「従来型は嫌。でも都内は高くて狭いし…」</small></div>
-          <div class="move">SNS一撃必須の空間美ビジュアル。<b>欧州クラシック×モダンアート</b>をファーストビューで提示。</div>
-        </div>
-        <div class="step">
-          <span class="ph">02</span>
-          <div class="heart">選択肢の浮上<small>「ここの雰囲気好き。でも写真マジックかな？」</small></div>
-          <div class="move">本物の素材（質感）と余白を<b>館内の質感ツアー動画</b>で証明する。</div>
-        </div>
-        <div class="step">
-          <span class="ph">03</span>
-          <div class="heart">理性の教育<small>「地元でケチったと思われない品があるか？」</small></div>
-          <div class="move">思想発信型コラム・Q&Aで<b>「選ぶ正当性」</b>を付与する。</div>
-        </div>
-        <div class="step">
-          <span class="ph">04</span>
-          <div class="heart">納得の深化<small>「都内より合理的で、同エリア内で上質か？」</small></div>
-          <div class="move">当日のタイムライン・移動動線ページで<b>上位互換</b>を可視化する。</div>
-        </div>
-        <div class="step">
-          <span class="ph">05</span>
-          <div class="heart">賢い選択<small>「ここを選ぶのが一番の正解かも」</small></div>
-          <div class="move"><b>NO即決営業宣言</b>とスマート予約UIで、警戒心を先制解除して予約へ。</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 05 PRINCIPLES ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">05</span><span class="nm">Principles</span></div>
-    <div class="col">
-      <h2 class="sec-head">サイト刷新を貫く、3つの方針。</h2>
-      <div class="grid3">
-        <div class="card"><span class="num">01</span><div class="en">Smart Choice</div><h4>知的な最適解</h4><p>天井高と石材の建築美を提示し、都心の狭さを圧倒する空間の「格」を初見で印象付ける。</p></div>
-        <div class="card"><span class="num">02</span><div class="en">Hospitality for Guests</div><h4>ゲストへの誠実さ</h4><p>移動負荷と時間的ゆとりを可視化。演出より「ゲストの快適性」を最優先するホスピタリティを証明。</p></div>
-        <div class="card"><span class="num">03</span><div class="en">Sincere Options</div><h4>二人の意思の尊重</h4><p>不透明な特典を排し、NO即決営業をサイト上に明文化。二人の知的な意思決定を尊重する体験を構築。</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 06 SOLUTIONS ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">06</span><span class="nm">Key<br>Solutions</span></div>
+    <div class="gut"><span class="no">02</span><span class="nm">Key<br>Solutions</span></div>
     <div class="col">
       <h2 class="sec-head">CVR最大化：3つの中核施策。</h2>
       <p class="sec-lead">フォームにたどり着くまでの障壁（感情・理性・信頼）をピンポイントで解除する、三位一体のアプローチ。</p>
@@ -476,10 +270,10 @@
   </div>
 </section>
 
-<!-- ============ 07 WIREFRAME ============ -->
+<!-- ============ 03 WIREFRAME ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">07</span><span class="nm">Wireframe</span></div>
+    <div class="gut"><span class="no">03</span><span class="nm">Wireframe</span></div>
     <div class="col">
       <h2 class="sec-head">戦略を、画面構造に翻訳する。</h2>
       <p class="sec-lead">3つの中核施策と顧客心理フェーズを、そのままワイヤーフレームに落とし込みました。見た目ではなく「なぜこの配置か」を基準に情報を設計しています。主要画面を1本の縦導線として設計。</p>
@@ -513,44 +307,10 @@
   </div>
 </section>
 
-<!-- ============ 08 PROCESS ============ -->
+<!-- ============ 04 PROPOSAL PDF ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">08</span><span class="nm">Process</span></div>
-    <div class="col">
-      <h2 class="sec-head">インハウスで成果を生む、8週間の工程。</h2>
-      <div class="timeline">
-        <div class="tl"><span class="w">WEEK 1–2</span><h5>戦略・要件定義</h5><p>NSM（予約数）／Input Metricsの確定。「意思尊重・NO即決営業・特典透明化」ステートメントの明文化。</p></div>
-        <div class="tl"><span class="w">WEEK 3–4</span><h5>デザイン</h5><p>3秒維持率向上のマルチビジュアル設計。おもてなし館内図（インタラクティブマップ）UI検討。</p></div>
-        <div class="tl"><span class="w">WEEK 5–7</span><h5>実装</h5><p>マップ＆常駐予約ボタン実装。WebP／Lazy Load採用で表示1秒台への高速化チューニング。</p></div>
-        <div class="tl"><span class="w">WEEK 8–</span><h5>テスト・公開</h5><p>実機検証・リリース判定。公開後、全Metrics計測を開始しデータに基づく継続改善へ。</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 09 MY ROLE ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">09</span><span class="nm">My Role</span></div>
-    <div class="col">
-      <h2 class="sec-head">この案件で、私が担当したこと。</h2>
-      <p class="sec-lead">見た目のリニューアルではなく、「なぜ予約されないのか」を起点にビジネス課題→顧客心理→画面施策まで一本の線でつなぐことを意識しました。</p>
-      <div class="contrib">
-        <div class="card"><h4>課題の絞り込み</h4><p>「アクセスは足りている／CVRが問題」と課題を再定義し、指標をNSM＝フェア予約数に一点集中。施策のブレをなくした。</p></div>
-        <div class="card"><h4>心理から設計への対応づけ</h4><p>ペルソナの“本音”を5フェーズに分解し、各フェーズに対応する画面・機能を1対1でマッピング。CX設計をそのまま要件へ落とした。</p></div>
-        <div class="card"><h4>ポジショニングの言語化</h4><p>競合を軸ごとに対比し、「知的な最適解」という訴求の中心を設定。デザイントーンとコピーの拠り所を定めた。</p></div>
-        <div class="card"><h4>成果から逆算した情報設計</h4><p>「結果→実証→信頼→安心」の順で情報を配置し、直帰の壁を段階的に解除。計測前提の設計で改善サイクルまで見据えた。</p></div>
-      </div>
-      <p class="disc">※ 本案件は課題設定にもとづく企画・設計提案です。掲載数値は解析ヒアリングに基づく現状課題であり、施策効果は公開後の計測により検証予定。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 10 PROPOSAL PDF ============ -->
-<section>
-  <div class="sec">
-    <div class="gut"><span class="no">10</span><span class="nm">Full<br>Proposal</span></div>
+    <div class="gut"><span class="no">04</span><span class="nm">Full<br>Proposal</span></div>
     <div class="col">
       <h2 class="sec-head">提案書の全文（PDF）。</h2>
       <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。実際にクライアントへ提出した提案書は、下記からそのままご覧いただけます（全10ページ）。</p>
