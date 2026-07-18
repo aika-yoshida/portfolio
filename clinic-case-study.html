@@ -107,6 +107,11 @@
   .split3 .scol img{width:100%;display:block}
   .split3 .spoint{height:500px;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
   .split3 .spoint img{width:100%;height:100%;object-fit:cover;display:block}
+  .split3 .scolwrap{position:relative}
+  .split3 .scrollhint{position:absolute;left:1px;right:1px;bottom:1px;height:30px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:2px;background:linear-gradient(180deg,rgba(245,243,238,0),#f5f3ee);border-radius:0 0 9px 9px;pointer-events:none;font-size:12px;color:var(--ink-soft);transition:opacity .3s}
+  .split3 .scrollhint span{display:block;animation:hintfloat 2s ease-in-out infinite}
+  .split3 .scrollhint.off{opacity:0}
+  @keyframes hintfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
   /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
   .shot.crop .frame{aspect-ratio:16/10;min-height:0}
   .shot.crop img{height:100%;object-fit:cover;object-position:top}
@@ -237,7 +242,10 @@
 
       <figure class="shot">
         <div class="split3">
-          <div class="scol"><img src="assets/clinic-full.jpg" alt="医療UX設計 / 患者情報管理システム 全体" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="scolwrap">
+            <div class="scol"><img src="assets/clinic-full.jpg" alt="医療UX設計 / 患者情報管理システム 全体" loading="lazy" onerror="this.style.display='none'"></div>
+            <div class="scrollhint" aria-hidden="true"><span>↓</span></div>
+          </div>
           <div class="spoint"><img src="assets/clinic-point1.webp" alt="デザインポイント 1" loading="lazy" onerror="this.style.display='none'"></div>
           <div class="spoint"><img src="assets/clinic-point2.webp" alt="デザインポイント 2" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
@@ -428,6 +436,13 @@
 (function(){var b=document.getElementById('totop');if(!b)return;
 addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
 })();
+</script>
+<script>
+document.querySelectorAll('.split3 .scolwrap').forEach(function(w){
+  var c=w.querySelector('.scol'),h=w.querySelector('.scrollhint');
+  if(!c||!h)return;
+  c.addEventListener('scroll',function(){h.classList.add('off')},{once:true,passive:true});
+});
 </script>
 
 </body>
