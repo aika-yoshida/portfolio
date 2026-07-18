@@ -58,12 +58,13 @@
   .shot .ph{padding:var(--s6) var(--s3);text-align:center;color:var(--mute);font-size:12.5px;line-height:1.7}
   .shot .ph code{font-family:monospace;font-size:11.5px;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
   .shot figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
-  /* トップ画像：サイト全体を3分割した手動スクロールビュー */
+  /* トップ画像：全体スクロール＋ポイント静止画の3列ビュー */
   .split3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   @media(max-width:720px){.split3{grid-template-columns:1fr}}
-  .split3 .slab{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
-  .split3 .scol{height:400px;overflow-y:scroll;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
+  .split3 .scol{height:500px;overflow-y:scroll;overscroll-behavior:contain;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
   .split3 .scol img{width:100%;display:block}
+  .split3 .spoint{height:500px;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
+  .split3 .spoint img{width:100%;height:100%;object-fit:cover;display:block}
   .shot figcaption .extlink{color:var(--accent);font-weight:700;text-decoration:none;margin-left:10px}
   .shot figcaption .extlink:hover{text-decoration:underline}
   /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
@@ -144,35 +145,17 @@
 
     <figure class="shot">
       <div class="split3">
-        <div>
-          <div class="slab">上部</div>
-          <div class="scol"><img src="assets/digsy-lp-full.webp" alt="Digsy バックオフィス・BPOアウトソーシングLP（上部）" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
-        <div>
-          <div class="slab">中部</div>
-          <div class="scol"><img src="assets/digsy-lp-full.webp" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
-        <div>
-          <div class="slab">下部</div>
-          <div class="scol"><img src="assets/digsy-lp-full.webp" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
+        <div class="scol"><img src="assets/digsy-lp-full.webp" alt="Digsy バックオフィス・BPOアウトソーシングLP 全体" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="spoint"><img src="assets/digsy-lp-point1.webp" alt="デザインポイント 1" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="spoint"><img src="assets/digsy-lp-point2.webp" alt="デザインポイント 2" loading="lazy" onerror="this.style.display='none'"></div>
       </div>
       <figcaption>01 — Service LP <a class="extlink" href="https://www.digsy.co.jp/lp/outsourcing/" target="_blank" rel="noopener">LP ↗</a></figcaption>
     </figure>
     <figure class="shot">
       <div class="split3">
-        <div>
-          <div class="slab">上部</div>
-          <div class="scol"><img src="assets/digsy-media-full.webp" alt="Digsy メディアコンテンツページ OUTSOURCING DIG（上部）" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
-        <div>
-          <div class="slab">中部</div>
-          <div class="scol"><img src="assets/digsy-media-full.webp" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
-        <div>
-          <div class="slab">下部</div>
-          <div class="scol"><img src="assets/digsy-media-full.webp" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'"></div>
-        </div>
+        <div class="scol"><img src="assets/digsy-media-full.webp" alt="Digsy メディアコンテンツページ OUTSOURCING DIG 全体" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="spoint"><img src="assets/digsy-media-point1.webp" alt="デザインポイント 1" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="spoint"><img src="assets/digsy-media-point2.webp" alt="デザインポイント 2" loading="lazy" onerror="this.style.display='none'"></div>
       </div>
       <figcaption>02 — Media / Content Page <a class="extlink" href="https://www.digsy.co.jp/outsourcing-dig/" target="_blank" rel="noopener">お役立ちメディア ↗</a></figcaption>
     </figure>
@@ -252,15 +235,6 @@
 (function(){var b=document.getElementById('totop');if(!b)return;
 addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{passive:true});
 })();
-</script>
-<script>
-document.querySelectorAll('.split3').forEach(function(g){
-  g.querySelectorAll('.scol').forEach(function(c,i){
-    var img=c.querySelector('img');if(!img)return;
-    var set=function(){c.scrollTop=(c.scrollHeight-c.clientHeight)*i/2};
-    if(img.complete){set()}else{img.addEventListener('load',set)}
-  });
-});
 </script>
 
 </body>
