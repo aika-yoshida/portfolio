@@ -151,12 +151,22 @@
 
   /* positioning table */
   .tablewrap{margin-top:var(--s3);overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
-  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+  table{border-collapse:collapse;width:100%;min-width:600px;font-size:13.5px}
   th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
   thead th{font-size:12px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;background:var(--page)}
   td.axis{font-weight:700;color:var(--ink);white-space:nowrap}
   td.us{background:var(--accent-soft)}
   .col-us{color:var(--accent-deep)}
+  /* 中心顧客見出し（モバイルで一段階縮小） */
+  .core-head{font-size:20px;margin-top:var(--s6)}
+  @media(max-width:640px){
+    table{font-size:12.5px}
+    th,td{padding:10px 12px}
+    .core-head{font-size:17px}
+    .card{padding:var(--s2)}
+    .card h4{font-size:15.5px}
+    .card p{font-size:13px}
+  }
 
   /* ---------- FULL-BLEED band ---------- */
   .fullbleed{width:100%;background:var(--ink);color:#f4f1ec;border-bottom:1px solid #000;padding:var(--s8) 0;position:relative;overflow:hidden}
@@ -372,7 +382,7 @@
         </table>
       </div>
 
-      <h3 class="sec-head" style="font-size:20px;margin-top:var(--s6)">最優先で価値を届ける「中心顧客」</h3>
+      <h3 class="sec-head core-head">最優先で価値を届ける「中心顧客」</h3>
       <div class="grid2">
         <div class="card">
           <span class="en">Persona 01</span>
