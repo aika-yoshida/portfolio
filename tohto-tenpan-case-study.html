@@ -107,7 +107,7 @@
   /* ---------- section scaffolding ---------- */
   section{padding:var(--s7) 0;border-bottom:1px solid var(--line)}
   .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
-  @media(max-width:760px){.sec{grid-template-columns:1fr;gap:var(--s2)}}
+  @media(max-width:760px){.sec{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
   .gut{align-self:start;position:sticky;top:88px}
   .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
   .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
