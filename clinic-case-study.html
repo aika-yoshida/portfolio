@@ -64,19 +64,7 @@
   .stack{max-width:1120px;margin:0 auto;padding:28px 32px 40px;display:flex;flex-direction:column;gap:20px}
   @media(max-width:640px){.stack{padding:18px 18px 32px}}
   .card{background:var(--card);border-radius:var(--radius);padding:52px 58px;position:relative;overflow:hidden}
-  .card.dark{background:var(--ink);color:#f4f1ec}
   @media(max-width:760px){.card{padding:34px 22px}}
-
-  /* signature dot-grid texture */
-  .dotgrid{position:relative}
-  .dotgrid::before{
-    content:"";position:absolute;top:0;right:0;width:280px;height:280px;
-    background-image:var(--dot);background-size:16px 16px;color:var(--accent-light);
-    opacity:.5;pointer-events:none;
-    -webkit-mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
-    mask-image:linear-gradient(to bottom left, #000 30%, transparent 72%);
-  }
-  @media(max-width:760px){.dotgrid::before{width:160px;height:160px}}
 
   .stepline{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .stepno{font-size:12px;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);padding:5px 11px;border-radius:8px}
@@ -117,25 +105,15 @@
   .shot.crop img{height:100%;object-fit:cover;object-position:top}
 
   /* takeaways strip — 冒頭で「この案件でわかること」を提示 */
-  .takeaways{background:var(--ink);color:#f4f1ec;border-radius:14px;padding:var(--s3) var(--s4);margin-bottom:var(--s3)}
-  .takeaways .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent-light);text-transform:uppercase}
-  .takeaways ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin:var(--s2) 0}
-  @media(max-width:720px){.takeaways ul{grid-template-columns:1fr;gap:8px}}
-  .takeaways li{font-size:14px;font-weight:700;position:relative;padding-left:16px;line-height:1.5}
-  .takeaways li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--accent-light);border-radius:2px}
-  .takeaways .one{font-size:13px;color:#b9b3aa;border-top:1px solid #34302e;padding-top:var(--s2);margin-top:var(--s1)}
-  .takeaways .one b{color:#fff;font-weight:600}
 
   .tldr{background:var(--page);border:1px solid var(--line);border-radius:18px;padding:var(--s4);margin-top:var(--s3)}
   .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
   .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
-  .tldr ul{list-style:none;display:grid;gap:var(--s1)}
-  .tldr li{position:relative;padding-left:var(--s3);color:var(--ink-soft);font-size:15px}
-  .tldr li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);border-radius:2px}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2)}
+  .tldr .role b{color:var(--ink);font-weight:700}
 
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s4)}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
-  @media(max-width:820px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
   .item{background:var(--page);border:1px solid var(--line);border-radius:16px;padding:var(--s3)}
   .item .num{font-size:12px;color:var(--accent-deep);letter-spacing:.1em;font-weight:700}
   .item h4{font-size:17px;margin:var(--s1) 0;font-weight:700}
@@ -145,24 +123,6 @@
   .callout{background:var(--accent-soft);border:1px solid #bcd7ec;border-radius:18px;padding:var(--s4);margin-top:var(--s3)}
   .callout .stat{font-size:clamp(18px,2.6vw,24px);font-weight:700;color:var(--accent-deep);line-height:1.25}
   .callout .stat small{display:block;margin-top:8px;font-size:15px;color:var(--ink-soft);font-weight:600}
-
-  .insight-card .k{font-size:11px;letter-spacing:.16em;color:var(--accent-soft);text-transform:uppercase;opacity:.85}
-  .insight-card blockquote{font-size:clamp(19px,2.8vw,28px);font-weight:700;line-height:1.4;letter-spacing:-.01em;max-width:820px;margin-top:var(--s3)}
-  .insight-card blockquote em{font-style:normal;color:var(--accent-light)}
-
-  .flow{margin-top:var(--s4);display:grid;gap:0}
-  .step{display:grid;grid-template-columns:56px 1fr 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
-  .step:last-child{border-bottom:1px solid var(--line)}
-  .step .ph{font-size:13px;color:var(--accent);font-weight:700}
-  .step .heart{font-size:14px;color:var(--ink);font-weight:600}
-  .step .heart small{display:block;font-weight:400;color:var(--mute);font-size:12.5px;margin-top:3px}
-  .step .move{font-size:13.5px;color:var(--ink-soft)}
-  .step .move b{color:var(--accent-deep)}
-  @media(max-width:720px){.step{grid-template-columns:44px 1fr}.step .move{grid-column:1 / -1;padding-left:60px}}
-
-  .contrib{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
-  @media(max-width:820px){.contrib{grid-template-columns:1fr}}
-  .contrib .item h4{color:var(--accent-deep)}
 
   .pdfbox{margin-top:var(--s3);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--page)}
   .pdfbox .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px var(--s3);border-bottom:1px solid var(--line);flex-wrap:wrap}
@@ -256,99 +216,39 @@
     <!-- ============ 01 OVERVIEW ============ -->
     <section class="card">
       <div class="stepline"><span class="stepno">01</span><span class="stepname">Overview</span></div>
-      <div class="takeaways">
-        <span class="lbl">この事例で取り組んだこと</span>
-        <ul>
-          <li>ユーザビリティテストでの検証と反復</li>
-          <li>医師と看護師、2ユーザーの要求の両立</li>
-          <li>アクセシビリティ配慮の要件化</li>
-        </ul>
-        <p class="one"><b>担当：</b>リサーチ〜ワイヤー〜ユーザビリティテスト〜Hi-Fiモック ／ <b>提案内容：</b>伝達ミス・見落としを構造的に防ぐ「静かな同期」の設計と検証。</p>
-      </div>
       <h2 class="sec-head">看護師の報告と医師の集中を、<br>音を立てずにつなぐ。</h2>
       <div class="tldr">
         <span class="lbl">In short</span>
-        <p class="big">診療所の現場に潜む「データの分断・伝達ラグ・入力疲弊」を、<br>医師向け3ペイン固定ダッシュボード×看護師向けモバイル即時同期で構造的に解消するデザイン提案。</p>
-        <ul>
-          <li>解くべき課題を「患者安全」に直結する2点 —— <b>伝達ミス</b>と<b>重要アラートの見落とし</b> —— に絞り込み、ゴールを「両方ゼロ」に定義。</li>
-          <li>医師・看護師それぞれのペルソナと感情曲線から、鍵となる体験コンセプト「<b>静かな同期</b>」を導出。</li>
-          <li>ペーパーワイヤー5案 → Lo-Fi → ユーザビリティテスト2ラウンド → Hi-Fiモックまで、検証を挟みながら反復設計。</li>
-        </ul>
+        <p class="big">診療所に潜む「データの分断・伝達ラグ・入力疲弊」を、医師向け3ペイン固定ダッシュボード×看護師向けモバイル即時同期で解消するデザイン提案。鍵となる体験コンセプトは「静かな同期」。ペーパーワイヤー5案からユーザビリティテスト2ラウンドを経て、Hi-Fiモックまで検証を重ねた。</p>
+        <p class="role"><b>担当：</b>リサーチ〜ワイヤー〜ユーザビリティテスト〜Hi-Fiモック ／ Google UX Design Certificate課題（架空クライアント）</p>
       </div>
     </section>
 
-    <!-- ============ 02 CHALLENGE ============ -->
+    <!-- ============ 02 KEY SOLUTIONS ============ -->
     <section class="card">
-      <div class="stepline"><span class="stepno">02</span><span class="stepname">Challenge / Research</span></div>
-      <h2 class="sec-head">課題：善意の「報告」が、<br>診療の集中を壊している。</h2>
-      <p class="sec-lead">ピーク時の診療所では、看護師は緊急バイタルを伝えるために医師の診察へ割り込まざるを得ず、医師は散在する情報を探すために患者から目を離す。リサーチでは、この構造から生まれる4つのペインポイントを特定した。</p>
-      <div class="grid2">
-        <div class="item"><span class="num">P1</span><h4>情報過多・データノイズ</h4><p>情報が複数画面に散在し、「探す・待つ」が診療時間を圧迫。1画面に固定表示し、看護師の更新をリアルタイム同期する必要がある。</p></div>
-        <div class="item"><span class="num">P2</span><h4>コミュニケーションギャップ</h4><p>口頭・メモ・電話が混在し情報が断片化。看護師モバイル→医師PCへの直接同期による、最新かつ唯一の正しい情報が求められる。</p></div>
-        <div class="item"><span class="num">P3</span><h4>重要情報の見落とし</h4><p>アレルギー等のクリティカルな情報が流れて消える。常時表示と確認必須のハードストップが必要。</p></div>
-        <div class="item"><span class="num">P4</span><h4>ワークフロー摩擦と受容性</h4><p>安全のための制約が医師のリズムを壊しては使われない。「支援するが妨げない」バランスの見極めが鍵になる。</p></div>
-      </div>
-    </section>
-
-    <!-- ============ 03 PERSONAS ============ -->
-    <section class="card">
-      <div class="stepline"><span class="stepno">03</span><span class="stepname">Personas</span></div>
-      <h2 class="sec-head">2人のユーザー、2つの「守りたいもの」。</h2>
-      <p class="sec-lead">同じ11時のピークタイムでも、医師と看護師では守りたいものが異なる。この非対称性こそが、設計の出発点になった。</p>
-      <div class="grid2">
-        <div class="item">
-          <span class="en">Persona 01 — Physician</span>
-          <h4>佐藤 健一（45）／ 開業医</h4>
-          <p>時間に追われるハイプレッシャーなマルチタスカー。30人超の患者を捌きながら、<b>集中を妨げない安全ネット</b>を必要とする。「患者安全は譲れない。だが診療のフローも譲れない」。</p>
-        </div>
-        <div class="item">
-          <span class="en">Persona 02 — Nurse</span>
-          <h4>田中 美咲（28）／ 看護師（6年目）</h4>
-          <p>責任感が強く効率重視。緊急報告の必要と「先生の集中を割り込みで壊してしまう」<b>割り込みの罪悪感</b>の板挟み。到達が保証される「送って忘れられる」橋を必要とする。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CORE INSIGHT ============ -->
-    <section class="card dark insight-card dotgrid">
-      <span class="k">リサーチからの仮説</span>
-      <blockquote>報告の確実性と、診療の集中。<br>この両立の手がかりを<em>「静かな同期」</em>に求めた。</blockquote>
-    </section>
-
-    <!-- ============ 04 UX DESIGN ============ -->
-    <section class="card">
-      <div class="stepline"><span class="stepno">04</span><span class="stepname">UX Design</span></div>
+      <div class="stepline"><span class="stepno">02</span><span class="stepname">Key Solutions</span></div>
       <h2 class="sec-head">緊急の瞬間を、4つのステージで設計する。</h2>
       <p class="sec-lead">ジャーニーマップで「異常値の発見 → 医師の承認」までを分解し、各ステージの感情に対応するシステムの役割を1対1でマッピングした。</p>
-      <div class="flow">
-        <div class="step">
-          <span class="ph">01</span>
-          <div class="heart">Triage &amp; Prep<small>看護師「高負荷で余裕がない」／医師「30人目の患者に集中」</small></div>
-          <div class="move">モバイルの入力を安全必須項目のみに絞り、<b>ベッドサイドで数タップ</b>のバイタル入力に。</div>
-        </div>
-        <div class="step">
-          <span class="ph">02</span>
-          <div class="heart">Critical Alert<small>看護師「報告したい。でも先生の集中を壊せない」</small></div>
-          <div class="move">緊急アラートは医師画面の<b>固定ゾーンにピン留め</b>。スクロールで流れず、視線移動だけで気づける。</div>
-        </div>
-        <div class="step">
-          <span class="ph">03</span>
-          <div class="heart">Silent Sync<small>看護師「届いたか不安」／医師「今は手を止められない」</small></div>
-          <div class="move"><b>送って忘れられる</b>：送信・既読・承認のステータスが自動で返り、口頭確認もフォローアップも不要に。</div>
-        </div>
-        <div class="step">
-          <span class="ph">04</span>
-          <div class="heart">Action &amp; Relief<small>医師「リズムを保ったまま対応できた」／看護師「安心して次へ」</small></div>
-          <div class="move">アラートから治療指示まで<b>ワンクリックの最短ループ</b>。確認漏れはハードストップで構造的に防止。</div>
-        </div>
+      <div class="grid2">
+        <div class="item"><span class="num">01</span><div class="en">Triage &amp; Prep</div><h4>数タップのバイタル入力</h4><p>モバイルの入力を安全必須項目のみに絞り、ベッドサイドで数タップで完了できるようにした。</p></div>
+        <div class="item"><span class="num">02</span><div class="en">Critical Alert</div><h4>固定ゾーンへのピン留め</h4><p>緊急アラートは医師画面の固定ゾーンに表示。スクロールで流れず、視線移動だけで気づける。</p></div>
+        <div class="item"><span class="num">03</span><div class="en">Silent Sync</div><h4>送って忘れられる同期</h4><p>送信・既読・承認のステータスが自動で返り、口頭確認もフォローアップも不要になる。</p></div>
+        <div class="item"><span class="num">04</span><div class="en">Action &amp; Relief</div><h4>ワンクリックの最短ループ</h4><p>アラートから治療指示までを最短化。確認漏れはハードストップで構造的に防ぐ。</p></div>
       </div>
     </section>
 
-    <!-- ============ 05 ITERATION ============ -->
+    <!-- ============ 03 WIREFRAME ============ -->
     <section class="card">
-      <div class="stepline"><span class="stepno">05</span><span class="stepname">Iteration / Usability</span></div>
+      <div class="stepline"><span class="stepno">03</span><span class="stepname">Wireframe</span></div>
       <h2 class="sec-head">紙のワイヤー5案から、テスト2ラウンドで磨く。</h2>
       <p class="sec-lead">看護師向けバイタル入力画面はペーパーワイヤーフレームで5レイアウトを比較検討。Lo-Fiプロトタイプを2ラウンドのユーザビリティテストにかけ、発見を1つずつデザインに反映した。</p>
+      <figure class="shot" style="margin-top:var(--s3)">
+        <div class="frame">
+          <img src="assets/clinic-wireframe.webp" alt="バイタル入力画面のワイヤーフレーム" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+          <div class="ph" style="display:none"><code>assets/clinic-wireframe.webp</code> を置くと表示されます</div>
+        </div>
+        <figcaption>Wireframe</figcaption>
+      </figure>
       <div class="grid2">
         <div class="item">
           <span class="en">Round 1 findings → 対応</span>
@@ -366,33 +266,9 @@
       </div>
     </section>
 
-    <!-- ============ 06 ACCESSIBILITY ============ -->
+    <!-- ============ 04 FULL DECK ============ -->
     <section class="card">
-      <div class="stepline"><span class="stepno">06</span><span class="stepname">Accessibility</span></div>
-      <h2 class="sec-head">医療現場の「使える」を支える、3つの配慮。</h2>
-      <div class="grid3">
-        <div class="item"><span class="num">01</span><div class="en">Beyond Color</div><h4>色だけに依存しない警告</h4><p>すべてのアラートに色＋アイコン＋テキストラベルを併用。色覚特性のあるユーザーにも危険情報が確実に伝わる。</p></div>
-        <div class="item"><span class="num">02</span><div class="en">Contrast &amp; Visibility</div><h4>コントラストと視認性</h4><p>危険値は太枠と色変化の両方で強調。明るい診察室でも低輝度画面でも読み取れるコントラスト比を確保。</p></div>
-        <div class="item"><span class="num">03</span><div class="en">Touch Target</div><h4>44px のタッチターゲット</h4><p>ボタン・リスト行は44px以上。手袋を着用したまま、時間に追われながら操作する看護師の現実に合わせた。</p></div>
-      </div>
-    </section>
-
-    <!-- ============ 07 TAKEAWAYS ============ -->
-    <section class="card">
-      <div class="stepline"><span class="stepno">07</span><span class="stepname">Takeaways / Next</span></div>
-      <h2 class="sec-head">この案件で、私が学んだこと・次にやること。</h2>
-      <div class="contrib">
-        <div class="item"><h4>インパクト</h4><p>リサーチで特定した2大リスク「重要情報の見落とし」「割り込み起因のエラー」に対し、入力の簡素化と常時表示アラートで直接応答。テストでは色分けとラベル統一が迷いと誤読を減らすことを確認した。</p></div>
-        <div class="item"><h4>学び</h4><p>臨床ツールでは、画面間の一貫性が操作への信頼につながること。そして緊急度の伝達には色だけでは足りず、テキストとアイコンの併用が必要であること。</p></div>
-        <div class="item"><h4>Next: 時間圧下での再検証</h4><p>色分けバイタルとアラートバナーが「静的レビュー」でなく時間的プレッシャー下でも誤読を減らすか、第3ラウンドのテストで検証する。</p></div>
-        <div class="item"><h4>Next: 現場条件でのテスト</h4><p>配色・テキスト・ボタン名をスタイルガイド化して一貫性を仕組みに。さらに検査手袋を着用した状態でのモバイル入力の精度と速度を検証する。</p></div>
-      </div>
-      <p class="disc">※ 本案件はGoogle UX Design Certificateの課題として制作した架空クライアント向けの個人ワークです。</p>
-    </section>
-
-    <!-- ============ 08 FULL DECK ============ -->
-    <section class="card">
-      <div class="stepline"><span class="stepno">08</span><span class="stepname">Full Case Study Deck</span></div>
+      <div class="stepline"><span class="stepno">04</span><span class="stepname">Full Case Study Deck</span></div>
       <h2 class="sec-head">ケーススタディ全文（PDF）。</h2>
       <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。リサーチからHi-Fiモックアップまでの全工程は、下記のスライドデッキからそのままご覧いただけます。</p>
       <div class="pdfbox">
