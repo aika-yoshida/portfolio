@@ -100,6 +100,14 @@
   .split3 .scrollhint span{display:block;font-size:22px;line-height:1;animation:hintfloat 2s ease-in-out infinite}
   .split3 .scrollhint.off{opacity:0}
   @keyframes hintfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  /* Hero：PC大＋SP縦の2カラム（3.2:1で両者の高さが揃う） */
+  .heroduo{display:grid;grid-template-columns:3.2fr 1fr;gap:14px;align-items:start}
+  .heroduo .dpane{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#e9e7e2}
+  .heroduo .dpane img{width:100%;display:block}
+  @media(max-width:720px){
+    .heroduo{grid-template-columns:1fr}
+    .heroduo .spane{width:55%;margin:0 auto}
+  }
   /* ダッシュボードの状態遷移（3枚組） */
   .dashseq{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:var(--s3)}
   @media(max-width:720px){.dashseq{grid-template-columns:1fr}}
@@ -216,13 +224,9 @@
       </div>
 
       <figure class="shot">
-        <div class="split3">
-          <div class="scolwrap">
-            <div class="scol"><img src="assets/clinic-full.webp" alt="医療UX設計 / 患者情報管理システム 全体" loading="lazy" onerror="this.style.display='none'"></div>
-            <div class="scrollhint" aria-hidden="true">scroll<span>↓</span></div>
-          </div>
-          <div class="spoint"><img src="assets/clinic-dashboard-alert.webp" alt="緊急アラート発生時の医師向けダッシュボード" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="spoint"><img src="assets/clinic-sp-wf-1.webp" alt="看護師側モバイルアプリの画面" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="heroduo">
+          <div class="dpane"><img src="assets/clinic-dashboard-alert.webp" alt="緊急アラート発生時の医師向けダッシュボード" loading="lazy"></div>
+          <div class="dpane spane"><img src="assets/clinic-sp-wf-7.webp" alt="看護師側モバイルアプリの画面" loading="lazy"></div>
         </div>
         <figcaption>Prototype</figcaption>
       </figure>
