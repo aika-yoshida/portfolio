@@ -100,6 +100,10 @@
   .herowf3 .pane.fixed img{width:100%;height:100%;object-fit:cover;display:block}
   .herowf3 figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px}
   .herowf3 .pane-note{font-size:13px;color:var(--mute);margin-top:8px}
+  .herowf3 .panewrap{position:relative}
+  .herowf3 .scrollhint{position:absolute;left:1px;right:1px;bottom:40px;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;pointer-events:none;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3);background:linear-gradient(0deg,var(--accent),transparent);transition:opacity .3s}
+  .herowf3 .scrollhint span{display:block;font-size:22px;line-height:1;animation:hintfloat 2s ease-in-out infinite}
+  .herowf3 .scrollhint.off{opacity:0}
   /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
   .shot.crop .frame{aspect-ratio:16/10;min-height:0}
   .shot.crop img{height:100%;object-fit:cover;object-position:top}
@@ -239,11 +243,17 @@
     <div class="shot">
       <div class="herowf3">
         <figure>
-          <div class="pane scroll"><img src="assets/wedding-wf-1.webp" alt="B案 CVR特化構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="panewrap">
+            <div class="pane scroll"><img src="assets/wedding-wf-1.webp" alt="B案 CVR特化構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+            <div class="scrollhint" aria-hidden="true">scroll<span>↓</span></div>
+          </div>
           <figcaption>B案 — CVR特化構成</figcaption>
         </figure>
         <figure>
-          <div class="pane scroll"><img src="assets/wedding-wf-2.webp" alt="A案 王道構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="panewrap">
+            <div class="pane scroll"><img src="assets/wedding-wf-2.webp" alt="A案 王道構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+            <div class="scrollhint" aria-hidden="true">scroll<span>↓</span></div>
+          </div>
           <figcaption>A案 — 王道構成</figcaption>
         </figure>
         <figure>
@@ -338,8 +348,8 @@ addEventListener('scroll',function(){b.classList.toggle('on',scrollY>600)},{pass
 })();
 </script>
 <script>
-document.querySelectorAll('.split3 .scolwrap').forEach(function(w){
-  var c=w.querySelector('.scol'),h=w.querySelector('.scrollhint');
+document.querySelectorAll('.herowf3 .panewrap').forEach(function(w){
+  var c=w.querySelector('.pane.scroll'),h=w.querySelector('.scrollhint');
   if(!c||!h)return;
   c.addEventListener('scroll',function(){h.classList.add('off')},{once:true,passive:true});
 });
