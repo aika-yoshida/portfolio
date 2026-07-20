@@ -173,27 +173,15 @@
   .crow .chips span{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:11px;color:var(--ink-soft);background:var(--card)}
   .crow:hover .num{color:var(--accent)}
   @media(max-width:760px){.crow{grid-template-columns:1fr;gap:10px;padding:26px 2px}}
-  /* 私にできること：3カード（紫の濃淡で強弱） */
+  /* できること×めざす方向：枠線のみの3カード */
   .caps3{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:820px){.caps3{grid-template-columns:1fr}}
-  .capcard{border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px}
-  .capcard .cnum{font-size:11px;letter-spacing:.14em}
+  .capcard{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px}
+  .capcard .cnum{font-size:11px;letter-spacing:.14em;color:var(--accent)}
   .capcard h4{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.4}
-  .capcard p{font-size:13.5px;line-height:1.8}
+  .capcard p{font-size:13.5px;line-height:1.8;color:var(--ink-soft)}
   .capcard .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
-  .capcard .chips span{border-radius:999px;padding:4px 12px;font-size:11px;border:1px solid}
-  .capcard.c1{background:var(--accent);color:#fff}
-  .capcard.c1 .cnum{color:var(--accent-light)}
-  .capcard.c1 p{color:var(--accent-soft)}
-  .capcard.c1 .chips span{border-color:rgba(255,255,255,.4);color:#fff}
-  .capcard.c2{background:var(--accent-light)}
-  .capcard.c2 .cnum{color:var(--accent-deep)}
-  .capcard.c2 p{color:var(--ink-soft)}
-  .capcard.c2 .chips span{border-color:rgba(92,27,163,.35);color:var(--accent-deep)}
-  .capcard.c3{background:var(--accent-soft)}
-  .capcard.c3 .cnum{color:var(--accent)}
-  .capcard.c3 p{color:var(--ink-soft)}
-  .capcard.c3 .chips span{border-color:var(--accent-light);color:var(--accent-deep)}
+  .capcard .chips span{border-radius:999px;padding:4px 12px;font-size:11px;border:1px solid var(--line);color:var(--ink-soft)}
   .caps-note{margin-top:18px;font-size:13px;color:var(--mute)}
 
   /* ---------- contact ---------- */
@@ -453,23 +441,23 @@
 
     <!-- capabilities: 実務経験と学習中を正直に区別（信頼につながる情報開示） -->
     <div class="caps-head">
-      <h3>私にできること</h3>
+      <h3>できること × めざす方向</h3>
       <span class="mono">Now <b>&amp; Next</b></span>
     </div>
     <div class="caps3">
-      <div class="capcard c1">
+      <div class="capcard">
         <span class="cnum">01</span>
         <h4>課題定義・戦略</h4>
         <p>ビジネス指標から逆算し、解くべき課題を1つに絞る。営業経験に根ざした事業視点が強み。</p>
         <div class="chips"><span>UXリサーチ</span><span>KPI設計</span><span>ポジショニング</span></div>
       </div>
-      <div class="capcard c2">
+      <div class="capcard">
         <span class="cnum">02</span>
         <h4>CX・体験設計</h4>
         <p>顧客心理をフェーズに分解し、各段階の本音に対応する施策を1対1でマッピングする。</p>
         <div class="chips"><span>CXデザイン</span><span>ペルソナ</span><span>カスタマージャーニー</span></div>
       </div>
-      <div class="capcard c3">
+      <div class="capcard">
         <span class="cnum">03</span>
         <h4>UI・情報設計</h4>
         <p>結果→実証→信頼→安心の情報設計で、迷いなく行動へ導く画面とワイヤーを設計する。</p>
