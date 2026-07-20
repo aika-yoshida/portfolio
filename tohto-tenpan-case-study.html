@@ -92,8 +92,14 @@
   .shot figcaption .extlink{color:var(--accent);font-weight:700;text-decoration:none;margin-left:10px}
   .shot figcaption .extlink:hover{text-decoration:underline}
   /* Before：旧サイト（大）＋サイトマップ（スクロール）の2列 */
-  .beforegrid{display:grid;grid-template-columns:3fr 2fr;gap:var(--s2);margin-top:var(--s3)}
-  @media(max-width:820px){.beforegrid{grid-template-columns:1fr}}
+  .beforegrid{display:grid;grid-template-columns:3fr 2fr;gap:var(--s2);margin-top:var(--s3);align-items:stretch}
+  .beforegrid figure{display:flex;flex-direction:column}
+  .beforegrid .frame{flex:1;min-height:0}
+  .beforegrid .frame img{height:100%;object-fit:cover;object-position:top}
+  @media(max-width:820px){
+    .beforegrid{grid-template-columns:1fr}
+    .beforegrid .frame{flex:none;aspect-ratio:16/10}
+  }
   .sitemapscroll{height:400px;overflow-y:scroll;overscroll-behavior:contain;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
   .sitemapscroll img{width:100%;display:block}
   /* 下層ページ：2列（小見出し＋スクロール画像＋説明） */
@@ -248,7 +254,7 @@
     <div class="col">
       <h2 class="sec-head">リニューアル前のサイトと情報設計。</h2>
       <div class="beforegrid">
-        <figure class="shot crop" style="margin-top:0">
+        <figure class="shot" style="margin-top:0">
           <div class="frame">
             <img src="assets/tohto-tenpan-before.webp" alt="東都典範 リニューアル前のサイト" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
             <div class="ph" style="display:none"><code>assets/tohto-tenpan-before.webp</code> を置くと表示されます</div>
