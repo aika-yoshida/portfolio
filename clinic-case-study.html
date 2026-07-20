@@ -100,6 +100,19 @@
   .split3 .scrollhint span{display:block;font-size:22px;line-height:1;animation:hintfloat 2s ease-in-out infinite}
   .split3 .scrollhint.off{opacity:0}
   @keyframes hintfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  /* ダッシュボードの状態遷移（3枚組） */
+  .dashseq{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:var(--s3)}
+  @media(max-width:720px){.dashseq{grid-template-columns:1fr}}
+  .dashseq figure{margin:0}
+  .dashseq .dframe{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#e9e7e2}
+  .dashseq img{width:100%;display:block}
+  .dashseq figcaption{font-size:12px;color:var(--mute);margin-top:8px}
+  /* 看護師側モバイルフロー（横スクロール8枚） */
+  .spflow{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;margin-top:var(--s3);padding-bottom:6px}
+  .spflow figure{flex:0 0 170px;margin:0}
+  .spflow .pframe{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#e9e7e2}
+  .spflow img{width:100%;display:block}
+  .spflow figcaption{font-size:11px;color:var(--mute);margin-top:6px;text-align:center}
   /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
   .shot.crop .frame{aspect-ratio:16/10;min-height:0}
   .shot.crop img{height:100%;object-fit:cover;object-position:top}
@@ -208,8 +221,8 @@
             <div class="scol"><img src="assets/clinic-full.webp" alt="医療UX設計 / 患者情報管理システム 全体" loading="lazy" onerror="this.style.display='none'"></div>
             <div class="scrollhint" aria-hidden="true">scroll<span>↓</span></div>
           </div>
-          <div class="spoint"><img src="assets/clinic-point1.webp" alt="デザインポイント 1" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="spoint"><img src="assets/clinic-point2.webp" alt="デザインポイント 2" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="spoint"><img src="assets/clinic-dashboard-alert.webp" alt="緊急アラート発生時の医師向けダッシュボード" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="spoint"><img src="assets/clinic-sp-wf-1.webp" alt="看護師側モバイルアプリの画面" loading="lazy" onerror="this.style.display='none'"></div>
         </div>
         <figcaption>Prototype</figcaption>
       </figure>
@@ -237,6 +250,21 @@
         <div class="item"><span class="num">03</span><div class="en">Silent Sync</div><h4>送って忘れられる同期</h4><p>送信・既読・承認のステータスが自動で返り、口頭確認もフォローアップも不要になる。</p></div>
         <div class="item"><span class="num">04</span><div class="en">Action &amp; Relief</div><h4>ワンクリックの最短ループ</h4><p>アラートから治療指示までを最短化。確認漏れはハードストップで構造的に防ぐ。</p></div>
       </div>
+      <p class="sec-lead" style="margin-top:var(--s4)">同じダッシュボードが、状態によってどう変わるか。緊急アラートは固定ゾーンに現れ、スクロール位置に関係なく視界に入る。</p>
+      <div class="dashseq">
+        <figure>
+          <div class="dframe"><img src="assets/clinic-dashboard-normal.webp" alt="医師向けダッシュボード 通常時" loading="lazy"></div>
+          <figcaption>通常時</figcaption>
+        </figure>
+        <figure>
+          <div class="dframe"><img src="assets/clinic-dashboard-alert.webp" alt="医師向けダッシュボード 緊急アラート発生" loading="lazy"></div>
+          <figcaption>緊急アラート発生</figcaption>
+        </figure>
+        <figure>
+          <div class="dframe"><img src="assets/clinic-dashboard-response.webp" alt="医師向けダッシュボード 対応中" loading="lazy"></div>
+          <figcaption>対応中</figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 03 WIREFRAME ============ -->
@@ -244,13 +272,40 @@
       <div class="stepline"><span class="stepno">03</span><span class="stepname">Wireframe</span></div>
       <h2 class="sec-head">紙のワイヤー5案から、テスト2ラウンドで磨く。</h2>
       <p class="sec-lead">看護師向けバイタル入力画面はペーパーワイヤーフレームで5レイアウトを比較検討。Lo-Fiプロトタイプを2ラウンドのユーザビリティテストにかけ、発見を1つずつデザインに反映した。</p>
-      <figure class="shot" style="margin-top:var(--s3)">
-        <div class="frame">
-          <img src="assets/clinic-wireframe.webp" alt="バイタル入力画面のワイヤーフレーム" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-          <div class="ph" style="display:none"><code>assets/clinic-wireframe.webp</code> を置くと表示されます</div>
-        </div>
-        <figcaption>Wireframe</figcaption>
-      </figure>
+      <div class="spflow">
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-1.webp" alt="看護師側モバイルフロー 画面1" loading="lazy"></div>
+          <figcaption>01</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-2.webp" alt="看護師側モバイルフロー 画面2" loading="lazy"></div>
+          <figcaption>02</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-3.webp" alt="看護師側モバイルフロー 画面3" loading="lazy"></div>
+          <figcaption>03</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-4.webp" alt="看護師側モバイルフロー 画面4" loading="lazy"></div>
+          <figcaption>04</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-5.webp" alt="看護師側モバイルフロー 画面5" loading="lazy"></div>
+          <figcaption>05</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-6.webp" alt="看護師側モバイルフロー 画面6" loading="lazy"></div>
+          <figcaption>06</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-7.webp" alt="看護師側モバイルフロー 画面7" loading="lazy"></div>
+          <figcaption>07</figcaption>
+        </figure>
+        <figure>
+          <div class="pframe"><img src="assets/clinic-sp-wf-8.webp" alt="看護師側モバイルフロー 画面8" loading="lazy"></div>
+          <figcaption>08</figcaption>
+        </figure>
+      </div>
       <div class="grid2">
         <div class="item">
           <span class="en">Round 1 findings → 対応</span>
