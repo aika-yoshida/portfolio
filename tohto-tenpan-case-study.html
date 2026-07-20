@@ -87,7 +87,7 @@
   .split3 .scolwrap{position:relative}
   .split3 .scrollhint{position:absolute;left:1px;right:1px;top:1px;height:50%;padding-top:14px;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 28%,transparent),transparent);border-radius:9px 9px 0 0;transition:opacity .3s}
   .split3 .scrollhint .ln{width:1px;height:40px;background:var(--accent)}
-  .split3 .scrollhint .cv{font-size:10px;line-height:1;color:var(--accent);transform:rotate(90deg);animation:hintfloat 2s ease-in-out infinite}
+  .split3 .scrollhint .cv{display:block;color:var(--accent);animation:hintfloat 2s ease-in-out infinite}
   .split3 .scrollhint.off{opacity:0}
   @keyframes hintfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
   .shot figcaption .extlink{color:var(--accent);font-weight:400;text-decoration:none;margin-left:10px}
@@ -221,7 +221,7 @@
       <div class="split3">
         <div class="scolwrap">
           <div class="scol"><img src="assets/tohto-tenpan-full.webp" alt="東都典範 Webサイト全体" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="scrollhint" aria-hidden="true"><span class="ln"></span><span class="cv">›</span></div>
+          <div class="scrollhint" aria-hidden="true"><span class="ln"></span><svg class="cv" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="spoint"><img src="assets/tohto-tenpan-point1.webp" alt="デザインポイント 1" loading="lazy" onerror="this.style.display='none'"></div>
         <div class="spoint"><img src="assets/tohto-tenpan-point2.webp" alt="デザインポイント 2" loading="lazy" onerror="this.style.display='none'"></div>
