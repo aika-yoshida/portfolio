@@ -89,10 +89,16 @@
   .split3 .scrollhint span{display:block;font-size:22px;line-height:1;animation:hintfloat 2s ease-in-out infinite}
   .split3 .scrollhint.off{opacity:0}
   @keyframes hintfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
-  /* Hero：WF1枚を全幅スクロール表示 */
-  .herowf{max-width:440px;margin:0 auto;height:500px;overflow-y:scroll;overscroll-behavior:contain;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
-  .herowf img{width:100%;display:block}
-  @media(max-width:640px){.herowf{max-width:100%}}
+  /* Hero：A案/B案WF（スクロール）＋提案資料（静止）の3列 */
+  .herowf3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:720px){.herowf3{grid-template-columns:1fr}}
+  .herowf3 figure{margin:0}
+  .herowf3 .pane{height:500px;border:1px solid var(--line);border-radius:10px;background:#e9e7e2}
+  .herowf3 .pane.scroll{overflow-y:scroll;overscroll-behavior:contain}
+  .herowf3 .pane.scroll img{width:100%;display:block}
+  .herowf3 .pane.fixed{overflow:hidden}
+  .herowf3 .pane.fixed img{width:100%;height:100%;object-fit:cover;display:block}
+  .herowf3 figcaption{font-size:11px;color:var(--mute);letter-spacing:.06em;margin-top:8px}
   /* thumbnail: object-fit:coverで上部を表示（アニメーションなし） */
   .shot.crop .frame{aspect-ratio:16/10;min-height:0}
   .shot.crop img{height:100%;object-fit:cover;object-position:top}
@@ -229,10 +235,22 @@
       <div><div class="k">Deliverable / 成果物</div><div class="v">提案書(10ページ)<br>ワイヤーフレーム</div></div>
     </div>
 
-    <figure class="shot">
-      <div class="herowf"><img src="assets/wedding-wf-1.webp" alt="主要画面のワイヤーフレーム全体" loading="lazy" onerror="this.style.display='none'"></div>
-      <figcaption>Wireframe</figcaption>
-    </figure>
+    <div class="shot">
+      <div class="herowf3">
+        <figure>
+          <div class="pane scroll"><img src="assets/wedding-wf-1.webp" alt="A案 王道構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+          <figcaption>A案 — 王道構成</figcaption>
+        </figure>
+        <figure>
+          <div class="pane scroll"><img src="assets/wedding-wf-2.webp" alt="B案 CVR特化構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
+          <figcaption>B案 — CVR特化構成</figcaption>
+        </figure>
+        <figure>
+          <div class="pane fixed"><img src="assets/wedding-point1.webp" alt="提案資料の一部" loading="lazy" onerror="this.style.display='none'"></div>
+          <figcaption>提案資料</figcaption>
+        </figure>
+      </div>
+    </div>
   </div>
 </header>
 
