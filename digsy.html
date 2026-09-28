@@ -87,6 +87,23 @@
   .sec-head{font-size:clamp(17px,2.4vw,22px);font-weight:700;line-height:1.3;margin-bottom:var(--s3);letter-spacing:-.005em}
   .sec-sub{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
 
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+  .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .solrow:first-of-type{border-top:none;padding-top:0}
+  .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
+  .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
+  .solrow p{font-size:14px;color:var(--ink-soft)}
+
   .btnrow{display:flex;justify-content:center;padding:var(--s6) 0}
   .btn{text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.06em;padding:14px 40px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;background:var(--ink);color:#fff;transition:background .15s}
   .btn:hover{background:var(--accent)}
@@ -138,14 +155,14 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">LP Design</span>
-      <span class="tag">Media / Content</span>
-      <span class="tag">新設提案</span>
+      <span class="tag">Webデザイン</span>
+      <span class="tag">LP</span>
+      <span class="tag">メディアサイト</span>
     </div>
     <h1 class="title">株式会社Digsy<br>LP / メディアサイト</h1>
-    <p class="subtitle">会社設立に伴うホームページ新設に合わせて提案した、サービスLPとコンテンツページのデザイン案。2ページを通してブランドの一貫性を意識しました。</p>
+    <p class="subtitle">会社設立に伴うホームページ新設に合わせて制作した、サービスLPとコンテンツページのデザイン。2ページを通してブランドの一貫性を意識しました。</p>
     <div class="metarow">
-      <div><div class="k">Role / 担当範囲</div><div class="v">デザイン</div></div>
+      <div><div class="k">Role / 担当範囲</div><div class="v">デザイン制作</div></div>
       <div><div class="k">Year / 制作年</div><div class="v">2023</div></div>
       <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
       <div><div class="k">Tool</div><div class="v">Figma</div></div>
@@ -179,48 +196,80 @@
 <main id="main">
 
 <section>
-  <div class="wrap">
-    <div class="sec-sub">01 — Service LP</div>
-    <h2 class="sec-head">会社設立による、ブランド周知</h2>
-    <dl>
-      <div class="drow">
-        <dt>ターゲット</dt>
-        <dd>バックオフィスのアウトソーシング活用を検討している方。</dd>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <h2 class="sec-head">初めてのLP制作を、決められた枠の中で形にする</h2>
+      <div class="tldr">
+        <p class="big">会社設立に伴うホームページ新設で、サービスLPとメディアサイトの2ページを担当。自分にとって初めてのLP制作で、納期とワイヤーフレームはディレクターが指定する中、色・イラスト・あしらいの参考サイトを自分で探しながら、それぞれ1週間でビジュアルに落とし込んだ。</p>
+        <p class="role"><b>担当：</b>デザイン制作（LP・コンテンツページ）</p>
       </div>
-      <div class="drow">
-        <dt>課題</dt>
-        <dd>会社新設につき、ホームページを新設したい。あわせてお役立ち情報を発信したい。</dd>
-      </div>
-      <div class="drow">
-        <dt>目的</dt>
-        <dd>Digsyのアウトソーシングサービスの活用イメージを創出する。</dd>
-      </div>
-      <div class="drow">
-        <dt>デザイン課題解決</dt>
-        <dd>ロゴカラーの<b>コーラル・オレンジを基調</b>に、「悩みの提示 → 解決できること → 選ばれる理由 → 導入事例 → Q&A」と、検討の流れに沿って不安を解消していく構成に。イラストと写真を組み合わせ、親しみやすさと業務としての信頼を両立させました。</dd>
-      </div>
-    </dl>
+    </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap">
-    <div class="sec-sub">02 — Media / Content Page</div>
-    <h2 class="sec-head">優しい個性が伝わる、メディアサイトの印象へ</h2>
-    <dl>
-      <div class="drow">
-        <dt>目的</dt>
-        <dd>お役立ち情報の発信を通じて、ブランドの世界観と専門性を伝える。</dd>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
+    <div class="col">
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">デザイン制作期間はLP・メディアサイトそれぞれ1週間。自分にとって初めてのLP制作だった。納期とワイヤーフレームはディレクターが指定しており、情報設計そのものは裁量の外にあった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題とインサイト</h2>
+      <p class="sec-lead">ターゲットはバックオフィスのアウトソーシング活用を検討している方。ディレクターが指定した「悩みの提示→解決できること→選ばれる理由→導入事例→Q&A」という構成の中で、ロゴカラーのコーラル・オレンジを基調に、親しみやすさと業務としての信頼をどう両立させるかが課題だった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">プロセス</h2>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div><h4>参考サイトのリサーチ</h4><p>色・イラスト・あしらいそれぞれについて参考サイトを自分で探し、方向性を固めた。</p></div>
       </div>
-      <div class="drow">
-        <dt>デザイン課題解決</dt>
-        <dd>多様性と個性が発揮できる場の提供者であるDigsyのロゴカラー・コーラルに、ふんわりとした背景を合わせて<b>優しい個性</b>をイメージ。さまざまな記事を<b>カード状に並べ</b>、最新・人気・カテゴリから探せるメディアサイトの印象を目指しました。LPとトーンを揃え、サイト全体でブランドの一貫性を保っています。</dd>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div><h4>LP：イラストと写真の使い分け</h4><p>親しみやすさと信頼を両立するため、イラストと写真を組み合わせた。</p></div>
       </div>
-      <div class="drow">
-        <dt>担当範囲</dt>
-        <dd>デザイン（LP・コンテンツページ）</dd>
+      <div class="solrow">
+        <span class="sn">C</span>
+        <div><h4>メディアサイト：優しい個性の演出</h4><p>ロゴカラーのコーラルにふんわりとした背景を合わせ、記事をカード状に並べて情報を探しやすくした。</p></div>
       </div>
-    </dl>
+      <div class="solrow">
+        <span class="sn">D</span>
+        <div><h4>2ページ間のトーン統一</h4><p>LPとメディアサイトでトーンを揃え、サイト全体でブランドの一貫性を保った。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
+    <div class="col">
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">公開後の反応や問い合わせ数の変化は確認できていない。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">初めてのLP制作を、納期・ワイヤーフレームが決まった状態から任された経験だった。限られた裁量の中でも、色やイラストの参考サイトを自分で探しながらビジュアルの方向性を固めたプロセスは、その後のデザイン判断に活きている。</p>
+    </div>
   </div>
 </section>
 

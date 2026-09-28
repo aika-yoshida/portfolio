@@ -12,7 +12,7 @@
   :root{
     --ink:#141310;--ink-soft:#3a3833;--mute:#6f6a61;--line:#e0ddd4;
     --page:#f5f3ee;--card:#ffffff;
-    --accent:#ff5a3c;--accent-deep:#d43f22;--accent-soft:#ffe8e0;--accent-light:#ffbfa8;
+    --accent:#d6483d;--accent-deep:#ab332a;--accent-soft:#f8e3e0;--accent-light:#eab7ac;
     --max:1120px;
     --font:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
     --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s7:64px;--s8:80px;
@@ -48,16 +48,10 @@
   h1.title{font-size:clamp(24px,3.8vw,36px);line-height:1.18;font-weight:700;letter-spacing:-.01em}
   .subtitle{font-size:clamp(14px,2vw,17px);color:var(--ink-soft);margin-top:var(--s2);max-width:640px}
   .metarow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--line)}
+  .metarow .wide{grid-column:span 2}
   .metarow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
   .metarow .v{font-size:14px;font-weight:600;line-height:1.5}
   @media(max-width:720px){.metarow{grid-template-columns:1fr 1fr}}
-
-  /* 成果 stat cards */
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s4)}
-  @media(max-width:640px){.stats{grid-template-columns:1fr}}
-  .stat-card{background:var(--accent-soft);border:1px solid #ffc9b8;border-radius:14px;padding:var(--s3)}
-  .stat-card .big{font-size:clamp(26px,4vw,36px);font-weight:700;color:var(--accent-deep);line-height:1.05;letter-spacing:-.01em}
-  .stat-card .lab{font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.55}
 
   .tiktok-wrap{margin-top:var(--s5);display:flex;justify-content:center}
 
@@ -69,6 +63,26 @@
   .drow dd{font-size:14.5px;color:var(--ink-soft)}
   .drow dd b{color:var(--ink)}
   .sec-head{font-size:clamp(17px,2.4vw,22px);font-weight:700;line-height:1.3;margin-bottom:var(--s3);letter-spacing:-.005em}
+
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
+  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+  .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .solrow:first-of-type{border-top:none;padding-top:0}
+  .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
+  .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
+  .solrow p{font-size:14px;color:var(--ink-soft)}
 
   .btnrow{display:flex;justify-content:center;padding:var(--s6) 0}
   .btn{text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.06em;padding:14px 40px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;background:var(--ink);color:#fff;transition:background .15s}
@@ -121,23 +135,16 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">SNS / Short Video</span>
-      <span class="tag">コンテンツ設計</span>
+      <span class="tag">SNSコンテンツ設計</span>
       <span class="tag">運用改善</span>
-      <span class="tag">実務・運用</span>
     </div>
     <h1 class="title">ハリウッドリポーター・ジャパン<br>TikTok コンテンツ設計・運用</h1>
     <p class="subtitle">エンタメメディアの世界観に合わせた縦型動画のコンテンツ設計と、データを見ながらの運用改善を担当した実務案件です。</p>
     <div class="metarow">
-      <div><div class="k">Role / 担当領域</div><div class="v">日本語字幕制作<br>テロップデザイン・運用改善</div></div>
-      <div><div class="k">Type / 形態</div><div class="v">実務<br>アカウント運用</div></div>
-      <div><div class="k">Project</div><div class="v">ハリウッドリポーター<br>・ジャパン TikTok</div></div>
-      <div><div class="k">Timeline / 運用期間</div><div class="v">2024.09 – 2026.01<br>（担当期間）</div></div>
-    </div>
-
-    <div class="stats" role="group" aria-label="運用成果">
-      <div class="stat-card"><div class="big">+1,000</div><div class="lab">フォロワー増加数（運用1年）。世界観を崩さないフォーマット設計と投稿改善の積み重ねで達成。</div></div>
-      <div class="stat-card"><div class="big">10.4万回</div><div class="lab">最高再生数。ニュース性の高い話題を、掴みのテロップ設計で伸ばした動画。</div></div>
+      <div><div class="k">Role / 担当領域</div><div class="v">動画制作（字幕・編集）<br>投稿・運用改善</div></div>
+      <div><div class="k">Team / 役割分担</div><div class="v">一部の動画は<br>他メンバーが制作・投稿</div></div>
+      <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
+      <div><div class="k">Timeline / 運用期間</div><div class="v">2024.09 – 2026.01</div></div>
     </div>
 
     <div class="tiktok-wrap">
@@ -153,30 +160,77 @@
 <main id="main">
 
 <section>
-  <div class="wrap">
-    <h2 class="sec-head">メディアの「格」を保ったまま、ショート動画で届ける</h2>
-    <dl>
-      <div class="drow">
-        <dt>ターゲット</dt>
-        <dd>海外エンタメ・映画情報に関心のある国内のTikTokユーザー。</dd>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <h2 class="sec-head">再生ではなく、フォローで測る</h2>
+      <div class="tldr">
+        <p class="big">再生数は月15〜20万回あるのに、フォロワー増は月40〜60人で頭打ちだった。データを見比べると「再生を稼ぐ動画」と「フォローされる動画」が別物だと分かった。動画制作・投稿を中心に担当する中、フォーマットを統一しながら改善を重ね、フォロー転換率を7月比で約1.9倍に改善した。</p>
+        <p class="role"><b>担当：</b>動画制作・投稿・運用改善（一部の動画は他メンバーが制作）</p>
       </div>
-      <div class="drow">
-        <dt>課題</dt>
-        <dd>老舗エンタメメディアとしての世界観と信頼を崩さずに、TikTokというカジュアルなプラットフォームで新しい読者層と接点をつくりたい。</dd>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
+    <div class="col">
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">広告費ゼロ、オーガニックのみでの運用。本業のWebデザイン業務と兼務しながら、投稿頻度を上げるよう指示があった。動画制作は複数人体制で一部は他メンバーが手がける中、限られた体制でフォロー獲得を伸ばす必要があった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題とインサイト</h2>
+      <p class="sec-lead">海外の受賞・速報ニュースは再生を稼ぐ（1〜2万回）が、フォロー転換率は0.04%。日本公開作や日本人キャストの話題は再生が1/5でも転換率は約10倍、いいね率は18%。視聴者が求めているのは「海外ニュース」自体ではなく「自分に関係あるエンタメ」という仮説を立てた。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Approach</span></div>
+    <div class="col">
+      <h2 class="sec-head">施策</h2>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div><h4>投稿の役割を分ける</h4><p>速報ニュースは「再生獲得」、日本接点の話題は「フォロー獲得」と役割を分けて投稿した。</p></div>
       </div>
-      <div class="drow">
-        <dt>目的</dt>
-        <dd>アカウントの継続的なフォロワー獲得と、メディアブランドの認知拡大。</dd>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div><h4>大型イベントへの集中</h4><p>エミー賞等、話題性の高いタイミングに投稿を集中させた。</p></div>
       </div>
-      <div class="drow">
-        <dt>設計・運用改善</dt>
-        <dd>「インタビュー」「ニュース」など<b>再現可能なフォーマット</b>を設計し、ロゴ・テロップ・名前表記のルールを統一してブランドの一貫性を担保。投稿ごとの再生・フォロー転換データを見ながら、冒頭の掴み（テロップの言葉選び・見せる順番）を継続的に改善しました。</dd>
+      <div class="tldr">
+        <p class="big">TikTokで伸びやすい煽り表現に寄らず、老舗メディアとしての言葉選びを崩さないこと。ここは制約ではなく自分の判断軸として貫いた。</p>
       </div>
-      <div class="drow">
-        <dt>成果</dt>
-        <dd><b>フォロワー1年で+1,000</b>、<b>最高10.4万再生</b>の動画を創出。フォーマット化により、品質を保ったまま継続投稿できる運用体制を整えた。</dd>
-      </div>
-    </dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
+    <div class="col">
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">エミー賞関連投稿が集中した6日間で、月のフォロー増の55%を獲得。1万再生あたりのフォロー獲得数は7月2.8人→10月5.2人。10月は再生数が前月比-49%でも、フォローへの転換効率は最も高かった。</p>
+      <p class="sec-lead"><b>担当期間の実績：</b>フォロワー純増 約+1,000、最高再生 10.4万回。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">「誰に何を届ければファンになってもらえるか」で投稿を分けたことで、再生に依存しない伸び方に変えられた。</p>
+      <p class="sec-lead">一方で、テロップ・ロゴ・名前表記は自分の担当分では統一ルールを徹底したが、チーム全体への浸透は道半ば。担当者によって見せ方にばらつきが残っており、次に取り組みたい課題として残っている。</p>
+    </div>
   </div>
 </section>
 
@@ -185,7 +239,7 @@
 <a class="nextcase" href="amp-logo.html">
   <span class="ncin">
     <span class="nc-lbl">Next Case</span>
-    <span class="nc-title">ジュエリーブランド ロゴデザイン →</span>
+    <span class="nc-title">amp Japan ジュエリーロゴデザイン →</span>
   </span>
 </a>
 

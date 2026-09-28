@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="amp Japan 新ジュエリーブランドのロゴデザイン案 — 水引×ケルト模様でブランドイメージを構築。">
-<title>ジュエリーブランド ロゴデザイン — Aika Yoshida</title>
+<title>amp Japan ジュエリーロゴデザイン — Aika Yoshida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -71,6 +71,23 @@
   .drow dd b{color:var(--ink)}
   .sec-head{font-size:clamp(17px,2.4vw,22px);font-weight:700;line-height:1.3;margin-bottom:var(--s3);letter-spacing:-.005em}
 
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+  .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .solrow:first-of-type{border-top:none;padding-top:0}
+  .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
+  .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
+  .solrow p{font-size:14px;color:var(--ink-soft)}
+
   .btnrow{display:flex;justify-content:center;padding:var(--s6) 0}
   .btn{text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.06em;padding:14px 40px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;background:var(--ink);color:#fff;transition:background .15s}
   .btn:hover{background:var(--accent)}
@@ -122,16 +139,14 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">Logo Design</span>
-      <span class="tag">Branding</span>
-      <span class="tag">デザイン案</span>
+      <span class="tag">ロゴデザイン</span>
     </div>
-    <h1 class="title">ジュエリーブランド<br>ロゴデザイン</h1>
+    <h1 class="title">amp Japan ジュエリーロゴデザイン</h1>
     <p class="subtitle">amp Japan様の新ジュエリーブランド創設に合わせて提案した、ロゴデザイン案。水引とケルト模様を組み合わせ、ブランドイメージの構築を目指しました。</p>
     <div class="metarow">
-      <div><div class="k">Role / 担当範囲</div><div class="v">デザイン</div></div>
+      <div><div class="k">Role / 担当範囲</div><div class="v">デザイン制作</div></div>
       <div><div class="k">Year / 制作年</div><div class="v">2023（2週間）</div></div>
-      <div><div class="k">Type / 形態</div><div class="v">ロゴデザイン案<br>（提案）</div></div>
+      <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
       <div><div class="k">Tool</div><div class="v">Illustrator</div></div>
     </div>
 
@@ -148,30 +163,76 @@
 <main id="main">
 
 <section>
-  <div class="wrap">
-    <h2 class="sec-head">水引×ケルト模様で、新ブランドの顔をつくる</h2>
-    <dl>
-      <div class="drow">
-        <dt>ターゲット</dt>
-        <dd>高価格帯のカジュアルなアクセサリーを身につける、30〜40代の女性。</dd>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <h2 class="sec-head">水引×ケルト模様で、新ブランドの顔をつくる</h2>
+      <div class="tldr">
+        <p class="big">新ジュエリーブランドの立ち上げに合わせたロゴデザイン提案。日本らしいモチーフとして水引を使ってほしいというクライアントの要望を受け、着手前にブランドコンセプトとケルト模様の文化的背景を調べた。ケルト模様と組み合わせながらも「水引らしさ」と「女性らしさ」を損なわないことを軸に、10案以上のバリエーションを経て、量産・刻印までを見据えたデータに仕上げたが、結果は不採用だった。</p>
+        <p class="role"><b>担当：</b>デザイン（Illustratorデータ納品）</p>
       </div>
-      <div class="drow">
-        <dt>課題</dt>
-        <dd>日本らしいモチーフと、アクセサリーのデザインで多く用いられるケルト模様を組み合わせたロゴにしたい。</dd>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
+    <div class="col">
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">納期2週間。納品はIllustratorデータで、実際の刻印・量産に耐える精度が求められた。新ブランドの立ち上げ案件のため、参照できる既存の社内アセットが無い状態からのスタートだった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題とリサーチ</h2>
+      <p class="sec-lead">クライアントから、日本らしいモチーフとして「水引」を、アクセサリーのデザインで一般的な「ケルト模様」と組み合わせてほしいという要望があった。着手前にamp Japanのブランドコンセプトと、水引・ケルト模様それぞれの文化的背景・意味を調べた。ターゲットは高価格帯のカジュアルなアクセサリーを身につける30〜40代女性。工夫したポイントは、ケルト模様と組み合わせながらも「水引らしさ」と「女性らしさ」を損なわないことだった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">プロセス</h2>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div><h4>10案以上のバリエーション作成</h4><p>水引の入れ方、線の太さ・密度を変えた複数パターンを検討した。</p></div>
       </div>
-      <div class="drow">
-        <dt>目的</dt>
-        <dd>新ブランドのイメージを構築したい。</dd>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div><h4>量産上の課題が判明</h4><p>クライアントからのフィードバックで「刻印すると（線が）潰れる」ことが分かった。</p></div>
       </div>
-      <div class="drow">
-        <dt>デザイン課題解決</dt>
-        <dd>日本らしいモチーフとしてご希望のあった<b>水引</b>と、<b>ケルト模様</b>を組み合わせてデザイン。女性向けかつ高価格帯のブランドと伺い、「身につけたくなる」高級なデザインを心がけました。また、アクセサリーへの<b>刻印を想定して水引の線の細かさを先方と確認</b>しながら調整を進め、実制作に耐えるロゴに仕上げています。</dd>
+      <div class="solrow">
+        <span class="sn">C</span>
+        <div><h4>実制作に耐える精度へ調整</h4><p>線の細かさを先方と確認しながら調整し、刻印・量産に耐えるデータに仕上げた。</p></div>
       </div>
-      <div class="drow">
-        <dt>担当範囲</dt>
-        <dd>デザイン</dd>
-      </div>
-    </dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
+    <div class="col">
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">デザイン案自体は先方にとても気に入っていただけた。Illustratorデータとして納品まで完了したが、結果的には不採用となった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">デザインの見た目だけでなく、刻印・量産という後工程まで見据えて検証したプロセスは、その後のデザイン判断に活きている。気に入ってもらえても選ばれるとは限らないという結果からも、ブランドの意思決定にはデザイン外の要因も関わることを学んだ案件だった。</p>
+    </div>
   </div>
 </section>
 
