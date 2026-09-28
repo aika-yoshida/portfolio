@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Penelope a Casa URAWA Webサイトデザインのケーススタディ — 長文より世界観で魅せる、パーティー空間とアットホームさの二面性を伝えるサイト設計。">
+<meta name="description" content="Penelope a Casa URAWA Webサイトデザインのケーススタディ — オープン前の店舗の雰囲気・特徴・アクセスを、本国と同じトンマナで3つに絞って伝えるサイト設計。">
 <title>Penelope a Casa URAWA Webサイト — Aika Yoshida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,12 +104,14 @@
   @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
 
   .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.3;margin-bottom:var(--s1);letter-spacing:-.005em}
-  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+  .sec-lead:last-child{margin-bottom:0}
+  .subhead{font-size:17px;font-weight:700;margin:var(--s5) 0 var(--s1)}
 
 
   .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
-  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
-  .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
   .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2)}
   .tldr .role b{color:var(--ink);font-weight:700}
 
@@ -132,7 +134,7 @@
 
   /* ---------- approach numbered rows ---------- */
   .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
-  .solrow:last-child{border-bottom:1px solid var(--line)}
+  .solrow:first-of-type{border-top:none;padding-top:0}
   .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
   .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
   .solrow p{font-size:14px;color:var(--ink-soft)}
@@ -179,19 +181,18 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">Restaurant</span>
-      <span class="tag">Web Design</span>
-      <span class="tag">テキスト制作</span>
-      <span class="tag">Figma</span>
+      <span class="tag">レストラン</span>
+      <span class="tag">Webデザイン</span>
+      <span class="tag">ワイヤーフレーム</span>
     </div>
     <h1 class="title">Penelope a Casa URAWA<br>Webサイト</h1>
-    <p class="subtitle">長文で説明するのではなく、世界観そのもので魅せる。イタリア人気レストランの日本店として、パーティー空間の華やかさとアットホームな居心地の良さ、その二面性を伝えるサイトデザイン。</p>
+    <p class="subtitle">スタッフも料理も店舗もまだない中で、オープン前に公開するためのサイト。本国と同じトンマナで、お店の雰囲気・特徴・アクセスの3つに絞って伝えるデザインを提案しました。</p>
 
     <div class="metarow">
-      <div><div class="k">Role / 担当領域</div><div class="v">デザイン・テキスト制作</div></div>
-      <div><div class="k">Tool</div><div class="v">Figma</div></div>
+      <div><div class="k">Role / 担当領域</div><div class="v">WF・デザイン制作</div></div>
+      <div><div class="k">Year / 制作年</div><div class="v">2026（1週間）</div></div>
       <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
-      <div><div class="k">Status</div><div class="v">未公開<br>（効果測定前）</div></div>
+      <div><div class="k">Status</div><div class="v">案提出のみ<br>（未公開）</div></div>
     </div>
 
     <figure class="shot">
@@ -210,95 +211,92 @@
 
 <main id="main">
 
-<!-- ============ 01 OVERVIEW ============ -->
 <section>
   <div class="sec">
     <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
     <div class="col">
-      <h2 class="sec-head">説明するのではなく、<br>惹き込む</h2>
+      <h2 class="sec-head">少ない情報でも、<br>行きたくなる理由を伝える</h2>
       <div class="tldr">
-        <span class="lbl">In short</span>
-        <p class="big">お店の魅力を言葉で説明しようとするほど、かえって伝わりにくくなる。長文コピーの代わりに、世界観をビジュアルで魅せる設計に振り切り、パーティー空間の華やかさとアットホームさ、2つの顔を1つのサイトの中で共存させた。</p>
-        <p class="role"><b>担当：</b>デザイン・テキスト制作 ／ Figma</p>
+        <p class="big">イタリアで人気のレストランの日本店、Penelope a Casa URAWAのWebサイト。スタッフも料理も店舗もまだない段階で、オープン前にHPを公開したいという依頼だった。本国と同じトンマナで、お店の雰囲気・特徴・アクセスの3つに絞って伝えることを目指し、1週間でワイヤーフレームとデザインを制作して案を提出した。</p>
+        <p class="role"><b>担当：</b>WF・デザイン制作</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 STORY / BRAND ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">02</span><span class="nm">Brand<br>Story</span></div>
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
     <div class="col">
-      <h2 class="sec-head">F1レーサーと実業家の奥様が営む、<br>イタリア人気店の日本店</h2>
-      <p class="sec-lead">Penelope a Casa URAWAは、F1レーサーと実業家の奥様がオーナーを務めるイタリア人気レストランの日本店。本国での人気と、オーナー夫妻のストーリーそのものがブランドの説得力になっている。だからこそ、細かなスペック説明よりも、その場の空気を先に伝えることを訴求の軸に定めた。</p>
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">店舗のオープン前にHPを公開したいという要望があった。スタッフや料理、店舗そのものもまだできていない段階で、実店舗の写真は使えない。画像は、本国の画像、SNSの画像、実店舗の内装資料などから集めた。また、社長からは、提携式場と連携したレストランウェディングも掲載するよう指示があった。制作期間は1週間。</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 03 DUALITY（署名要素） ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">03</span><span class="nm">Duality</span></div>
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
     <div class="col">
-      <h2 class="sec-head">華やかさと居心地の良さ、<br>2つの顔を1つのサイトへ</h2>
-      <p class="sec-lead">パーティー利用の華やかさと、"a casa（わが家で）"という店名が示すアットホームな居心地の良さ。相反する2つの魅力を、対比するビジュアルトーンで同居させた。</p>
-      <div class="duo">
-        <div class="tile party">
-          <div class="ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0L7 3Z"/><path d="M12 14v6"/><path d="M9 20h6"/></svg>
-            <div class="lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-          </div>
-          <span class="lbl">Party Space</span>
-          <h4>華やかな非日常。<br>特別な夜を彩る空間。</h4>
-          <p>グラスの高鳴りと照明の陰影で、パーティー利用時の華やかさとホスピタリティを印象づける。</p>
-        </div>
-        <div class="tile casa">
-          <div class="ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>
-          </div>
-          <span class="lbl">a casa</span>
-          <h4>わが家のような、<br>あたたかな居心地。</h4>
-          <p>木の質感とやわらかな余白で、気取らず何度でも通いたくなる、アットホームな近さを表現する。</p>
-        </div>
+      <h2 class="sec-head">課題とインサイト</h2>
+      <p class="sec-lead">お店を選ぶ人は、雰囲気・料理の特徴・アクセスで判断すると考えた。一方で、オープン前の今は、伝えられる情報がまだ多くない。情報を無理に増やすのではなく、判断に必要なこの3つに絞って伝えることを目指した。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">プロセス</h2>
+      <p class="sec-lead">広報担当者から依頼を受け、1週間でワイヤーフレームからデザインまでを1人で制作し、案を提出した。</p>
+      <h3 class="subhead">工夫点</h3>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div><h4>本国と同じトンマナにそろえる</h4><p>本国と同じトンマナにそろえ、オープン前でもブランドの世界観が伝わるようにした。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div><h4>限られた素材から雰囲気を伝える</h4><p>実店舗の写真がない中で、本国やSNSの画像、実店舗の内装資料から素材を集め、お店の雰囲気を組み立てた。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">C</span>
+        <div><h4>判断に必要な3つに絞った構成</h4><p>情報量が多くない分、長い説明文で埋めず、お店選びに必要な雰囲気・特徴・アクセスの3つに絞って見せた。</p></div>
+      </div>
+      <div class="solrow">
+        <span class="sn">D</span>
+        <div><h4>レストランウェディングも同じ考え方で</h4><p>社長の指示で掲載することになった、提携式場と連携したレストランウェディングも、情報を絞って掲載し、サイト全体の情報量のバランスを保った。</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 04 APPROACH ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">04</span><span class="nm">Approach</span></div>
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
     <div class="col">
-      <h2 class="sec-head">4つのアプローチ</h2>
-      <div class="solrow">
-        <span class="sn">01</span>
-        <div><h4>長文より世界観で魅せる設計</h4><p>スペックや説明文を最小限にとどめ、ビジュアルとレイアウトの余白で「行ってみたい」という感情を先に動かす。</p></div>
-      </div>
-      <div class="solrow">
-        <span class="sn">02</span>
-        <div><h4>オーナーのストーリーを訴求軸に</h4><p>F1レーサーと実業家の奥様がオーナーを務める、イタリア人気レストランの日本店であることをブランドの説得力として位置づけ、世界観のトーンに反映させた。</p></div>
-      </div>
-      <div class="solrow">
-        <span class="sn">03</span>
-        <div><h4>二面性のビジュアル表現</h4><p>パーティー空間の華やかさと、アットホームな居心地の良さ。対比するトーンのビジュアルを1つのサイトの中で共存させた。</p></div>
-      </div>
-      <div class="solrow">
-        <span class="sn">04</span>
-        <div><h4>既存イラスト素材の活用</h4><p>新規撮影に頼らず、お店が持つ既存のイラスト素材を活かしてビジュアルを構成。世界観を保ちながら効率よく制作した。</p></div>
-      </div>
-      <p class="disc">※ 本サイトは未公開のため、効果測定前の提案・デザイン段階のケーススタディです。</p>
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">案の提出までで、公開には至っていない。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">公開に至らなかったため、ユーザーの反応は確かめられていない。雰囲気・特徴・アクセスの3つが本当にお店選びの助けになるか、公開後に検証したかった。</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<a class="nextcase" href="autooasis.html">
+<a class="nextcase" href="thr-tiktok.html">
   <span class="ncin">
     <span class="nc-lbl">Next Case</span>
-    <span class="nc-title">AUTO OASIS 月極駐車場Webサイト →</span>
+    <span class="nc-title">ハリウッドリポーター・ジャパン TikTok →</span>
   </span>
 </a>
 
