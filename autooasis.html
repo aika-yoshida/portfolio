@@ -91,6 +91,24 @@
   .drow dd b{color:var(--ink)}
   .sec-head{font-size:clamp(17px,2.4vw,22px);font-weight:700;line-height:1.3;margin-bottom:var(--s3);letter-spacing:-.005em}
 
+  .sec{max-width:var(--max);margin:0 auto;padding:0 var(--s4);display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s5)}
+  @media(max-width:760px){.sec{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+  .gut{align-self:start;position:sticky;top:88px}
+  .gut .no{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.06em;display:block}
+  .gut .nm{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:6px;line-height:1.5}
+  @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+  .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
+  .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+  .solrow{display:grid;grid-template-columns:56px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--line);align-items:start}
+  .solrow:first-of-type{border-top:none;padding-top:0}
+  .solrow .sn{font-size:15px;color:var(--accent);font-weight:700}
+  .solrow h4{font-size:16px;font-weight:700;margin-bottom:4px}
+  .solrow p{font-size:14px;color:var(--ink-soft)}
+  .solrow .shot{margin-top:var(--s2)}
+
   .btnrow{display:flex;justify-content:center;padding:var(--s6) 0}
   .btn{text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.06em;padding:14px 40px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;background:var(--ink);color:#fff;transition:background .15s}
   .btn:hover{background:var(--accent)}
@@ -142,15 +160,14 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">Web Direction</span>
+      <span class="tag">ディレクション</span>
+      <span class="tag">Webデザイン</span>
       <span class="tag">撮影企画</span>
-      <span class="tag">Design</span>
-      <span class="tag">公開済みサイト</span>
     </div>
     <h1 class="title">AUTO OASIS<br>月極駐車場Webサイト</h1>
-    <p class="subtitle">さいたま市の24時間セキュリティ月極プレミアムガレージ駐車場。撮影素材ゼロの状態から、撮影企画・ディレクション・デザインまで担当して公開した実務案件です。</p>
+    <p class="subtitle">さいたま市の24時間セキュリティ月極プレミアムガレージ駐車場。素材ゼロの状態から、ロゴ・撮影・チラシ・看板・Webまでをディレクションし、Webサイトは自らデザインして公開した実務案件です。</p>
     <div class="metarow">
-      <div><div class="k">Role / 担当範囲</div><div class="v">ディレクション<br>撮影企画・デザイン</div></div>
+      <div><div class="k">Role / 担当範囲</div><div class="v">ディレクション<br>WF・デザイン制作</div></div>
       <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
       <div><div class="k">Deliverable</div><div class="v">Webサイト（LP）<br>撮影香盤票・撮影38カット</div></div>
       <div><div class="k">Year / 制作年</div><div class="v">2025<br>公開済み</div></div>
@@ -173,58 +190,114 @@
 <main id="main">
 
 <section>
-  <div class="wrap">
-    <h2 class="sec-head">高品質なガレージの価値を、素材づくりから伝える</h2>
-    <dl>
-      <div class="drow">
-        <dt>ターゲット</dt>
-        <dd>高級車・バイクを所有し、セキュリティと保管環境を重視するオーナー。</dd>
+  <div class="sec">
+    <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
+    <div class="col">
+      <h2 class="sec-head">素材ゼロから、信頼を伝えるサイトへ</h2>
+      <div class="tldr">
+        <p class="big">さいたま市の月極プレミアムガレージ駐車場の新規オープンに合わせ、初めてディレクションを担当した実務案件。素材が一切ない状態から、ロゴ・撮影企画（香盤票作成）・チラシ・看板・Webサイトまでをディレクションし、公開まで進めた。Webサイトは1週間の納期の中、ワイヤーフレームからデザインまで自ら制作している。</p>
+        <p class="role"><b>担当：</b>ディレクション／WF・デザイン制作</p>
       </div>
-      <div class="drow">
-        <dt>課題</dt>
-        <dd>新規オープンにあたり認知と入会申込みを獲得したい。ただし<b>撮影素材が一切ない</b>状態からのスタートで、サイトの説得力を支える写真づくりが前提条件だった。</dd>
-      </div>
-      <div class="drow">
-        <dt>目的</dt>
-        <dd>「プレミアムガレージ」の品質・セキュリティが伝わるサイトを公開し、問い合わせ・入会につなげる。</dd>
-      </div>
-      <div class="drow">
-        <dt>進め方・課題解決</dt>
-        <dd>撮影企画から担当。<b>香盤票（撮影スケジュール・カット表）を作成</b>し、HP・チラシ・Googleビジネス・SNSと用途から逆算した38カットを、日中〜夜間まで1日で撮り切る計画に落とし込んだ。サイトは「料金プラン → アクセス → 特長 → 利用アイデア → 設備 → Q&A」と、検討時の疑問を上から順に解消する情報設計。ネイビー基調のトーンで、高級な落ち着きと安心を表現した。</dd>
-      </div>
-      <div class="drow">
-        <dt>担当範囲</dt>
-        <dd>ディレクション・撮影企画（香盤票作成）・デザイン・看板デザイン</dd>
-      </div>
-    </dl>
+    </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2 class="sec-head">撮影香盤票 — 用途から逆算したカット設計</h2>
-    <p class="subtitle" style="margin-top:0;margin-bottom:var(--s2)">シーン・カット数・小道具・時間帯（日没後の夜間カット含む）まで事前に設計し、限られた撮影時間で必要素材を確実に揃えました。</p>
-    <figure class="shot" style="margin-top:var(--s3)">
-      <div class="frame">
-        <img src="assets/autooasis-koban.webp" alt="AUTO OASIS 撮影香盤票（シーン・カット数・使用用途・小道具の一覧表）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-        <div class="ph" style="display:none"><code>assets/autooasis-koban.webp</code> を置くと表示されます</div>
-      </div>
-      <figcaption>撮影香盤票 — Planning Sheet</figcaption>
-    </figure>
+  <div class="sec">
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
+    <div class="col">
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">制作の途中で事業計画が変わり、前提だった不動産会社からの紹介がなくなった。集客はWebサイトと、自社互助会会員へのチラシ配布に頼ることになった。SEOに使える費用はあらかじめ決まっていたため、Webへの流入を増やす施策には踏み込めなかった。</p>
+      <p class="sec-lead">Webサイトの納期は1週間。撮影素材は一切ない状態からのスタートだった。ターゲットは社長の指定で決まっていた。レタッチは社内で遺影写真を担当するメンバーが行っており、専門領域が異なる中、限られた時間で意図をすり合わせる必要があった。</p>
+    </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2 class="sec-head">看板デザイン</h2>
-    <p class="subtitle" style="margin-top:0;margin-bottom:var(--s2)">現地で利用者が最初に目にするのは、サイトではなくこの看板になる。載せる情報をマップ・注意事項・管理者情報・QRコードの4つに絞り、離れた場所からでも読める構成と、サイトと揃えたブランドトーンで設計した。</p>
-    <figure class="shot" style="margin-top:var(--s3);max-width:600px;margin-left:auto;margin-right:auto">
-      <div class="frame">
-        <img src="assets/autooasis-signboard.webp" alt="AUTO OASIS 現地案内看板（マップ・注意事項・管理者情報・QRコード）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
-        <div class="ph" style="display:none"><code>assets/autooasis-signboard.webp</code> を置くと表示されます</div>
+  <div class="sec">
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題とインサイト</h2>
+      <p class="sec-lead">指定されたターゲットは、高級車・バイクを所有し、セキュリティと保管環境を重視するオーナー。流入を増やす施策が取れない以上、サイトの役割は「チラシなどで知って訪れた人が、疑問を解消して申込みまで進める受け皿」になる。新規オープンで実績も口コミもない中、「プレミアムガレージ」としての品質・セキュリティをどう伝えるかが課題だった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">プロセス</h2>
+      <div class="solrow">
+        <span class="sn">A</span>
+        <div>
+          <h4>関係者との連携</h4>
+          <p>外部カメラマン、レタッチ担当、DTPチームのデザイナー、コーダー・SEO担当と連携して進行した。社内の互助会部門の担当者とは、互助会会員へのメリットと、会員に伝える内容をすり合わせた。</p>
+        </div>
       </div>
-      <figcaption>案内看板 — Signboard Design</figcaption>
-    </figure>
+      <div class="solrow">
+        <span class="sn">B</span>
+        <div>
+          <h4>紹介ルートの開拓</h4>
+          <p>前提だった不動産会社からの紹介がなくなった分、地域の高級車ディーラーを訪ね、チラシの配布や顧客の紹介をお願いした。</p>
+        </div>
+      </div>
+      <div class="solrow">
+        <span class="sn">C</span>
+        <div>
+          <h4>撮影香盤票 — 用途から逆算したカット設計</h4>
+          <p>シーン・カット数・小道具・時間帯（日没後の夜間カット含む）まで事前に設計。HP・チラシ・Googleビジネス・SNSと用途から逆算した38カットを、1日で撮り切る計画に落とし込んだ。</p>
+          <figure class="shot">
+            <div class="frame">
+              <img src="assets/autooasis-koban.webp" alt="AUTO OASIS 撮影香盤票（シーン・カット数・使用用途・小道具の一覧表）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+              <div class="ph" style="display:none"><code>assets/autooasis-koban.webp</code> を置くと表示されます</div>
+            </div>
+            <figcaption>撮影香盤票 — Planning Sheet</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="solrow">
+        <span class="sn">D</span>
+        <div>
+          <h4>看板デザイン — 現地での最初の接点</h4>
+          <p>現地で利用者が最初に目にするのは、サイトではなくこの看板になる。載せる情報をマップ・注意事項・管理者情報・QRコードの4つに絞り、離れた場所からでも読める構成にした。</p>
+          <figure class="shot" style="max-width:480px">
+            <div class="frame">
+              <img src="assets/autooasis-signboard.webp" alt="AUTO OASIS 現地案内看板（マップ・注意事項・管理者情報・QRコード）" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block'">
+              <div class="ph" style="display:none"><code>assets/autooasis-signboard.webp</code> を置くと表示されます</div>
+            </div>
+            <figcaption>案内看板 — Signboard Design</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="solrow">
+        <span class="sn">E</span>
+        <div>
+          <h4>サイトの情報設計とトーン</h4>
+          <p>「料金プラン → アクセス → 特長 → 利用アイデア → 設備 → Q&amp;A」と、検討時の疑問を上から順に解消する情報設計。ネイビー基調のトーンで、高級な落ち着きと安心を表現した。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
+    <div class="col">
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">紹介ルートの開拓では、地域の高級車ディーラー1店舗から、チラシの配布と顧客の紹介に協力してもらえることになった。公開後の問い合わせ・入会状況は把握できていない。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">撮影では、構図ラフや参考写真を自作して意図は共有できていたが、構図の妥当性についてはカメラマンから助言を受けた。何をメインに据えるかという構図の判断そのものが、自分の課題として残った。レタッチは、目指す高級感や具体的な修正点を伝えきれなかった。また、サイトが申込みの受け皿になる以上、動線やワイヤーフレームのリサーチ・検証にもっと時間を割くべきだった。時間があれば、高級車の車種ごとに停められるかを確認できるサイズ情報や、実際の利用イメージがわかるコンテンツを作りたかった。今後は、撮影の構図や、高級感を出すためのレタッチ・デザインの知識を深めたい。</p>
+    </div>
   </div>
 </section>
 
