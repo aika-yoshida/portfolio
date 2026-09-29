@@ -109,13 +109,15 @@
   @media(max-width:760px){.gut{position:static;display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}.gut .nm{margin-top:0}}
 
   .sec-head{font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.25;margin-bottom:var(--s1);letter-spacing:-.005em}
-  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px}
+  .sec-lead{color:var(--ink-soft);max-width:680px;font-size:15.5px;margin-bottom:var(--s3)}
+  .sec-lead:last-child{margin-bottom:0}
+  .subhead{font-size:17px;font-weight:700;margin:var(--s5) 0 var(--s1)}
 
 
   /* summary bullets */
   .tldr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--s4);margin-top:var(--s3)}
-  .tldr .lbl{font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
-  .tldr p.big{font-size:17px;font-weight:700;line-height:1.6;margin:var(--s2) 0 var(--s3)}
+  .tldr p.big{font-size:16px;font-weight:400;line-height:1.7;margin:0 0 var(--s3)}
+  .tldr p.big:last-child{margin-bottom:0}
   .tldr .role{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:var(--s2)}
   .tldr .role b{color:var(--ink);font-weight:700}
 
@@ -216,18 +218,17 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
-      <span class="tag">UX / CX Design</span>
-      <span class="tag">Strategy</span>
-      <span class="tag">Wireframe</span>
-      <span class="tag">Web Direction</span>
+      <span class="tag">UXリサーチ</span>
+      <span class="tag">情報設計</span>
+      <span class="tag">ワイヤーフレーム</span>
     </div>
     <h1 class="title">結婚式場<br>Webサイトリニューアル</h1>
-    <p class="subtitle">結婚式場Webサイトのリニューアル企画 — 「都内へ流出するパワーカップル層」を地元でつなぎ止め、フェア予約（CVR）を最大化するCX設計。</p>
+    <p class="subtitle">結婚式場Webサイトの改修案件。担当者へのヒアリングと統計データから、都内の式場も選択肢に入れやすいパワーカップル層に、地元の式場を現実的な選択肢として示し、フェア予約につなげるための2案を提案しました。</p>
 
     <div class="metarow">
-      <div><div class="k">Role / 担当領域</div><div class="v">UXリサーチ・CX設計<br>情報設計・ワイヤーフレーム</div></div>
+      <div><div class="k">Role / 担当領域</div><div class="v">UXリサーチ・カスタマージャーニー設計<br>情報設計・ワイヤーフレーム</div></div>
       <div><div class="k">Timeline / 期間</div><div class="v">2026.04</div></div>
-      <div><div class="k">Type / 形態</div><div class="v">個人ワーク</div></div>
+      <div><div class="k">Type / 形態</div><div class="v">実務</div></div>
       <div><div class="k">Deliverable / 成果物</div><div class="v">提案書(10ページ)<br>ワイヤーフレーム</div></div>
     </div>
 
@@ -238,14 +239,14 @@
             <div class="pane scroll"><img src="assets/wedding-wf-1.webp" alt="A案 CVR特化構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
             <div class="scrollhint" aria-hidden="true"><span class="txt">scroll</span><svg class="cv" width="10" height="50" viewBox="0 0 10 50" fill="none" aria-hidden="true"><path d="M5 0L5 49M1 40L5 49L9 40" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <figcaption>A案 — CVR特化構成</figcaption>
+          <figcaption>A案 — CVR特化構成（別案として提示）</figcaption>
         </figure>
         <figure>
           <div class="panewrap">
             <div class="pane scroll"><img src="assets/wedding-wf-2.webp" alt="B案 王道構成のワイヤーフレーム" loading="lazy" onerror="this.style.display='none'"></div>
             <div class="scrollhint" aria-hidden="true"><span class="txt">scroll</span><svg class="cv" width="10" height="50" viewBox="0 0 10 50" fill="none" aria-hidden="true"><path d="M5 0L5 49M1 40L5 49L9 40" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <figcaption>B案 — 王道構成</figcaption>
+          <figcaption>B案 — 王道構成（採用のベース）</figcaption>
         </figure>
         <figure>
           <div class="pane fixed"><img src="assets/wedding-point1.webp" alt="提案資料の一部" loading="lazy" onerror="this.style.display='none'"></div>
@@ -259,50 +260,90 @@
 
 <main id="main">
 
-<!-- ============ 01 OVERVIEW ============ -->
 <section>
   <div class="sec">
     <div class="gut"><span class="no">01</span><span class="nm">Overview</span></div>
     <div class="col">
-      <h2 class="sec-head">3秒で離脱される式場サイトを、<br>「賢い最適解」を伝える体験へ</h2>
+      <h2 class="sec-head">決まった方針の中で、<br>もう1つの選択肢を示す</h2>
       <div class="tldr">
-        <span class="lbl">In short</span>
-        <p class="big">アクセスは伸びているのに、フェア予約が伸びない。原因を「着地後3秒の直帰」と特定し、感情・理性・信頼の心理障壁を1つずつ解除する情報設計へ再構築した。訴求の軸は、都内への背伸びでも地元での妥協でもない「知的な最適解」。</p>
-        <p class="role"><b>担当：</b>UXリサーチ〜CX設計〜情報設計・ワイヤーフレーム</p>
+        <p class="big">結婚式場Webサイトの改修案件。担当者へのヒアリングで、アクセスはあるのにフェア予約につながっていないことが分かった。統計データからターゲットを整理し、担当者の方針に沿ったB案と、予約につなげることに特化したA案の2案をワイヤーフレームで提案。採用はB案をもとにした形で、A案は今後の参考として提示した。</p>
+        <p class="role"><b>担当：</b>UXリサーチ・カスタマージャーニー設計・情報設計・ワイヤーフレーム</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 SOLUTIONS ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">02</span><span class="nm">Key<br>Solutions</span></div>
+    <div class="gut"><span class="no">02</span><span class="nm">Constraints</span></div>
     <div class="col">
-      <h2 class="sec-head">CVR最大化：3つの中核施策</h2>
-      <p class="sec-lead">フォームにたどり着くまでの障壁（感情・理性・信頼）をピンポイントで解除する、三位一体のアプローチ。</p>
-      <div class="grid3">
-        <div class="card"><span class="num">A</span><h4>ファーストビューの<br>マルチビジュアル化</h4><p>着地後3秒の即時離脱を防ぐ。建築美・チャペル・開放的なバンケットをテンポよく動画で伝え、式場全体の魅力を一瞬で提示する。</p></div>
-        <div class="card"><span class="num">B</span><h4>インタラクティブ<br>館内マップ</h4><p>気になるエリアをタップすると、その場所の魅力とホスピタリティの根拠が浮かび上がる。詳細までそのままドリルダウンできる設計。</p></div>
-        <div class="card"><span class="num">C</span><h4>知的意思決定を支える<br>予約導線</h4><p>「いま予約しないと損」という業界特有のプレッシャーから解放し、迷いなくフェア予約へ進める環境を構築。</p></div>
-      </div>
+      <h2 class="sec-head">制約</h2>
+      <p class="sec-lead">アクセス数などの数値データを確認する権限はなく、現状の把握は担当者へのヒアリングが頼りだった。また、担当者はすでにどう改修したいかを決めており、提案はその方針が前提になった。実装はコーダー1名のため、修正量の調整も必要だった。</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 03 PROPOSAL PDF ============ -->
 <section>
   <div class="sec">
-    <div class="gut"><span class="no">03</span><span class="nm">Full<br>Proposal</span></div>
+    <div class="gut"><span class="no">03</span><span class="nm">Insight</span></div>
+    <div class="col">
+      <h2 class="sec-head">課題とインサイト</h2>
+      <p class="sec-lead">担当者へのヒアリングでは、アクセスは伸びているのに、フェア予約が伸びていないという話だった。数値を見られない中で、訪れた人がファーストビューで魅力をつかめず、着地後3秒ほどで離れているのではないかと仮説を立てた。</p>
+      <p class="sec-lead">あわせて、さいたま市の世帯収入・結婚件数の統計を、東京や近隣エリアと比較し、ターゲットをパワーカップル層に設定した。所得に余裕のある層ほど、都内の式場も選択肢に入れやすい。一方で、地方から来るゲストへの配慮や、自分たちの住まいから近い便利さを考えると、地元の式場は現実的な選択肢になる。都内への背伸びでも、地元での妥協でもなく、「ここを選ぶのが賢い」と思える理由を伝えることが課題だった。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">04</span><span class="nm">Process</span></div>
+    <div class="col">
+      <h2 class="sec-head">プロセス</h2>
+      <p class="sec-lead">ヒアリングと統計の比較をもとに、情報収集から予約までの段階ごとに、顧客の心理と、判断が変わるきっかけを整理し、Web上の施策に落とし込んだ。そのうえで、2案のワイヤーフレームを作成した。B案は、担当者の方針に沿った王道の構成。A案は、フェア予約につなげることに特化した構成で、別案として提示した。採用されたのはB案で、その後コーダーからの指示を受けて修正範囲を調整し、B案よりさらに既存サイトを活かした形になった。</p>
+      <h3 class="subhead">A案の工夫点</h3>
+      <p class="sec-lead">予約フォームにたどり着くまでの「気持ち」「判断」「信頼」の壁を、1つずつ取り除く構成にした。</p>
+      <div class="grid3">
+        <div class="card"><span class="num">A</span><h4>ファーストビューで<br>魅力を一度に見せる</h4><p>着地後すぐの離脱を防ぐため、建物・チャペル・バンケットを動画でテンポよく見せ、式場全体の魅力を最初の画面で伝える。</p></div>
+        <div class="card"><span class="num">B</span><h4>館内マップで<br>気になる場所を深掘り</h4><p>気になるエリアをタップすると、その場所の魅力とおもてなしの根拠が表示され、そのまま詳細へ進める。</p></div>
+        <div class="card"><span class="num">C</span><h4>急かさない<br>予約導線</h4><p>「いま予約しないと損」という業界によくあるプレッシャーをかけず、納得したうえでフェア予約へ進めるようにした。</p></div>
+      </div>
+      <p class="sec-lead" style="margin-top:var(--s4)">Webサイト以外にも、予約の先の接点を提案に含めた。大手式場のようなアプリは難しいため、契約後の打ち合わせをNotionで進める形、挙式後のアニバーサリーディナーのメール案内、互助会の紹介など、この式場でも実現できる形に置き換えた。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">05</span><span class="nm">Results</span></div>
+    <div class="col">
+      <h2 class="sec-head">結果</h2>
+      <p class="sec-lead">採用されたのは、B案をもとに既存サイトをさらに活かした形。A案は採用されなかったが、今後の参考として提示した。サイトは公開前のため、効果はまだ確かめられていない。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">06</span><span class="nm">Reflection</span></div>
+    <div class="col">
+      <h2 class="sec-head">振り返り</h2>
+      <p class="sec-lead">数値データが見られない中で、A案の仮説はヒアリングと統計に頼っていた。A案を磨くには、式場でアンケートを取り、実際のカップルが何を見て式場を決めているのかを確かめたかった。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 PROPOSAL PDF ============ -->
+<section>
+  <div class="sec">
+    <div class="gut"><span class="no">07</span><span class="nm">Full<br>Proposal</span></div>
     <div class="col">
       <h2 class="sec-head">提案書の全文（PDF）</h2>
-      <p class="sec-lead">上記はWeb向けに要点をまとめたサマリーです。実際にクライアントへ提出した提案書は、下記からそのままご覧いただけます（全10ページ）。</p>
+      <p class="sec-lead">上記はWeb向けに要点をまとめたものです。担当者へ提出した提案書は、下記からそのままご覧いただけます（全10ページ）。</p>
       <div class="pdfbox">
         <div class="bar">
           <div class="t">結婚式場 / Webサイトリニューアル — 提案書<small>PDF · 10 pages · 2026.04</small></div>
           <div class="acts">
             <a href="https://drive.google.com/file/d/1rk1Xq-jVniLeB2G1QEtkmFaROaAXFaoO/view?usp=drive_link" target="_blank" rel="noopener">別タブで開く ↗</a>
-            <a class="solid" href="https://drive.google.com/uc?export=download&amp;id=1rk1Xq-jVniLeB2G1QEtkmFaROaAXFaoO" target="_blank" rel="noopener">ダウンロード ↓</a>
           </div>
         </div>
         <iframe src="https://drive.google.com/file/d/1rk1Xq-jVniLeB2G1QEtkmFaROaAXFaoO/preview" title="提案書PDF" allow="autoplay"></iframe>
